@@ -1,8 +1,8 @@
 // * Page Icons (Page specific only)
 // *******************************************************************************
 
-@import 'include';
-@import 'pages';
+@import '../_bootstrap-extended/include';
+@import '../_custom-variables/pages';
 
 #icons-container {
   .icon-card {

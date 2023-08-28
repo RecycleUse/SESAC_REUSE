@@ -1,11 +1,11 @@
-@import 'include';
+@import '_components/include';
 
 // Import components scss
-@import 'base';
-@import 'common';
-@import 'menu';
-@import 'layout';
-@import 'app-brand';
-@import 'avatar';
-@import 'text-divider';
-@import 'footer';
+@import '_components/base';
+@import '_components/common';
+@import '_components/menu';
+@import '_components/layout';
+@import '_components/app-brand';
+@import '_components/avatar';
+@import '_components/text-divider';
+@import '_components/footer';

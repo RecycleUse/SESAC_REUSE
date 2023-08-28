@@ -1,6 +1,6 @@
 // ? Theme related styles common styles
 
-@import 'include';
+@import '../_components/include';
 
 // Space above detached navbar (vertical layout only)
 .layout-navbar-fixed .layout-wrapper:not(.layout-horizontal) .layout-page:before {

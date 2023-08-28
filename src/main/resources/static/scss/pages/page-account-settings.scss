@@ -1,8 +1,8 @@
 // * Account Settings
 // *******************************************************************************
 
-@import 'pages';
-@import 'include';
+@import '../_custom-variables/pages';
+@import '../_bootstrap-extended/include';
 
 .api-key-actions {
   position: absolute !important;
