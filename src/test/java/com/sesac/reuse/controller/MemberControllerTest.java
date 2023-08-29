@@ -19,7 +19,7 @@ class MemberControllerTest {
     @Test
     void signup() {
         //given
-        memberController.login();
+//        memberController.login();
 
         //then
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
