@@ -14,12 +14,13 @@
   padding: 30px;
 }
 
-/* 검색 실패 페이지 : 추가 신청 버튼 */
+/* 검색 실패 페이지 : 돌아가기, 추가 신청 버튼 */
 .search-fail-btn {
   display: flex;
   padding-top: 25px;
-  padding-left: 345px;
-  justify-content: center;  /* 수평 가운데 정렬 */
+  padding-left: 300px;
+  /*justify-content: center;  !* 수평 가운데 정렬 *!*/
+  margin-right: 20px;
 }
 
 /* 검색 실패 페이지 : 혹시 이런건 어떠세요? text */

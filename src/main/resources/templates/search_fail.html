@@ -24,7 +24,7 @@
 <!-- 네비바 시작 -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" th:href="@{/}">
                 <img src="/static2/images/logo.png" class="logo" alt="">
                 <span>Reuse</span>
             </a>
@@ -40,11 +40,11 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-lg-5 me-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_1">Home</a>
+                        <a class="nav-link click-scroll" th:href="@{/}">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_2">Community</a>
+                        <a class="nav-link click-scroll" th:href="@{/게시판}">Community</a>
                     </li>
 
                     <!-- 회원가입 -->
@@ -84,6 +84,7 @@
 
                 <div class ="search-fail-btn">
                     <div class="col-lg-8">
+                        <a th:href="@{/}" class="btn custom-btn">돌아가기</a>
                         <a th:href="@{/게시판}" class="btn custom-btn">재활용 추가 신청</a>
                     </div>
                 </div>

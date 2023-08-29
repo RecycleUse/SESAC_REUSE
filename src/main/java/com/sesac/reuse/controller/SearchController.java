@@ -2,7 +2,6 @@ package com.sesac.reuse.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 // 검색 페이지 제공용 컨트롤러
 @Controller
