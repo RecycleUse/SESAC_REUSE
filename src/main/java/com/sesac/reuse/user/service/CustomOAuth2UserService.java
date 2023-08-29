@@ -2,6 +2,7 @@ package com.sesac.reuse.user.service;
 
 import com.sesac.reuse.user.domain.User;
 import com.sesac.reuse.user.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,7 +17,9 @@ import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
 @Service  // 해당 클래스를 Spring의 Service로 등록합니다. 비즈니스 로직을 포함하는 클래스에 주로 사용됩니다.
+@RequiredArgsConstructor
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired  // Spring의 DI를 사용하여 userRepository 인스턴스를 자동으로 주입받습니다.
@@ -62,19 +65,5 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 "email");  // 이름 필드의 키를 "email"로 설정합니다.
     }
 
-
-    protected void configure(HttpSecurity http) throws Exception {
-        //로그아웃
-        http
-                .logout()
-                .logoutUrl("/user/logout")
-                .logoutSuccessUrl("/")
-                .addLogoutHandler((request, response, authentication) -> {
-                    HttpSession session = request.getSession();
-                    session.invalidate();
-                })
-                .logoutSuccessHandler((request, response, authentication) -> response.sendRedirect("/user/login"))
-                .deleteCookies("remember-me");
-    }
 
 }
