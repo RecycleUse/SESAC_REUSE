@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,6 +61,11 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link click-scroll" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+                            </li>
+
+                            <!-- 로그인한 회원만 볼수있는 메뉴 -->
+                            <li>
+                                <a class="nav-link click-scroll" sec:authorize="hasRole('user')" th:href="@{/}">마이페이지</a>
                             </li>
 
                         </ul>

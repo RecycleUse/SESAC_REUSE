@@ -26,8 +26,9 @@ public class User {
 
     // email과 nickname을 매개변수로 받는 생성자입니다.
     // Lombok의 @RequiredArgsConstructor 어노테이션으로 인해 필요없게 될 수도 있습니다.
-    public User(String email, String nickname) {
+    public User(String email, String nickname, String pw) {
         this.email = email;
         this.nickname = nickname;
+        this.pw = pw;
     }
 }

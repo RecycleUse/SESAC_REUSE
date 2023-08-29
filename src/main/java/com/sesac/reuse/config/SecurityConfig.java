@@ -1,6 +1,6 @@
 package com.sesac.reuse.config;
 
-import com.sesac.reuse.security.CustomOAuth2UserService;
+import com.sesac.reuse.user.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()  // HttpServletRequest에 따라 접근을 제한하거나 허용하려면 사용
-                .antMatchers("/user/**").permitAll()  // 데이터베이스 콘솔에 대한 모든 요청을 허용
+                .antMatchers("/", "/user/**", "/search_fail").permitAll()  // 데이터베이스 콘솔에 대한 모든 요청을 허용
                 .anyRequest().authenticated()  // 그 외의 모든 요청은 인증이 필요
                 .and()
                 .oauth2Login()  // OAuth 2 로그인 기능 활성화
@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")  // 로그인 성공 시 리다이렉트할 URL
                 .failureUrl("/login?error=true")  // 로그인 실패 시 리다이렉트할 URL
                 .and()
-                .csrf().ignoringAntMatchers("/user/**")  // CSRF 보호에서 H2 콘솔 URL 제외
+                .csrf().ignoringAntMatchers("/", "/user/**", "/search_fail")  // CSRF 보호에서 제외 페이지
                 .and()
                 .headers().frameOptions().disable();  // X-Frame-Options 헤더를 비활성화하여 iframe 내에서 페이지를 렌더링 허용
     }
