@@ -7,8 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 
@@ -33,6 +36,7 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.disable()) //csrf 보호 기능 해제, (시큐리티는 GET 제외 모든 요청을 CSRF 체크가 default)
                 .authorizeHttpRequests(authz -> authz
                         .mvcMatchers("/","/index","/home","/user/signup","/user/login").permitAll() // 해당 경로에 대한 모든 요청(get,put,post,delete) 다 처리 권한없이 허용
+                        .mvcMatchers("/admin/**").hasRole("ADMIN")
                 )
                 .httpBasic(withDefaults());
 
@@ -41,9 +45,10 @@ public class WebSecurityConfig {
                         .loginPage("/member/login") // 시큐리티 default login페이지를 안쓰고 커스텀 쓰는경우에는 GET요청 Controller 생성해줘야함
                         .usernameParameter("email")
                         .passwordParameter("pw")
-                        .defaultSuccessUrl("/")
+                        .defaultSuccessUrl("/member/myPage")
                         .permitAll()
                 ); //시큐리티의 경우 filter에서 요청받고 내부적으로 controller구성 , 로그인,로그아웃 Controller는 직접 생성 안해도됨
+
 
         return http.build();
     }
@@ -70,4 +75,6 @@ public class WebSecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
 }

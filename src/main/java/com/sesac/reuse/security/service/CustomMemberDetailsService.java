@@ -10,7 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,6 +33,7 @@ public class CustomMemberDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
     @Override
+    @Transactional // member, role 두 번 조회해야하므로!
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         log.info("executing loadUserByEmail....");
 
@@ -43,6 +46,17 @@ public class CustomMemberDetailsService implements UserDetailsService {
         }
 
         Member member = userOptional.get();
+        log.info("member={}",member);
+        List<SimpleGrantedAuthority> collect = member.getRoleSet().
+                stream().map(memberRole ->
+                        new SimpleGrantedAuthority("ROLE_" + memberRole.name()))
+                .collect(Collectors.toList());
+
+        log.info("collect={}",collect.stream().map(simpleGrantedAuthority -> {
+            return simpleGrantedAuthority.getAuthority().toString();
+        }));
+
+
 
         //member-> MemberSecurityDTO로 반환해줘야함
         MemberSecurityDTO memberSecurityDTO = new MemberSecurityDTO(member, member.getRoleSet().

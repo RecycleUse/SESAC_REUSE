@@ -4,6 +4,7 @@ import com.sesac.reuse.dto.MemberDTO;
 import com.sesac.reuse.entity.Member;
 import com.sesac.reuse.entity.MemberRole;
 import com.sesac.reuse.entity.SocialSignUpInfo;
+import com.sesac.reuse.exception.EmailExistException;
 import com.sesac.reuse.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -27,8 +28,6 @@ public class MemberServiceImpl implements MemberService {
         isExistAccount(memberDTO);
         Member member = convertMember(memberDTO);
         memberRepository.save(member);
-
-        log.info("가입 완료");
 
     }
 

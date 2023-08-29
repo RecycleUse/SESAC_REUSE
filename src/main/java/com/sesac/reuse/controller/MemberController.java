@@ -1,6 +1,7 @@
 package com.sesac.reuse.controller;
 
 import com.sesac.reuse.dto.MemberDTO;
+import com.sesac.reuse.exception.EmailExistException;
 import com.sesac.reuse.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -32,8 +33,20 @@ public class MemberController {
     }
 
     @PostMapping("/member/signup")
-    public void signUp( MemberDTO memberDTO) {
+    public String signUp( MemberDTO memberDTO) {
         log.info("memberDTO={}",memberDTO);
-        memberService.join(memberDTO);
+
+        try {
+            memberService.join(memberDTO);
+        }catch (EmailExistException e) {
+            log.error("이미 존재하는 회원입니다."); // 프론트단으로 에러보내주기
+        }
+
+        return "redirect:/member/login";
+    }
+
+    @GetMapping("/member/myPage")
+    public String myPage() {
+        return "/member/my_page";
     }
 }
