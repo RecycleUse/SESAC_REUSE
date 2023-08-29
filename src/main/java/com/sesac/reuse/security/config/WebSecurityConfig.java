@@ -1,11 +1,15 @@
 package com.sesac.reuse.security.config;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 
@@ -13,7 +17,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 // 시큐리티 5,4부터 filterChain 빈으로 구현 가능, Adapter 구현 방식 deprecated
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity //SecurityConifg 기본 설정이 아닌 WebSecurityConfig가 우선시 됨
+@EnableGlobalMethodSecurity // 컨트롤러마다 권한 설정을 어노테이션으로 가능하도록 하는 설정 -> @PreAuthorize @PostAuthorize 통해 가능
 @Log4j2
 public class WebSecurityConfig {
 
@@ -35,7 +40,8 @@ public class WebSecurityConfig {
 
         http
                 .formLogin(form -> form
-                        .loginPage("/user/login")
+                        .loginPage("/user/login") // 시큐리티 default login페이지를 안쓰고 커스텀 쓰는경우에는 GET요청 Controller 생성해줘야함
+                        .defaultSuccessUrl("/")
                         .permitAll()
                 ); //시큐리티의 경우 filter에서 요청받고 내부적으로 controller구성 , 로그인,로그아웃 Controller는 직접 생성 안해도됨
 
@@ -50,7 +56,8 @@ public class WebSecurityConfig {
     * */
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/static/**");
+//        return (web) -> web.ignoring().antMatchers("/static/**"); //ant패턴 (부정 의미 아님 ㅋㅋ)
+        return (web) -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
     /*
@@ -58,4 +65,9 @@ public class WebSecurityConfig {
     - WebSecurityCustomizer 는 전반적인 웹 보안 설정에 초점
     - SecurityFilterChain는 HTTP 요청 단위의 세부적인 보안 정책에 초점
      */
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
