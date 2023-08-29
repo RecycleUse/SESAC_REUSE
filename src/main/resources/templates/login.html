@@ -78,17 +78,16 @@
           <div class="app-brand justify-content-center">
             <a href="index.html" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
-                    <img src="/static1/assets/img/logo/logo.png" class="login-logo"/>
+                    <img src="/static1/assets/img/logo/logo.png" class="login-logo" th:href="@{/}"/>
                   </span>
             </a>
           </div>
           <!-- /Logo -->
           <h4 class="mb-2">Welcome to Reuse! 👋</h4>
-          <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
           <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
             <div class="mb-3">
-              <label for="email" class="form-label">Email or Username</label>
+              <label for="email" class="form-label">Email</label>
               <input
                       type="text"
                       class="form-control"
@@ -124,7 +123,7 @@
               </div>
             </div>
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+              <button class="btn btn-primary d-grid w-100" type="submit">로그인</button>
             </div>
           </form>
 
@@ -136,9 +135,9 @@
 
           <!-- 회원가입 -->
           <p class="text-center">
-            <span>New on our platform?</span>
+            <span>처음이신가요?</span>
             <a th:href="@{/user/join}">
-              <span>Create an account</span>
+              <span>회원가입</span>
             </a>
           </p>
 

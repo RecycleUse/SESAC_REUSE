@@ -39,6 +39,7 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-lg-5 me-lg-auto">
+
                     <li class="nav-item">
                         <a class="nav-link click-scroll" th:href="@{/}">Home</a>
                     </li>
@@ -49,12 +50,8 @@
 
                     <!-- 회원가입 -->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" th:href="@{/user/join}">SIGN IN</a>
+                        <a class="nav-link click-scroll" th:href="@{/user/join}">회원가입</a>
                     </li>
-
-                    <!--                            <li class="nav-item">-->
-                    <!--                                <a class="nav-link click-scroll" href="#section_4">LOGIN</a>-->
-                    <!--                            </li>-->
 
                     <!-- 로그인, 로그아웃-->
                     <li class="nav-item">
@@ -74,29 +71,26 @@
     </nav>
 <!-- 네비바 끝 -->
 
-    <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+    <section class="search-fail-top d-flex justify-content-center align-items-center" id="section_1">
         <div class="container">
-            <div class="row">
 
-                <img src="/static2/images/exclamation-mark.png" class="exclamation-mark-img" alt="">
+            <img src="/static2/images/exclamation-mark.png" class="exclamation-mark-img" alt="">
 
-                <h4 class="text-white text-center">검색 결과가 없습니다.</h4>
+            <h4 class="text-white text-center search-fail-text-1">검색 결과가 없습니다.</h4>
 
-                <div class ="search-fail-btn">
-                    <div class="col-lg-8">
-                        <a th:href="@{/}" class="btn custom-btn">돌아가기</a>
-                        <a th:href="@{/게시판}" class="btn custom-btn">재활용 추가 신청</a>
-                    </div>
+                <div class="search-fail-btn-aline">
+                    <a th:href="@{/}" class="btn search-fail-btn">돌아가기</a>
                 </div>
-
-            </div>
+                <div class="search-fail-btn-aline">
+                    <a th:href="@{/게시판}" class="btn search-fail-btn">재활용 추가 신청</a>
+                </div>
         </div>
     </section>
 
     <section class="featured-section">
         <div class="container">
             <div class="row">
-                <h6 class="search-fail-text">혹시 이런건 어떠세요?</h6>
+                <h6 class="search-fail-text-2">혹시 이런건 어떠세요?</h6>
                     <div class="col-lg-8">
                         <a th:href="@{/게시판}" class="btn search-fail-text-btn">우산</a>
                         <a th:href="@{/게시판}" class="btn search-fail-text-btn">그릇</a>
