@@ -1,4 +1,48 @@
-.logo {width: 35px; height: 35px;}
+/* 네비바 REUSE 로고 */
+.logo {
+  width: 35px;
+  height: 35px;
+}
+
+/* 검색 실패 페이지 : 느낌표 마크 */
+.exclamation-mark-img {
+  width: 140px;
+  height: 140px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}
+
+/* 검색 실패 페이지 : 추가 신청 버튼 */
+.search-fail-btn {
+  display: flex;
+  padding-top: 25px;
+  padding-left: 345px;
+  justify-content: center;  /* 수평 가운데 정렬 */
+}
+
+/* 검색 실패 페이지 : 혹시 이런건 어떠세요? text */
+.search-fail-text {
+  --bs-text-opacity:1;color:rgba(var(--bs-white-rgb),var(--bs-text-opacity))!important;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+/* 검색 실패 페이지 : 혹시 이런건 어떠세요? 키워드 버튼 */
+.search-fail-text-btn {
+  background: #80d0c700;
+  border: 2px solid #ffffff;
+  border-radius: var(--border-radius-large);
+  color: var(--white-color);
+  font-size: var(--btn-font-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: normal;
+  padding: 7px 15px;
+  margin-top: 3px;
+  margin-right: 8px;
+}
+
 
 @font-face {
   font-display: block;
