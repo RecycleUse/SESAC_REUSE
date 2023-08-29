@@ -1,0 +1,15 @@
+/* 로그인 페이지 */
+
+/* REUSE 로고 */
+.login-logo {
+    width: 90px;
+}
+
+/* 카카오 로그인 로고 */
+input.login-kakao-logo {
+    background: url("../img/logo/kakao.png") no-repeat;
+    background-size: contain;
+    border: none;
+    width: 45px;
+    height: 45px;
+}
