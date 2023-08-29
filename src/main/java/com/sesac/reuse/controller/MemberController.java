@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,15 +34,19 @@ public class MemberController {
     }
 
     @PostMapping("/member/signup")
-    public String signUp( MemberDTO memberDTO) {
+    public String signUp(MemberDTO memberDTO, RedirectAttributes redirectAttributes) {
         log.info("memberDTO={}",memberDTO);
 
         try {
             memberService.join(memberDTO);
         }catch (EmailExistException e) {
             log.error("이미 존재하는 회원입니다."); // 프론트단으로 에러보내주기
+            redirectAttributes.addFlashAttribute("error","email"); //리다이렉트 컨트롤러에 세션(임시)로 담아 넘김 -> @ModelAttribute로 접근, 프론트단은 Model객체로 접근
+            //여기선 어차피 GET으로가니까 컨트롤러에서는 접근할 필요없고, 프론트단에서만 접근하겠지
+            return "redirect:/member/signup";
         }
 
+        redirectAttributes.addFlashAttribute("result","success");
         return "redirect:/member/login";
     }
 

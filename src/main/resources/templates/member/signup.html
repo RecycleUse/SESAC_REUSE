@@ -1,17 +1,5 @@
 <!DOCTYPE html>
 
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
 <html
   lang="en"
   xmlns:th="http://www.thymeleaf.org"
@@ -241,7 +229,10 @@
     <script src="/static1/assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="/static1/js/signup.js"></script>
+    <script th:inline="javascript">
+      const error = [[${error}]];
+    </script>
+    <script th:src="@{/static1/js/member/signup.js}"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>

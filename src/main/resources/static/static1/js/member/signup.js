@@ -18,3 +18,13 @@ signUpForm.addEventListener("submit", e => {
 });
 
 
+//가입과정에서 존재하는 회원이라 리다이렉트되는 경우
+
+console.log(error);
+
+if(error && error === 'email') {
+    alert("이미 가입된 회원입니다. 이메일을 확인해 주세요.");
+}
+
+
+
