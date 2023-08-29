@@ -6,21 +6,27 @@ import com.sesac.reuse.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
 @Log4j2
+@RequestMapping("/member")
 public class MemberController {
 
     private final MemberService memberService;
 
     // 시큐리티 default login페이지를 안쓰고 커스텀 쓰는경우에는 GET요청 Controller 생성해줘야함
-    @GetMapping("/member/login")
+    @GetMapping("/login")
     public String loginPage() {
-        return "/member/login";
+        return "member/login";
     }
 
     //시큐리티 기본 제공 user로 로그인 테스트하면 "/login?error로 리다이렉트되고 SecurityContext 에 저장안됐다고 나오는데
@@ -28,14 +34,22 @@ public class MemberController {
     //저장되는거 확인하고싶다면, 메모리 유저 or 테스트코드로
 
 
-    @GetMapping("/member/signup")
+    @GetMapping("/signup")
     public String signUpPage() {
-        return "/member/signup";
+        return "member/signup";
     }
 
-    @PostMapping("/member/signup")
-    public String signUp(MemberDTO memberDTO, RedirectAttributes redirectAttributes) {
+    @PostMapping("/signup")
+    public String signUp(@Valid MemberDTO memberDTO, BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes,
+                         Model model) {
+
         log.info("memberDTO={}",memberDTO);
+
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("memberDTO",memberDTO);
+            return "member/signup"; //타임리프는 앞에 /안붙이는게 적합
+        }
 
         try {
             memberService.join(memberDTO);
@@ -50,7 +64,7 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
-    @GetMapping("/member/myPage")
+    @GetMapping("/myPage")
     public String myPage() {
         return "/member/my_page";
     }

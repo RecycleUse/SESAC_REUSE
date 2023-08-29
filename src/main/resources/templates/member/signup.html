@@ -127,7 +127,7 @@
               <h4 class="mb-2">Adventure starts here 🚀</h4>
               <p class="mb-4">Make your app management easy and fun!</p>
 
-              <form id="formAuthentication" class="mb-3" action="/member/signup" method="POST">
+              <form id="formAuthentication" class="mb-3" th:action="@{/member/signup}" method="POST" th:object="${memberDTO}">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
@@ -140,6 +140,10 @@
                     required
                   />
                 </div>
+                <div th:if="${#fields.hasErrors('email')}">
+                  <p class="error-message" th:each="error : ${#fields.errors('email')}" th:text="${error}"></p>
+                </div>
+
                 <div class="mb-3">
                   <label for="nickname" class="form-label">USER NAME</label>
                   <input type="text" class="form-control" id="nickname" name="nickname" placeholder="사용하실 닉네임을 입력해주세요." required/>
