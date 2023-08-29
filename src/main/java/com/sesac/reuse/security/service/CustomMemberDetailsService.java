@@ -1,7 +1,7 @@
 package com.sesac.reuse.security.service;
 
-import com.sesac.reuse.config.entity.User;
-import com.sesac.reuse.config.repository.UserRepository;
+import com.sesac.reuse.entity.Member;
+import com.sesac.reuse.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,22 +23,22 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomMemberDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         log.info("executing loadUserByEmail....");
 
-        Optional<User> userOptional = userRepository.findByEmail(email);
+        Optional<Member> userOptional = memberRepository.findByEmail(email);
 
         //get()으로 꺼내버리면 NPE터짐,
         if(userOptional.isEmpty()) {
             throw new UsernameNotFoundException("존재하지 않는 회원입니다.");
         }
 
-        User user = userOptional.get();
+        Member member = userOptional.get();
 
 
 

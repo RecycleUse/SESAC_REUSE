@@ -1,4 +1,4 @@
-package com.sesac.reuse.config.entity;
+package com.sesac.reuse.entity;
 
 import lombok.Getter;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Table(name="app_user")
-public class User {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

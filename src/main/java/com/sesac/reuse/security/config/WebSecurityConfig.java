@@ -4,12 +4,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 
@@ -17,8 +14,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 // 시큐리티 5,4부터 filterChain 빈으로 구현 가능, Adapter 구현 방식 deprecated
 @Configuration
-@EnableWebSecurity //SecurityConifg 기본 설정이 아닌 WebSecurityConfig가 우선시 됨
-@EnableGlobalMethodSecurity // 컨트롤러마다 권한 설정을 어노테이션으로 가능하도록 하는 설정 -> @PreAuthorize @PostAuthorize 통해 가능
+@EnableWebSecurity
 @Log4j2
 public class WebSecurityConfig {
 
@@ -34,7 +30,7 @@ public class WebSecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) //csrf 보호 기능 해제, (시큐리티는 GET 제외 모든 요청을 CSRF 체크가 default)
                 .authorizeHttpRequests(authz -> authz
-                        .mvcMatchers("/","/index","/hone","/user/signup","/user/login").permitAll() // 해당 경로에 대한 모든 요청(get,put,post,delete) 다 처리 권한없이 허용
+                        .mvcMatchers("/","/index","/home","/user/signup","/user/login").permitAll() // 해당 경로에 대한 모든 요청(get,put,post,delete) 다 처리 권한없이 허용
                 )
                 .httpBasic(withDefaults());
 
@@ -65,9 +61,4 @@ public class WebSecurityConfig {
     - WebSecurityCustomizer 는 전반적인 웹 보안 설정에 초점
     - SecurityFilterChain는 HTTP 요청 단위의 세부적인 보안 정책에 초점
      */
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

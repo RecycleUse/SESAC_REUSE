@@ -1,4 +1,4 @@
-package com.sesac.reuse.config.entity;
+package com.sesac.reuse.entity;
 
 public enum UserRole {
     USER,

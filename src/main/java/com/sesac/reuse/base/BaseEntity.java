@@ -1,4 +1,4 @@
-package com.sesac.reuse.base.entity;
+package com.sesac.reuse.base;
 
 import lombok.Getter;
 import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
