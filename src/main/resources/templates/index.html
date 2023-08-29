@@ -65,7 +65,7 @@
 
                             <!-- 로그인한 회원만 볼수있는 메뉴 -->
                             <li>
-                                <a class="nav-link click-scroll" sec:authorize="hasRole('user')" th:href="@{/}">마이페이지</a>
+                                <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_USER')" th:href="@{/}">마이페이지</a>
                             </li>
 
                         </ul>

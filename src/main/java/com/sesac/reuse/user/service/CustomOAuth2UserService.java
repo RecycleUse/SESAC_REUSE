@@ -3,6 +3,7 @@ package com.sesac.reuse.user.service;
 import com.sesac.reuse.user.domain.User;
 import com.sesac.reuse.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -11,6 +12,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,6 +60,21 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),  // 기본 권한을 설정합니다.
                 attributes,  // OAuth2 인증 정보의 속성들
                 "email");  // 이름 필드의 키를 "email"로 설정합니다.
+    }
+
+
+    protected void configure(HttpSecurity http) throws Exception {
+        //로그아웃
+        http
+                .logout()
+                .logoutUrl("/user/logout")
+                .logoutSuccessUrl("/")
+                .addLogoutHandler((request, response, authentication) -> {
+                    HttpSession session = request.getSession();
+                    session.invalidate();
+                })
+                .logoutSuccessHandler((request, response, authentication) -> response.sendRedirect("/user/login"))
+                .deleteCookies("remember-me");
     }
 
 }
