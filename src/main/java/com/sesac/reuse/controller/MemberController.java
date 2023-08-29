@@ -1,11 +1,19 @@
 package com.sesac.reuse.controller;
 
+import com.sesac.reuse.dto.MemberDTO;
+import com.sesac.reuse.service.MemberService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@RequiredArgsConstructor
+@Log4j2
 public class MemberController {
+
+    private final MemberService memberService;
 
     // 시큐리티 default login페이지를 안쓰고 커스텀 쓰는경우에는 GET요청 Controller 생성해줘야함
     @GetMapping("/member/login")
@@ -19,7 +27,13 @@ public class MemberController {
 
 
     @GetMapping("/member/signup")
-    public String signupPage() {
+    public String signUpPage() {
         return "/member/signup";
+    }
+
+    @PostMapping("/member/signup")
+    public void signUp( MemberDTO memberDTO) {
+        log.info("memberDTO={}",memberDTO);
+        memberService.join(memberDTO);
     }
 }

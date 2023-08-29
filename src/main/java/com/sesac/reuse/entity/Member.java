@@ -2,6 +2,7 @@ package com.sesac.reuse.entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Getter
-@Table(name="user")
+@ToString
 public class Member {
 
     @Id
@@ -19,10 +20,13 @@ public class Member {
     private String pw;
     private String nickname;
 
+    @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.LAZY) //권한을 별도의 엔티티가 아닌 Member엔티티에서 관리하도록 하는 어노테이션, 간편용, 찐은 별도테이블 구성하는게 좋음
     private Set<MemberRole> roleSet = new HashSet<>();
 
     private boolean del;
+
+    @Enumerated(EnumType.STRING)
     private SocialSignUpInfo social;
 
     public void encrptyPassword(String encrptedPw) {
