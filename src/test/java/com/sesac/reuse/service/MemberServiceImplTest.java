@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -46,6 +48,27 @@ class MemberServiceImplTest {
         Assertions.assertThat(findMember.getEmail()).isEqualTo(signupMemberDTO.getEmail());
     }
 
+    @Test
+    void modifyProfileTest() {
+        //given
+        MemberDTO modifyMemberDTO = MemberDTO.builder()
+                .email("the_blue10@naver.com")
+                .pw("password")
+                .confirmPw("password")
+                .nickname("닉네임변경테스트")
+                .build();
+
+        //when
+        memberService.modifyProfile(modifyMemberDTO);
+
+        //then
+
+        Member findMember = memberRepository.findByEmail(modifyMemberDTO.getEmail()).orElseThrow();
+
+        Assertions.assertThat(findMember.getNickname()).isEqualTo(modifyMemberDTO.getNickname());
+
+
+    }
 
 
 }

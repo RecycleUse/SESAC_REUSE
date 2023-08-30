@@ -1,7 +1,6 @@
 package com.sesac.reuse.controller;
 
 import com.sesac.reuse.dto.MemberDTO;
-import com.sesac.reuse.dto.MemberProfileDTO;
 import com.sesac.reuse.exception.EmailExistException;
 import com.sesac.reuse.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -58,12 +57,7 @@ public class MemberController {
 ////            return "redirect:/member/signup";
 //        }
 
-        //비밀번호 검증
-        if(!memberDTO.getPw().equals(memberDTO.getConfirmPw())) {
-            bindingResult.rejectValue("pw","passwordInCorrect","비밀번호와 확인 비밀번호가 불일치합니다.");
-            log.error("occur passwordInCorrect");
-            return "redirect:/member/signup";
-        }
+        validatePwAndRedirect(memberDTO,bindingResult,"/member/signup");
 
 
         try {
@@ -93,15 +87,35 @@ public class MemberController {
         return "member/profile";
     }
 
-
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify-profile")
-    public void modifyProfie(@Valid MemberProfileDTO memberProfileDTO, BindingResult bindingResult) {
-        log.info("memberProfileDTO={}",memberProfileDTO);
+    public String modifyProfie(@Valid MemberDTO memberDTO, BindingResult bindingResult,Model model) {
+       //굳이 profie변경용 DTO를 안만들어도 될거같음! (했다 로직 변경 )
+        log.info("memberDTO={}",memberDTO);
+
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("bindingResult",bindingResult.getAllErrors());
+            return "member/profile";
+        }
+
+        validatePwAndRedirect(memberDTO,bindingResult,"/member/profile");
 
         //이제 DB에 로직 변경을 해야함
+        memberService.modifyProfile(memberDTO);
 
+        return "redirect:/member/profile";
     }
 
+
+    private static String validatePwAndRedirect(MemberDTO memberDTO, BindingResult bindingResult,String redirectUrl) {
+        if(!memberDTO.getPw().equals(memberDTO.getConfirmPw())) {
+            bindingResult.rejectValue("pw","passwordInCorrect","비밀번호와 확인 비밀번호가 불일치합니다.");
+            log.error("occur passwordInCorrect");
+
+            return "redirect:"+redirectUrl;
+        }
+        return null;
+    }
 
     private static String getPrincipalEmail() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

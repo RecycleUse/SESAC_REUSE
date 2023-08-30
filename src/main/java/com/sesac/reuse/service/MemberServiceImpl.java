@@ -1,6 +1,7 @@
 package com.sesac.reuse.service;
 
 import com.sesac.reuse.dto.MemberDTO;
+import com.sesac.reuse.dto.MemberProfileDTO;
 import com.sesac.reuse.entity.Member;
 import com.sesac.reuse.entity.MemberRole;
 import com.sesac.reuse.entity.SocialSignUpInfo;
@@ -13,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -43,6 +45,19 @@ public class MemberServiceImpl implements MemberService {
         if(memberOptional.isEmpty()) throw new UserEmailNotFoundException("해당 email을 가진 회원이 존재하지 않습니다.");
 
         return convertMemberDTO(memberOptional.get());
+
+    }
+
+    @Override
+    @Transactional
+    public void modifyProfile(MemberDTO memberDTO) {
+        //nickname, pw 변경 가능
+        Member member = memberRepository.findByEmail(memberDTO.getEmail()).orElseThrow();
+
+        member.changeNickname(memberDTO.getNickname());
+        member.changePw(passwordEncoder.encode(memberDTO.getPw()));
+
+        memberRepository.save(member);
 
     }
 

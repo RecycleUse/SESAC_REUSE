@@ -40,4 +40,14 @@ public class Member {
     public void setSocial(SocialSignUpInfo social) {
         this.social = social;
     }
+
+
+    public void changeNickname(String nickname) {
+
+        this.nickname = nickname;
+    }
+
+    public void changePw(String encoedPw) {
+        this.pw = encoedPw;
+    }
 }
