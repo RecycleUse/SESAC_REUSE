@@ -1,4 +1,4 @@
-package com.sesac.reuse.user.domain;
+package com.sesac.reuse.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,13 +22,13 @@ public class User {
 
     private String nickname;  // 사용자의 별명을 저장하는 프로퍼티
 
-    private String pw;
+//    private String pw;
 
     // email과 nickname을 매개변수로 받는 생성자입니다.
     // Lombok의 @RequiredArgsConstructor 어노테이션으로 인해 필요없게 될 수도 있습니다.
-    public User(String email, String nickname, String pw) {
+    public User(String email, String nickname) {
         this.email = email;
         this.nickname = nickname;
-        this.pw = pw;
+//        this.pw = pw;
     }
 }

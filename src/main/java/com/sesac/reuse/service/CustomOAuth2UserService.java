@@ -1,11 +1,9 @@
-package com.sesac.reuse.user.service;
+package com.sesac.reuse.service;
 
-import com.sesac.reuse.user.domain.User;
-import com.sesac.reuse.user.repository.UserRepository;
+import com.sesac.reuse.domain.User;
+import com.sesac.reuse.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -44,20 +42,20 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         Map<String, Object> profile1 = (Map<String, Object>) kakaoAccount.get("profile");
         String nickname = (String) profile1.get("nickname");  // "profile"에서 "nickname" 속성을 가져옵니다.
 
-        // "kakao_account"의 "profile" 속성을 맵으로 추출합니다.
-        Map<String, Object> profile2 = (Map<String, Object>) kakaoAccount.get("profile");
-        String pw = (String) profile2.get("pw");  // "profile2"에서 "pw" 속성을 가져옵니다.
+//        // "kakao_account"의 "profile" 속성을 맵으로 추출합니다.
+//        Map<String, Object> profile2 = (Map<String, Object>) kakaoAccount.get("profile");
+//        String pw = (String) profile2.get("pw");  // "profile2"에서 "pw" 속성을 가져옵니다.
 
         // attributes 맵에 email과 nickname 속성을 추가합니다.
         attributes.put("email", email);
         attributes.put("nickname", nickname);
-        attributes.put("pw", pw);
+//        attributes.put("pw", pw);
 
         // 데이터베이스에서 해당 이메일을 가진 사용자를 찾습니다.
         // 없을 경우 새로운 User 객체를 생성하고 저장한 뒤 반환합니다.
         User user = userRepository.findByEmail(email)
                 .orElseGet(() -> {
-                    User newUser = new User(email, nickname, pw);
+                    User newUser = new User(email, nickname);
                     return userRepository.save(newUser);
                 });
 
