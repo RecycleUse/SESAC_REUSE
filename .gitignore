@@ -36,5 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
-### 과부하 ###
-jquery.js
+### google ###
+application-oauth.properties

@@ -1,14 +1,13 @@
-package com.sesac.reuse;
+package com.sesac.reuse.controller;
 
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@Log4j2
-public class MainController {
+public class mainController {
+
     @GetMapping("/")
-    public String index() {
+    public String main(){
         return "index";
     }
 }

@@ -1,17 +1,5 @@
 <!DOCTYPE html>
 
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
 <html
         lang="en"
         class="light-style customizer-hide"
@@ -22,47 +10,48 @@
 >
 <head>
   <meta charset="utf-8" />
-  <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="google-signin-client_id" content="950660360314-in2vhuhg6i7669qi5l8u0u2e9eqeaqr1.apps.googleusercontent.com">
+  <meta name="google-signin-scope" content="profile email">
+  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
-  <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+  <title>로그인 페이지</title>
 
   <meta name="description" content="" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/static/static1/assets/img/favicon/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="/static1/assets/img/favicon/favicon.ico" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
           href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-          rel="stylesheet"
-  />
+          rel="stylesheet"/>
 
   <!-- Icons. Uncomment required icon fonts -->
   <link rel="stylesheet" href="/static1/assets/vendor/fonts/boxicons.css" />
 
   <!-- Core CSS -->
-  <link rel="stylesheet" href="/static/static1/assets/vendor/css/core.css" class="template-customizer-core-css" />
-  <link rel="stylesheet" href="/static/static1/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-  <link rel="stylesheet" href="/static/static1/assets/css/demo.css" />
-  <link rel="stylesheet" href="/static/static1/assets/css/userpage.css" />
+  <link rel="stylesheet" href="/static1/assets/vendor/css/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="/static1/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="/static1/assets/css/demo.css" />
+  <link rel="stylesheet" href="/static1/assets/css/userpage.css" />
 
   <!-- Vendors CSS -->
-  <link rel="stylesheet" href="/static/static1/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="/static1/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
   <!-- Page CSS -->
   <!-- Page -->
-  <link rel="stylesheet" href="/static/static1/assets/vendor/css/pages/page-auth.css" />
+  <link rel="stylesheet" href="/static1/assets/vendor/css/pages/page-auth.css" />
   <!-- Helpers -->
-  <script src="/static/static1/assets/vendor/js/helpers.js"></script>
+  <script src="/static1/assets/vendor/js/helpers.js"></script>
 
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-  <script src="/static/static1/assets/js/config.js"></script>
+  <script src="/static1/assets/js/config.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -78,25 +67,20 @@
           <div class="app-brand justify-content-center">
             <a href="index.html" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
-                    <img src="/static/static1/assets/img/logo/logo.png" class="login-logo"/>
+                    <img src="/static1/assets/img/logo/logo.png" class="login-logo"/>
                   </span>
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-2">Welcome to Reuse! 👋</h4>
-          <p class="mb-4">Please sign-in to your account and start the adventure</p>
+          <h4 class="mb-2">Reuse에 오신걸 환영합니다👋</h4>
+          <p class="mb-4">계정에 로그인하여 모험을 시작하세요.</p>
 
           <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
             <div class="mb-3">
               <label for="email" class="form-label">Email or Username</label>
               <input
-                      type="text"
-                      class="form-control"
-                      id="email"
-                      name="email-username"
-                      placeholder="Enter your email or username"
-                      autofocus
-              />
+                      type="text" class="form-control" id="email" name="email-username"
+                      placeholder="Enter your email or username" autofocus />
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
@@ -128,17 +112,53 @@
             </div>
           </form>
 
-
           <!-- 카카오 로그인 -->
-          <div>
-          <input class="login-kakao-logo" type="button" onclick="location.href='/oauth2/authorization/kakao'">
-          </div>
+          <button class="kakaologo" onclick="location.href='/oauth2/authorization/kakao'">
+            <img src="/static1/assets/img/logo/kakao.png"/>
+          </button>
+
+          <!-- 구글 로그인 -->
+          <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+          <script>
+            function onSignIn(googleUser) {
+              var profile = googleUser.getBasicProfile();
+              console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+              console.log('Name: ' + profile.getName());
+              console.log('Image URL: ' + profile.getImageUrl());
+              console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present
+            }
+          </script>
+
+          <!-- 서버에 구글 ID토큰 전송-->
+          <script>
+            function onSignIn(googleUser) {
+              var id_token = googleUser.getAuthResponse().id_token;
+              var xhr = new XMLHttpRequest();
+              xhr.open('POST', 'https://yourbackend.example.com/tokensignin');
+              xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+              xhr.onload = function() {
+                console.log('Signed in as: ' + xhr.responseText);
+              };
+              xhr.send('idtoken=' + id_token);
+            }
+          </script>
+
+           <!-- 구글 로그아웃 -->
+          <a href="#" onclick="signOut();">Sign out</a>
+          <script>
+            function signOut() {
+              var auth2 = gapi.auth2.getAuthInstance();
+              auth2.signOut().then(function () {
+                console.log('User signed out.');
+              });
+            }
+          </script>
 
           <!-- 회원가입 -->
           <p class="text-center">
-            <span>New on our platform?</span>
+            <span>Reuse를 처음 사용하시나요?</span>
             <a th:href="@{/user/join}">
-              <span>Create an account</span>
+              <span>계정 만들기</span>
             </a>
           </p>
 
@@ -149,33 +169,19 @@
   </div>
 </div>
 
-<!-- / Content -->
-
-<!--    <div class="buy-now">-->
-<!--      <a-->
-<!--        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"-->
-<!--        target="_blank"-->
-<!--        class="btn btn-danger btn-buy-now"-->
-<!--        >Upgrade to Pro</a-->
-<!--      >-->
-<!--    </div>-->
 
 <!-- Core JS -->
 <!-- build:js /static/static1/assets/vendor/js/core.js -->
-<script src="/static/static1/assets/vendor/libs/jquery/jquery.js"></script>
-<script src="/static/static1/assets/vendor/libs/popper/popper.js"></script>
-<script src="/static/static1/assets/vendor/js/bootstrap.js"></script>
-<script src="/static/static1/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="/static1/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="/static1/assets/vendor/libs/popper/popper.js"></script>
+<script src="/static1/assets/vendor/js/bootstrap.js"></script>
+<script src="/static1/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-<script src="/static/static1/assets/vendor/js/menu.js"></script>
+<script src="/static1/assets/vendor/js/menu.js"></script>
 <!-- endbuild -->
 
-<!-- Vendors JS -->
-
 <!-- Main JS -->
-<script src="/static/static1/assets/js/main.js"></script>
-
-<!-- Page JS -->
+<script src="/static1/assets/js/main.js"></script>
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>

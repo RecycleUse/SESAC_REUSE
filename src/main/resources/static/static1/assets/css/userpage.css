@@ -1,15 +1,9 @@
-/* 로그인 페이지 */
+*{margin: 0; padding: 0;}
 
 /* REUSE 로고 */
-.login-logo {
-    width: 90px;
-}
+.login-logo {width: 90px; height: 60px;}
 
-/* 카카오 로그인 로고 */
-input.login-kakao-logo {
-    background: url("../img/logo/kakao.png") no-repeat;
-    background-size: contain;
-    border: none;
-    width: 45px;
-    height: 45px;
-}
+.kakaologo{border: none; background-color: white;}
+img { width: 352px; height: 38px;}
+
+.g-signin2 { margin-bottom: 10px; margin-top: 10px;}
