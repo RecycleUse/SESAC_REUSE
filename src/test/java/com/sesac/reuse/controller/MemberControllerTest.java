@@ -17,6 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.transaction.annotation.Transactional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -48,6 +52,21 @@ class MemberControllerTest {
         log.info("user={}", authentication.getPrincipal().toString());
     }
 
+//    @Test  <-- old버전 테코로 변경되야함
+//    void signUpTest() {
+//        //given
+//        MemberDTO signupMemberDTO = MemberDTO.builder()
+//                .email("test5@naver.com")
+//                .pw("password")
+//                .confirmPw("password")
+//                .nickname("테스트유저")
+//                .build();
+//
+//        //when
+//        memberController.signUp(signupMemberDTO);
+//
+//        //then
+//    }
 
     @Test
     @WithMockUser(username = "test@naver.com",password = "1234", roles = "MEMBER")
