@@ -1,0 +1,52 @@
+/* 좌측 컨테이너 아이템 이미지 */
+.left-container > img {
+    width: 400px;
+    height: 400px;
+}
+
+/* 전체 배경 */
+.bg {
+    background-color: #deeee8;
+}
+
+/* 메인 컨테이너 배경 */
+.square {
+    background-color: white;
+    padding: 5px;
+    width: 1240px;
+    height: 900px;
+    margin-left: 350px;
+}
+
+/* container box */
+.main {
+    padding: 120px;
+    height: 900px;
+}
+
+/* 좌측 구역 */
+.left-container {
+    float: left;
+    margin-right: 50px;
+}
+
+/* 우측 구역 */
+.right-container {
+    margin: 10px;
+}
+
+/* 수정요청 문구 */
+.ps {
+    float: right;
+    top: 50px;
+}
+
+/* 수정요청 버튼 */
+input {
+    margin-left: 15px;
+}
+
+/* 줄긋기 */
+hr {
+    margin-top: 50px;
+}
