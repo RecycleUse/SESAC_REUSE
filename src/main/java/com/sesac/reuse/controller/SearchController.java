@@ -17,7 +17,7 @@ public class SearchController {
 
     @GetMapping("/search")
     public String searchItem(@RequestParam("itemName") String itemName, Model model) {
-        Item foundItem = itemRepository.findByItemNameContaining(itemName);  // findByItemNameContaining 으로 변경?
+        Item foundItem = itemRepository.findByItemNameContaining(itemName);
 
         if (foundItem == null) {
             return "search_fail";  // HTML 템플릿 이름

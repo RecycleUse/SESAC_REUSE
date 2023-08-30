@@ -18,14 +18,14 @@ public class Item {
     @Id
     private String item_id;
 
-    @Column(name = "item_name")  // 컬럼명을 지정해주어야 함
-    private String itemName;
+    @Column(name = "item_name")
+    private String itemName; // 변수 이름 수정
 
     private String recycle_info;
 
     private Boolean recyclable;
 
-    @ManyToOne  // Item N : 1 Category
+    @ManyToOne
     @JoinColumn(name = "category_id")
     @Enumerated(EnumType.STRING)
     private Category category;

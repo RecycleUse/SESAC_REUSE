@@ -1,3 +1,4 @@
+<!-- 검색 성공 페이지 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,9 @@
 </head>
 <body>
 <h1>Item Detail</h1>
-<p><strong>Item Name:</strong> [[${item.itemName}]]</p>
-<p><strong>Recycle Info:</strong> [[${item.recycleInfo}]]</p>
-<p><strong>Recyclable:</strong> [[${item.recyclable}]]</p>
-<p><strong>Category:</strong> [[${item.category.name}]]</p>
+<p><strong>Item Name:</strong> <span th:text="${item.itemName}"></span></p>
+<p><strong>Recycle Info:</strong> <span th:text="${item.recycle_info}"></span></p>
+<p><strong>Recyclable:</strong> <span th:text="${item.recyclable}"></span></p>
+<p><strong>Category:</strong> <span th:text="${item.category.name}"></span></p>
 </body>
 </html>
