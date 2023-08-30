@@ -46,10 +46,21 @@ public class MemberController {
 
         log.info("memberDTO={}",memberDTO);
 
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("memberDTO",memberDTO);
-            return "member/signup"; //타임리프는 앞에 /안붙이는게 적합
+        //validation 부분이 안먹혀서 추가 검증 로직 필요
+//        if(bindingResult.hasErrors()) {
+//            log.error(bindingResult.getFieldError("email").toString());
+//            model.addAttribute("memberDTO",memberDTO);
+//            return "member/signup"; //타임리프는 앞에 /안붙이는게 적합
+////            return "redirect:/member/signup";
+//        }
+
+        //비밀번호 검증
+        if(!memberDTO.getPw().equals(memberDTO.getConfirmPw())) {
+            bindingResult.rejectValue("pw","passwordInCorrect","비밀번호와 확인 비밀번호가 불일치합니다.");
+            log.error("occur passwordInCorrect");
+            return "redirect:/member/signup";
         }
+
 
         try {
             memberService.join(memberDTO);
