@@ -618,7 +618,7 @@
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-                      <form id="formAccountSettings" method="POST" onsubmit="return false">
+                      <form id="formAccountSettings" method="POST" onsubmit="return false" >
                         <div class="row">
                           <div class="mb-3 col-md-6">
                             <label for="nickname" class="form-label">닉네임</label>
@@ -693,8 +693,8 @@
 
                         </div>
                         <div class="mt-2">
-                          <button type="submit" class="btn btn-primary me-2 saveBtn">Save changes</button>
-                          <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                          <button type="submit" class="btn btn-primary me-2 saveBtn" id="saveBtn">Save changes</button>
+                          <button type="reset" class="btn btn-outline-secondary" id="cancleBtn">Cancel</button>
                         </div>
                       </form>
                     </div>
@@ -800,6 +800,7 @@
     <script src="/static1/assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/static1/assets/js/pages-account-settings-account.js"></script>
     <script th:src="@{/static1/js/member/profile.js}"></script>
 

@@ -1,6 +1,7 @@
 package com.sesac.reuse.controller;
 
 import com.sesac.reuse.dto.MemberDTO;
+import com.sesac.reuse.dto.MemberProfileDTO;
 import com.sesac.reuse.exception.EmailExistException;
 import com.sesac.reuse.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -80,7 +81,7 @@ public class MemberController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/profile")
-    public String myPage(Model model) {
+    public String myProfile(Model model) {
 
         String principalEmail = getPrincipalEmail();
 
@@ -91,6 +92,16 @@ public class MemberController {
 
         return "member/profile";
     }
+
+
+    @PostMapping("/modify-profile")
+    public void modifyProfie(@Valid MemberProfileDTO memberProfileDTO, BindingResult bindingResult) {
+        log.info("memberProfileDTO={}",memberProfileDTO);
+
+        //이제 DB에 로직 변경을 해야함
+
+    }
+
 
     private static String getPrincipalEmail() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
