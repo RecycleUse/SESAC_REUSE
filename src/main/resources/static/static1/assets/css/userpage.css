@@ -1,13 +1,24 @@
 /* 로그인 페이지 */
 
+*{margin: 0; padding: 0;}
+
 /* REUSE 로고 */
 .login-logo {
     width: 90px;
 }
 
 /* 카카오 로그인 로고 */
-input.login-kakao-logo {
-    background: url("../img/logo/kakao.png") no-repeat;
-    background-size: contain;
-    border: none;
-}
+/*input.login-kakao-logo {*/
+/*    background-size: contain;*/
+/*    border: none;*/
+/*}*/
+
+/*.login-kakao-logo>img {*/
+/*    width: 350px; height: 38px;*/
+/*}*/
+
+.kakaologo{border: none; background-color: white;}
+
+.kakaologo>img { width: 352px; height: 38px; margin-bottom: 15px;}
+
+.g-signin2 { margin-bottom: 10px; margin-top: 10px;}

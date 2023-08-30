@@ -32,6 +32,11 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/join")
+    public String join() {
+        return "join";
+    }
+
 //    private final OAuth2AuthorizedClientService authorizedClientService;
 //
 //    public UserController(OAuth2AuthorizedClientService authorizedClientService) {
@@ -56,10 +61,5 @@ public class UserController {
 //
 //        return "redirect:/";  // 호출 결과와 관계없이 "/"로 리다이렉트
 //    }
-
-    @GetMapping("/join")
-    public String join() {
-        return "join";
-    }
 
 }

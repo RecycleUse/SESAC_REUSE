@@ -1,4 +1,4 @@
-package com.sesac.reuse.domain;
+package com.sesac.reuse.model.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

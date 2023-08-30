@@ -1,6 +1,6 @@
 package com.sesac.reuse.service;
 
-import com.sesac.reuse.domain.User;
+import com.sesac.reuse.model.entity.User;
 import com.sesac.reuse.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
