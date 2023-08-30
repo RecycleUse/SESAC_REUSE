@@ -5,6 +5,9 @@ import com.sesac.reuse.exception.EmailExistException;
 import com.sesac.reuse.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -75,8 +78,25 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
-    @GetMapping("/myPage")
-    public String myPage() {
-        return "/member/my_page";
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/profile")
+    public String myPage(Model model) {
+
+        String principalEmail = getPrincipalEmail();
+
+        MemberDTO profileDTO = memberService.findProfileByEmail(principalEmail);
+
+        log.info("profileDTO={}",profileDTO);
+        model.addAttribute("profileDTO",profileDTO);
+
+        return "member/profile";
+    }
+
+    private static String getPrincipalEmail() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        log.info("email={}",email);
+
+        return email;
     }
 }

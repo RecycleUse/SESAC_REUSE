@@ -5,12 +5,16 @@ import com.sesac.reuse.entity.Member;
 import com.sesac.reuse.entity.MemberRole;
 import com.sesac.reuse.entity.SocialSignUpInfo;
 import com.sesac.reuse.exception.EmailExistException;
+import com.sesac.reuse.exception.UserEmailNotFoundException;
 import com.sesac.reuse.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @Log4j2
@@ -30,6 +34,26 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(member);
 
     }
+
+    @Override
+    public MemberDTO findProfileByEmail(String email) throws UserEmailNotFoundException {
+
+        Optional<Member> memberOptional = memberRepository.findByEmail(email);
+
+        if(memberOptional.isEmpty()) throw new UserEmailNotFoundException("해당 email을 가진 회원이 존재하지 않습니다.");
+
+        return convertMemberDTO(memberOptional.get());
+
+    }
+
+    private MemberDTO convertMemberDTO(Member member) {
+
+        return MemberDTO.builder()
+                .email(member.getEmail())
+                .nickname(member.getNickname())
+                .build();
+    }
+
 
     private Member convertMember(MemberDTO memberDTO) {
         Member member = mapper.map(memberDTO, Member.class);

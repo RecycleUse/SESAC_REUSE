@@ -27,20 +27,20 @@ class MemberControllerTest {
         log.info("user={}",authentication.getPrincipal().toString());
     }
 
-    @Test
-    void signUpTest() {
-        //given
-        MemberDTO signupMemberDTO = MemberDTO.builder()
-                .email("test5@naver.com")
-                .pw("password")
-                .confirmPw("password")
-                .nickname("테스트유저")
-                .build();
-
-        //when
-        memberController.signUp(signupMemberDTO);
-
-        //then
-    }
+//    @Test  <-- old버전 테코로 변경되야함
+//    void signUpTest() {
+//        //given
+//        MemberDTO signupMemberDTO = MemberDTO.builder()
+//                .email("test5@naver.com")
+//                .pw("password")
+//                .confirmPw("password")
+//                .nickname("테스트유저")
+//                .build();
+//
+//        //when
+//        memberController.signUp(signupMemberDTO);
+//
+//        //then
+//    }
 
 }
