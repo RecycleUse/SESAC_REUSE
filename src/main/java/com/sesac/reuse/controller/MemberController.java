@@ -95,7 +95,7 @@ public class MemberController {
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("bindingResult",bindingResult.getAllErrors());
-            return "redirect:/member/profile";
+            return "member/profile";
         }
 
         validatePwAndRedirect(memberDTO,bindingResult,"/member/profile");
