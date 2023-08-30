@@ -136,9 +136,15 @@
                     id="email"
                     name="email"
                     placeholder="이메일을 입력해주세요."
+                    value="email"
                     autofocus
                     required
                   />
+                  <button class="btn btn-outline-primary" type="button" id="checkEmail">인증번호</button>
+                  <div class="form-group last mb-4 check_input">
+                    <label for="emailConfirm" id="emailConfirmTxt">인증번호를 입력해주세요</label>
+                    <input type="text" class="form-control" id="emailConfirm">
+                  </div>
                 </div>
                 <div class="mb-3">
                   <label for="nickname" class="form-label">USER NAME</label>
@@ -229,6 +235,7 @@
     <script src="/static1/assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script th:inline="javascript">
       const error = [[${error}]];
     </script>

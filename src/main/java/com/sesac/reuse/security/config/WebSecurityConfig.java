@@ -31,7 +31,7 @@ public class WebSecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) //csrf 보호 기능 해제, (시큐리티는 GET 제외 모든 요청을 CSRF 체크가 default)
                 .authorizeHttpRequests(authz -> authz
-                        .mvcMatchers("/","/index","/home","/user/signup","/user/login").permitAll() // 해당 경로에 대한 모든 요청(get,put,post,delete) 다 처리 권한없이 허용
+                        .mvcMatchers("/","/index","/home","/user/signup","/user/login","/signup/mailConfirm").permitAll() // 해당 경로에 대한 모든 요청(get,put,post,delete) 다 처리 권한없이 허용
                         .mvcMatchers("/admin/**").hasRole("ADMIN")
                 )
                 .httpBasic(withDefaults());
