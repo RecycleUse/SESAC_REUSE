@@ -19,6 +19,8 @@ bin/
 
 ### IntelliJ IDEA ###
 /build/classes/java/main/com/sesac/reuse/config/MailConfig.class
+/build/
+/src/main/java/com/sesac/reuse/config/MailConfig.java
 .idea
 *.iws
 *.iml
