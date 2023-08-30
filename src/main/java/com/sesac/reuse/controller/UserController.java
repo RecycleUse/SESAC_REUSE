@@ -1,25 +1,18 @@
 package com.sesac.reuse.controller;
 
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.OAuth2AccessToken;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.RequestEntity;
-import org.springframework.web.client.RestTemplate;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.net.URI;
 
 // Login 컨트롤러
-@RequiredArgsConstructor
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -29,20 +22,30 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();  // 현재 인증 객체(Authentication)를 가져옴
+        if (authentication != null) {  // 가져온 인증 객체를 이용하여 SecurityContextLogoutHandler를 통해 로그아웃 실행
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+
+        return "redirect:/";
+    }
+
 //    private final OAuth2AuthorizedClientService authorizedClientService;
 //
 //    public UserController(OAuth2AuthorizedClientService authorizedClientService) {
 //        this.authorizedClientService = authorizedClientService;
 //    }
-
+//
 //    @GetMapping("/logout")
-//    public String logout(HttpServletRequest request, OAuth2AuthenticationToken authentication) {
+//    public String logout(HttpServletRequest request, OAuth2AuthenticationToken authentication) {  // 현재 사용자의 OAuth 2.0 인증 정보를 가져옴
 //        OAuth2AccessToken accessToken = authorizedClientService.loadAuthorizedClient(
 //            authentication.getAuthorizedClientRegistrationId(),
 //            authentication.getName()
 //        ).getAccessToken();
 //
-//        // 카카오 로그아웃 API 호출
+//        // 가져온 OAuth 2.0 인증 정보를 이용하여 카카오 로그아웃 API를 호출
 //        String kakaoLogoutUrl = "https://kapi.kakao.com/v1/user/logout";
 //        HttpHeaders headers = new HttpHeaders();
 //        headers.add("Authorization", "Bearer " + accessToken.getTokenValue());
@@ -51,18 +54,8 @@ public class UserController {
 //        RestTemplate restTemplate = new RestTemplate();
 //        restTemplate.exchange(requestEntity, Void.class);
 //
-//        return "redirect:/";
+//        return "redirect:/";  // 호출 결과와 관계없이 "/"로 리다이렉트
 //    }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            new SecurityContextLogoutHandler().logout(request, response, authentication);
-        }
-
-        return "redirect:/";
-    }
 
     @GetMapping("/join")
     public String join() {

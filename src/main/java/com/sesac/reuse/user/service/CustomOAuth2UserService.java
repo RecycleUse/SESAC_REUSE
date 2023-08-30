@@ -3,6 +3,7 @@ package com.sesac.reuse.user.service;
 import com.sesac.reuse.user.domain.User;
 import com.sesac.reuse.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,6 +25,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired  // Spring의 DI를 사용하여 userRepository 인스턴스를 자동으로 주입받습니다.
     private UserRepository userRepository;
+
+    private final HttpSession httpSession;
 
     @Override  // 부모 클래스의 메소드를 오버라이드 합니다.
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
