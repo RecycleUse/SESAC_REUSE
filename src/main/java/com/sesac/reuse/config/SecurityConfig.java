@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 // 카카오 로그인
                 .authorizeRequests()  // HttpServletRequest에 따라 접근을 제한하거나 허용하려면 사용
-                .antMatchers("/", "/user/**", "/search/**","/item-detail/**", "/게시판").permitAll()  // 해당 경로에 대한 모든 요청을 허용
+                .antMatchers("/", "/user/**", "/search/**", "/search-success/**", "/search-fail/**", "/item-detail/**", "/게시판").permitAll()  // 해당 경로에 대한 모든 요청을 허용
                 .antMatchers( "/static1/**", "/static2/**").permitAll() // 정적 자원에 대한 접근 허용
                 .anyRequest().authenticated()  // 그 외의 모든 요청은 인증이 필요
                 .and()
@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")  // 로그인 성공 시 리다이렉트할 URL
                 .failureUrl("/login?error=true")  // 로그인 실패 시 리다이렉트할 URL
                 .and()
-                .csrf().ignoringAntMatchers("/", "/user/**", "/search/**","/item-detail/**", "/게시판")  // CSRF 보호에서 제외 페이지
+                .csrf().ignoringAntMatchers()  // CSRF 보호에서 제외 페이지
                 .and()
                 .headers().frameOptions().disable()  // X-Frame-Options 헤더를 비활성화하여 iframe 내에서 페이지를 렌더링 허용
                 .and()
@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     HttpSession session = request.getSession();  // 세션을 무효화하여 사용자의 세션 정보를 제거
                     session.invalidate();
                 })
-                .logoutSuccessHandler((request, response, authentication) -> response.sendRedirect("/user/login"))  // 소셜 로그아웃 성공 후 처리 및 리다이렉트3
+                .logoutSuccessHandler((request, response, authentication) -> response.sendRedirect("/user/login"))  // 소셜 로그아웃 성공 후 처리 및 리다이렉트
                 .deleteCookies("remember-me");  // 로그아웃 시 제거할 쿠키를 설정
     }
 }

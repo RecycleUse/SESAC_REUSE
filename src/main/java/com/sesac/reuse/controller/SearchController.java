@@ -62,14 +62,14 @@ public class SearchController {
 //        List<Item> foundItems = itemRepository.findByItemNameContaining(itemName);
 //
 //        if (foundItems.isEmpty()) {
-//            return "search_fail";
+//            return "search-fail";
 //        } else if (foundItems.size() == 1) {
 //            // 검색 결과가 한 개인 경우, 해당 아이템의 상세 페이지로 바로 이동
 //            model.addAttribute("item", foundItems.get(0));
-//            return "search_detail";
+//            return "search-detail";
 //        } else {
 //            // 검색 결과가 여러 개인 경우, 검색 결과 페이지로 이동
 //            model.addAttribute("items", foundItems);
-//            return "search_success";
+//            return "search-success";
 //        }
 //    }

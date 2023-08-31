@@ -212,6 +212,7 @@
 </footer>
 
 <!-- JAVASCRIPT FILES -->
+<!-- 검색창 드롭다운 -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const searchButton = document.getElementById("searchButton");
@@ -220,7 +221,7 @@
 
         itemNameInput.addEventListener("input", function () {
             const itemName = itemNameInput.value;
-            if (itemName.length >= 2) {
+            if (itemName.length >= 1) {  // 검색어 한글자부터 드롭다운 시작
                 fetch(`/search?itemName=${itemName}`)
                     .then(response => response.json())
                     .then(data => {
@@ -278,6 +279,7 @@
         }
     });
 </script>
+<!-- 검색창 드롭다운 -->
 
 <script src="/static2/js/jquery.min.js"></script>
 <script src="/static2/js/bootstrap.bundle.min.js"></script>
