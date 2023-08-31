@@ -22,27 +22,19 @@ public class SearchController {
 
     @GetMapping("/search")
     public String searchItem(@RequestParam("itemName") String itemName, Model model) {
-
         List<Item> foundItems = itemRepository.findByItemNameContaining(itemName);
 
         if (foundItems.isEmpty()) {
-            return "search_fail";  // 검색 결과가 없는 경우
+            return "search_fail";
+        } else if (foundItems.size() == 1) {
+            // 검색 결과가 한 개인 경우, 해당 아이템의 상세 페이지로 바로 이동
+            model.addAttribute("item", foundItems.get(0));
+            return "search_detail";
+        } else {
+            // 검색 결과가 여러 개인 경우, 검색 결과 페이지로 이동
+            model.addAttribute("items", foundItems);
+            return "search_success";
         }
-
-        model.addAttribute("items", foundItems);
-        return "search_success";  // 검색 결과를 보여주는 페이지
-    }
-
-    @GetMapping("/item-detail")
-    public String itemDetail(@RequestParam("item_id") String itemId, Model model) {
-        Item foundItem = itemRepository.findById(itemId).orElse(null);
-
-        if (foundItem == null) {
-            return "search_fail";  // 검색 실패 페이지로 이동
-        }
-
-        model.addAttribute("item", foundItem);
-        return "search_detail";  // 검색 상세 페이지로 이동
     }
 
 
