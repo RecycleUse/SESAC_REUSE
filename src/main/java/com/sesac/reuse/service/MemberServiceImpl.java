@@ -31,9 +31,17 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void join(MemberDTO memberDTO) throws EmailExistException {
 
-        isExistAccount(memberDTO);
-        Member member = convertMember(memberDTO);
-        memberRepository.save(member);
+        try {
+
+            if (!isExistAccount(memberDTO.getEmail())) {
+                Member member = convertMember(memberDTO);
+                memberRepository.save(member);
+            }
+        } catch (EmailExistException e) {
+            log.error("e");
+            throw new EmailExistException();
+        }
+
 
     }
 
@@ -42,7 +50,7 @@ public class MemberServiceImpl implements MemberService {
 
         Optional<Member> memberOptional = memberRepository.findByEmail(email);
 
-        if(memberOptional.isEmpty()) throw new UserEmailNotFoundException("해당 email을 가진 회원이 존재하지 않습니다.");
+        if (memberOptional.isEmpty()) throw new UserEmailNotFoundException("해당 email을 가진 회원이 존재하지 않습니다.");
 
         return convertMemberDTO(memberOptional.get());
 
@@ -80,9 +88,15 @@ public class MemberServiceImpl implements MemberService {
         return member;
     }
 
-    private void isExistAccount(MemberDTO memberDTO) {
-        boolean exist = memberRepository.existsByEmail(memberDTO.getEmail());
+    @Override
+    public boolean isExistAccount(String email) {
 
-        if(exist) throw new EmailExistException();
+        try {
+            return memberRepository.existsByEmail(email);
+        } catch (EmailExistException e) {
+            log.error("e");
+            throw new EmailExistException();
+        }
+
     }
 }

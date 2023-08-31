@@ -1,4 +1,3 @@
-
 const signUpForm = document.getElementById("formAuthentication");
 
 signUpForm.addEventListener("submit", e => {
@@ -8,7 +7,7 @@ signUpForm.addEventListener("submit", e => {
     const pw = document.getElementById("pw").value;
     const confirmPw = document.getElementById("confirmPw").value;
 
-    if(pw !== confirmPw) {
+    if (pw !== confirmPw) {
         document.getElementById("message").innerHTML = "비밀번호가 일치하지 않습니다.";
         return false;
     } else {
@@ -22,33 +21,43 @@ signUpForm.addEventListener("submit", e => {
 
 console.log(error);
 
-if(error && error === 'email') {
+if (error && error === 'email') {
     alert("이미 가입된 회원입니다. 이메일을 확인해 주세요.");
 }
 
 
 //인증번호 로직
-let checkEmail = document.getElementById('checkEmail');
+let emailChkCodeBtn = document.getElementById('emailChkCodeBtn');
 let email = document.getElementById('email');
-let emailConfirm = document.getElementById('emailConfirm');
-let emailConfirmTxt = document.getElementById('emailConfirmTxt');
+let emailChkCode = document.getElementById('emailChkCode');
+let emailChkCodeLabel = document.getElementById('emailChkCodeLabel');
 
-checkEmail.addEventListener('click', e => {
+emailChkCodeBtn.addEventListener('click', e => {
+
     axios.post("/signup/mailConfirm", {
         email: email.value
     })
         .then(response => {
-            alert("입력하신 이메일로 인증번호가 발송되었습니다. 확인 후 입력해주세요.")
-            console.log("data:", response.data);
-            checkEmailConfirm(response.data, emailConfirm, emailConfirmTxt);
+            console.log("status code:", response.status);
+
+            if (200 <= response.status && response.status < 300) {
+                alert("입력하신 이메일로 인증번호가 발송되었습니다. 확인 후 입력해주세요.");
+                console.log("data:", response.data);
+                checkEmailConfirm(response.data, emailChkCode, emailChkCodeLabel);
+            } else {
+                throw new Error(`HTTP error! status : ${response.status}`);
+            }
         })
         .catch(error => {
-            console.error(error);
+            console.error(`HTTP error! status : ${error.response.status}`);
+            if(error.response.status === 400) {
+                alert("이미 가입된 이메일입니다.");
+            }
         });
 })
 
 //data : 발송된 인증번호
-function checkEmailConfirm(data,emailConfirm,emailConfirmTxt) {
+function checkEmailConfirm(data, emailConfirm, emailChkCodeLabel) {
     emailConfirm.addEventListener("keyup", e => {
         let span;
         if (data !== emailConfirm.value) {
@@ -56,30 +65,30 @@ function checkEmailConfirm(data,emailConfirm,emailConfirmTxt) {
             span.id = 'emailConfirmChk';
             span.textContent = "인증번호를 잘못 입력하셨습니다.";
             span.style.color = "#FA3E3E";
-            span.style.fontWeight ="bold";
-            span.style.fontSize ="10px";
+            span.style.fontWeight = "bold";
+            span.style.fontSize = "10px";
 
-            if(emailConfirmTxt.children.length > 0) {
-                emailConfirmTxt.removeChild(emailConfirmTxt.firstChild);
+            if (emailChkCodeLabel.children.length > 0) {
+                emailChkCodeLabel.removeChild(emailChkCodeLabel.firstChild);
             }
 
-            emailConfirmTxt.appendChild(span);
+            emailChkCodeLabel.appendChild(span);
 
         } else {
             let chkSpan;
-            chkSpan=document.createElement("span");
-            chkSpan.id='emailconfirmchk';
-            chkSpan.textContent="인증번호 확인 완료";
+            chkSpan = document.createElement("span");
+            chkSpan.id = 'emailConfirmChk';
+            chkSpan.textContent = "인증번호 확인 완료";
 
-            chkSpan.style.color="#0D6EFD";
-            chkSpan.style.fontWeight="bold";
-            chkSpan.style.fontSize="10px";
+            chkSpan.style.color = "#0D6EFD";
+            chkSpan.style.fontWeight = "bold";
+            chkSpan.style.fontSize = "10px";
 
-            if(emailConfirmTxt.children.length > 0) {
-                emailConfirmTxt.removeChild(emailConfirmTxt.firstChild);
+            if (emailChkCodeLabel.children.length > 0) {
+                emailChkCodeLabel.removeChild(emailChkCodeLabel.firstChild);
             }
 
-            emailConfirmTxt.appendChild(chkSpan);
+            emailChkCodeLabel.appendChild(chkSpan);
 
         }
     })

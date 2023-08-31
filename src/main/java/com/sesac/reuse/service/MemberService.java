@@ -9,8 +9,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public interface MemberService {
 
 
-    void join(MemberDTO memberDTO) throws EmailExistException;
-    MemberDTO findProfileByEmail(String email) throws UsernameNotFoundException;
+    public void join(MemberDTO memberDTO) throws EmailExistException;
+    public MemberDTO findProfileByEmail(String email) throws UsernameNotFoundException;
 
-    void modifyProfile(MemberDTO memberDTO);
+    public void modifyProfile(MemberDTO memberDTO);
+
+    public boolean isExistAccount(String email);
 }
