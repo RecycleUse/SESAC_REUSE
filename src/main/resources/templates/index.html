@@ -263,12 +263,12 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.length === 0) {
-                        window.location.href = "/search_fail"; // 검색 결과가 없을 때
+                        window.location.href = "/search-fail"; // 검색 결과가 없을 때
                     } else if (data.length === 1) {
                         window.location.href = `/item-detail?item_id=${data[0].item_id}`; // 검색 결과가 하나일 때
                     } else {
                         if (itemNameInput.value.trim() !== "") {
-                            window.location.href = `/search_success?itemName=${searchTerm}`; // 검색 결과가 여러 개일 때
+                            window.location.href = `/search-success?itemName=${searchTerm}`; // 검색 결과가 여러 개일 때
                         }
                     }
                 })
