@@ -80,20 +80,18 @@
 
                 <div class="col-lg-8 col-12 mx-auto">
                     <h1 class="text-white text-center">Correct, Recycle, Reuse</h1>
-
                     <h6 class="text-center">Recycling Discharge Methods</h6>
 
                     <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search" action="/search">
                         <div class="input-group input-group-lg">
-                                    <span class="input-group-text bi-search" id="basic-addon1">
-
-                                    </span>
-
-                            <input name="itemName" type="search" class="form-control" id="keyword" placeholder=" 예) 가습기, 보온병, 액자.." aria-label="Search">
-
-                            <button type="submit" class="form-control">Search</button>
+                            <span class="input-group-text bi-search" id="basic-addon1"></span>
+                            <input name="itemName" type="search" class="form-control" id="keyword" placeholder=" 예) 가습기, 그릇, 액자.." aria-label="Search">
+                            <button type="submit" class="form-control" id="searchButton">Search</button>
                         </div>
                     </form>
+
+                    <div id="searchResults" class="dropdown"></div>
+
                 </div>
 
             </div>
@@ -214,6 +212,65 @@
 </footer>
 
 <!-- JAVASCRIPT FILES -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchButton = document.getElementById("searchButton");
+        const itemNameInput = document.getElementById("keyword");
+        const searchResults = document.getElementById("searchResults");
+
+        searchButton.addEventListener("click", function (event) {
+            event.preventDefault();  // 폼 제출 기본 동작 방지
+            performSearch();
+        });
+
+        itemNameInput.addEventListener("input", function () {
+            const itemName = itemNameInput.value;
+            if (itemName.length >= 2) { // 두 글자 이상일 때 검색 요청
+                fetch(`/search?itemName=${itemName}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length === 0) {
+                            searchResults.innerHTML = "<p>No results found.</p>";
+                        } else {
+                            searchResults.innerHTML = "";
+                            const dropdown = document.createElement("div");
+                            dropdown.classList.add("dropdown-menu", "show");
+                            data.forEach(item => {
+                                const dropdownItem = document.createElement("button");
+                                dropdownItem.classList.add("dropdown-item");
+                                dropdownItem.type = "button";
+                                dropdownItem.innerText = item.itemName;
+                                dropdownItem.addEventListener("click", function () {
+                                    window.location.href = `/item-detail?item_id=${item.item_id}`;
+                                });
+                                dropdown.appendChild(dropdownItem);
+                            });
+                            searchResults.appendChild(dropdown);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching search results:", error);
+                    });
+            } else {
+                searchResults.innerHTML = ""; // 검색어가 짧을 때 드롭다운 비우기
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = itemNameInput.value;
+
+            fetch(`/search?itemName=${searchTerm}`)
+                .then(response => response.json())
+                .then(data => {
+                    // 검색 결과 처리
+                })
+                .catch(error => {
+                    console.error("Error fetching search results:", error);
+                });
+        }
+    });
+</script>
+
 <script src="/static2/js/jquery.min.js"></script>
 <script src="/static2/js/bootstrap.bundle.min.js"></script>
 <script src="/static2/js/jquery.sticky.js"></script>
