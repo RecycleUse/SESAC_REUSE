@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 @Entity  // JPA를 사용하여 테이블과 매핑할 클래스임을 나타냅니다.
 @Getter  // Lombok을 사용하여 getter 메소드를 자동으로 생성합니다.
 @Setter  // Lombok을 사용하여 setter 메소드를 자동으로 생성합니다.

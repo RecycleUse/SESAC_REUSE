@@ -6,6 +6,7 @@ import com.sesac.reuse.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +30,13 @@ public class SearchService {
             throw new RuntimeException();
         }
     }
-
 }
+
+
+//    public class ItemNotFoundException extends RuntimeException {
+//
+//        public ItemNotFoundException(String message) {
+//            super(message);
+//        }
+//    }
+//}

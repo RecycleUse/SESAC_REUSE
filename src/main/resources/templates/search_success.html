@@ -1,56 +1,16 @@
-<!-- 검색 성공 페이지 -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>분리수거 안내 페이지</title>
-    <link rel="stylesheet" href="/static/static2/css/search_s.css"/>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
 </head>
 <body>
-<div class="bg">
-    <article class="square">
-        <div class="main">
-            <div class="left-container">
-                <!-- DB 에서 item 이미지 연결하기 -->
-            </div>
-
-            <div class="right-container">
-                <div class="item-name">
-                    <h1>아이템명: <span th:text="${item.itemName}"></span></h1>
-                </div>
-
-                <div class="similar-item">
-                    <h3>비슷한 아이템: </h3>
-                </div>
-
-                <div class="enable-status">
-                    <h3>재활용 가능 여부: </strong> <span th:text="${item.recyclable}"></span></h3>
-                </div>
-
-                <div class="category">
-                    <h3>대분류 카테고리: <span th:text="${item.category.name}"></span></h3>
-                </div>
-
-                <div class="guide">
-                    <h3>버리는 방법: <span th:text="${item.recycle_info}"></span></h3>
-                </div>
-
-                <!--<p><strong>Item Name:</strong> <span th:text="${item.itemName}"></span></p>-->
-                <!--<p><strong>Recycle Info:</strong> <span th:text="${item.recycle_info}"></span></p>-->
-                <!--<p><strong>Recyclable:</strong> <span th:text="${item.recyclable}"></span></p>-->
-                <!--<p><strong>Category:</strong> <span th:text="${item.category.name}"></span></p>-->
-
-            </div>
-            <hr/>
-            <div class="ps">
-                <p>
-                    수정할 내용이 있나요?
-                    <input type="button" value="수정 요청" onclick="localhost:8080/board"/>
-                </p>
-            </div>
-        </div>
-    </article>
-</div>
+<h1>Search Results</h1>
+<ul>
+    <li th:each="item : ${items}">
+        <a th:href="@{/item-detail(item_id=${item.item_id})}">
+            <span th:text="${item.itemName}"></span>
+        </a>
+    </li>
+</ul>
 </body>
 </html>
