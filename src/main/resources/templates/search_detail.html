@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="enable-status">
-                    <h3>재활용 가능 여부: </strong> <span th:text="${item.recyclable}"></span></h3>
+                    <h3>재활용 가능 여부: <span th:text="${item.recyclable}"></span></h3>
                 </div>
 
                 <div class="category">
@@ -36,17 +36,12 @@
                     <h3>버리는 방법: <span th:text="${item.recycle_info}"></span></h3>
                 </div>
 
-                <!--<p><strong>Item Name:</strong> <span th:text="${item.itemName}"></span></p>-->
-                <!--<p><strong>Recycle Info:</strong> <span th:text="${item.recycle_info}"></span></p>-->
-                <!--<p><strong>Recyclable:</strong> <span th:text="${item.recyclable}"></span></p>-->
-                <!--<p><strong>Category:</strong> <span th:text="${item.category.name}"></span></p>-->
-
             </div>
             <hr/>
             <div class="ps">
                 <p>
                     수정할 내용이 있나요?
-                    <input type="button" value="수정 요청" onclick="localhost:8080/board"/>
+                    <input type="button" value="수정 요청" th:href="@{/게시판}"/>
                 </p>
             </div>
         </div>

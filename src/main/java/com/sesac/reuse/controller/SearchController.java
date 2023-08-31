@@ -37,27 +37,18 @@ public class SearchController {
         }
     }
 
+    @GetMapping("/item-detail")
+    public String itemDetail(@RequestParam("item_id") String itemId, Model model) {
+        Item foundItem = itemRepository.findById(itemId).orElse(null);
 
-//        Item foundItem = itemRepository.findByItemNameContaining(itemName);
-//
-//        if (foundItem == null) {
-//            return "search_fail";  // HTML 템플릿 이름
-//        }
-//
-//        model.addAttribute("item", foundItem);
-//        return "search_success";  // HTML 템플릿 이름
-//    }
+        if (foundItem == null) {
+            return "search_fail";  // 검색 실패 페이지로 이동
+        }
 
+        model.addAttribute("item", foundItem);
+        return "search_detail";  // 검색 상세 페이지로 이동
+    }
 
-//        Item foundItem = itemRepository.findByItemNameContaining(itemName);
-
-//        if (foundItem == null) {
-//            return "search_fail";  // HTML 템플릿 이름
-//        }
-//
-//        model.addAttribute("item", foundItem);
-//        return "search_success";  // HTML 템플릿 이름
-//    }
 
     @GetMapping("/게시판")
     public String 게시판() {
@@ -65,14 +56,3 @@ public class SearchController {
     }
 
 }
-
-
-//    @GetMapping("/search_success")
-//    public String searchSuccess() {
-//        return "search_success";
-//    }
-//
-//    @GetMapping("/search_fail")
-//    public String searchFail() {
-//        return "search_fail";
-//    }
