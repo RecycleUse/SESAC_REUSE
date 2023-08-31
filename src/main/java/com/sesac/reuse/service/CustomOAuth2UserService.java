@@ -1,7 +1,7 @@
-package com.sesac.reuse.user.service;
+package com.sesac.reuse.service;
 
-import com.sesac.reuse.user.domain.Member;
-import com.sesac.reuse.user.repository.UserRepository;
+import com.sesac.reuse.model.entity.User;
+import com.sesac.reuse.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,10 +11,12 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+
 import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
 @Service  // 해당 클래스를 Spring의 Service로 등록합니다. 비즈니스 로직을 포함하는 클래스에 주로 사용됩니다.
 @RequiredArgsConstructor
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
@@ -33,27 +35,27 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         System.out.println(attributes);  // 가져온 속성들을 로그로 출력합니다.
 
         // 카카오 API로부터 반환된 "kakao_account" 속성을 맵으로 추출합니다.
-        Map<String, Object> googleAccount = (Map<String, Object>) attributes.get("google_account");
-        String email = (String) googleAccount.get("email");  // "kakao_account"에서 "email" 속성을 가져옵니다.
+        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
+        String email = (String) kakaoAccount.get("email");  // "kakao_account"에서 "email" 속성을 가져옵니다.
 
         // "kakao_account"의 "profile" 속성을 맵으로 추출합니다.
-        Map<String, Object> profile1 = (Map<String, Object>) googleAccount.get("profile");
+        Map<String, Object> profile1 = (Map<String, Object>) kakaoAccount.get("profile");
         String nickname = (String) profile1.get("nickname");  // "profile"에서 "nickname" 속성을 가져옵니다.
 
-        // "kakao_account"의 "profile" 속성을 맵으로 추출합니다.
-        Map<String, Object> profile2 = (Map<String, Object>) googleAccount.get("profile");
-        String pw = (String) profile2.get("pw");  // "profile2"에서 "pw" 속성을 가져옵니다.
+//        // "kakao_account"의 "profile" 속성을 맵으로 추출합니다.
+//        Map<String, Object> profile2 = (Map<String, Object>) kakaoAccount.get("profile");
+//        String pw = (String) profile2.get("pw");  // "profile2"에서 "pw" 속성을 가져옵니다.
 
         // attributes 맵에 email과 nickname 속성을 추가합니다.
         attributes.put("email", email);
         attributes.put("nickname", nickname);
-        attributes.put("pw", pw);
+//        attributes.put("pw", pw);
 
         // 데이터베이스에서 해당 이메일을 가진 사용자를 찾습니다.
         // 없을 경우 새로운 User 객체를 생성하고 저장한 뒤 반환합니다.
-        Member user = userRepository.findByEmail(email)
+        User user = userRepository.findByEmail(email)
                 .orElseGet(() -> {
-                    Member newUser = new Member(email, nickname, pw);
+                    User newUser = new User(email, nickname);
                     return userRepository.save(newUser);
                 });
 
@@ -64,5 +66,4 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 "email");  // 이름 필드의 키를 "email"로 설정합니다.
 
     }
-
 }

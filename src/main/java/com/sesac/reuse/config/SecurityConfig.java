@@ -1,14 +1,15 @@
 package com.sesac.reuse.config;
 
-
-import com.sesac.reuse.user.service.CustomOAuth2UserService;
+import com.sesac.reuse.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 import javax.servlet.http.HttpSession;
 
+import static org.hibernate.criterion.Restrictions.and;
 
 @Configuration  // 해당 클래스를 스프링 설정 클래스로 등록
 @EnableWebSecurity  // spring security 설정을 활성화

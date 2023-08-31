@@ -23,7 +23,7 @@
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" th:href="@{/}">
                         <img src="/static2/images/logo.png" class="logo" alt="">
                         <span>Reuse</span>
                     </a>
@@ -39,20 +39,29 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-lg-5 me-lg-auto">
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                                <a class="nav-link click-scroll" th:href="@{/}">Home</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_2">Community</a>
+                                <a class="nav-link click-scroll" th:href="@{/게시판}">Community</a>
                             </li>
 
                             <!-- 회원가입 -->
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" th:href="@{/user/join}">SIGN IN</a>
+                                <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/user/join}">회원가입</a>
                             </li>
 
+                            <!-- 로그인한 회원만 볼수있는 메뉴 -->
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_4">LOGIN</a>
+                                <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_USER')" th:href="@{/}">마이페이지</a>
+                            </li>
+
+                            <!-- 로그인, 로그아웃-->
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
                             </li>
 
                         </ul>
@@ -74,13 +83,13 @@
 
                             <h6 class="text-center">Recycling Discharge Methods</h6>
 
-                            <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search">
+                            <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search" action="/search">
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-text bi-search" id="basic-addon1">
                                         
                                     </span>
 
-                                    <input name="keyword" type="search" class="form-control" id="keyword" placeholder="예) 가습기, 보온병, 액자.." aria-label="Search">
+                                    <input name="itemName" type="search" class="form-control" id="keyword" placeholder="예) 가습기, 보온병, 액자.." aria-label="Search">
 
                                     <button type="submit" class="form-control">Search</button>
                                 </div>

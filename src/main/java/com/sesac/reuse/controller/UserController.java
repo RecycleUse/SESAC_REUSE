@@ -6,19 +6,20 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 @Controller
 @RequestMapping("/user")
-public class OAuthController {
+public class UserController {
 
     @GetMapping("/login")
     public String login() {
-
         return "login";
     }
-
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
@@ -32,7 +33,6 @@ public class OAuthController {
 
     @GetMapping("/join")
     public String join() {
-
         return "join";
     }
 }
