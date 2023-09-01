@@ -5,17 +5,22 @@
     max-height: 250px;
     overflow-y: auto;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-    border-radius: 20px; /* 모서리를 둥글게 처리 */
+    border-bottom-right-radius: 20px;  /* 모서리를 둥글게 처리 */
+    border-bottom-left-radius: 20px;
     z-index: 1000; /* 화면 상위에 표시하기 위한 우선순위 설정 */
-    width: 100%; /* 드롭다운의 너비를 컨테이너와 일치시킴 */
+    width: 90%; /* 드롭다운의 너비를 컨테이너와 일치시킴 */
     background-color: white;
+    top: 100%; /* 드롭다운을 검색창 아래로 이동 */
+    left: 50%; /* 가로 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬을 위한 가로 이동 */
 }
+
 /* 드롭다운 각각의 항목들 */
 .search-dropdown-item {
     display:block;
     width:100%;
     border:0;
-    background-color: #80d0c71f;
+    background-color: #bfd3d11f;
     line-height: 5;
 }
 
