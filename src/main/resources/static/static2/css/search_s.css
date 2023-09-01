@@ -25,6 +25,14 @@
 }
 /* 메인페이지 검색창 드롭다운 창 끝 */
 
+
+/* search-success.html 시작 */
+/* 네비바 */
+.navbar-background {
+    background-color: #80d0c7;
+}
+
+
 /* 좌측 컨테이너 아이템 이미지 */
 .left-container > img {
     width: 400px;
@@ -32,18 +40,18 @@
 }
 
 /* 전체 배경 */
-.bg {
-    background-color: #deeee8;
-}
+/*.bg {*/
+/*    background-color: #deeee8;*/
+/*}*/
 
 /* 메인 컨테이너 배경 */
-.square {
-    background-color: white;
-    padding: 5px;
-    width: 1240px;
-    height: 900px;
-    margin-left: 350px;
-}
+/*.square {*/
+/*    background-color: white;*/
+/*    padding: 5px;*/
+/*    width: 1240px;*/
+/*    height: 900px;*/
+/*    margin-left: 350px;*/
+/*}*/
 
 /* container box */
 .main {
@@ -77,3 +85,4 @@ input {
 hr {
     margin-top: 50px;
 }
+/* search-success.html 끝 */
