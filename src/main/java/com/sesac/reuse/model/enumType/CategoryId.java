@@ -1,9 +1,11 @@
 package com.sesac.reuse.model.enumType;
 
+
 public enum CategoryId {
 
     A("A", "가전제품"),
     B("B", "고철"),
+
     C("C", "금속캔"),
     D("D", "대형폐기물"),
     E("E", "불연성종량제"),

@@ -64,6 +64,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),  // 기본 권한을 설정합니다.
                 attributes,  // OAuth2 인증 정보의 속성들
                 "email");  // 이름 필드의 키를 "email"로 설정합니다.
-
     }
+
+
 }

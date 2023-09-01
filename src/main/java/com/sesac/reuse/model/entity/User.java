@@ -3,10 +3,12 @@ package com.sesac.reuse.model.entity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 @Entity  // JPA를 사용하여 테이블과 매핑할 클래스임을 나타냅니다.
 @Getter  // Lombok을 사용하여 getter 메소드를 자동으로 생성합니다.
 @Setter  // Lombok을 사용하여 setter 메소드를 자동으로 생성합니다.
@@ -14,7 +16,7 @@ import javax.persistence.Id;
 public class User {
 
     @Id  // 해당 프로퍼티가 테이블의 기본 키 역할을 한다는 것을 나타냅니다.
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 기본 키 생성 전략을 지정합니다. IDENTITY는 데이터베이스에 위임하는 방식입니다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 기본 키 생성 전략을 지정합니다. IDENTITY는 데이터베이스에 위임하는 방식입니다. AUTO_INCREMENT
     private Long user_id;
 
     private String email;  // 사용자의 이메일 주소를 저장하는 프로퍼티

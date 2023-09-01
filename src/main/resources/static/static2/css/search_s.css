@@ -1,3 +1,30 @@
+/* 메인페이지 검색창 드롭다운 창 시작 */
+/* 드롭다운 전체 창 */
+.search-dropdown {
+    position: relative;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    border-radius: 20px; /* 모서리를 둥글게 처리 */
+    z-index: 1000; /* 화면 상위에 표시하기 위한 우선순위 설정 */
+    width: 100%; /* 드롭다운의 너비를 컨테이너와 일치시킴 */
+    background-color: white;
+}
+/* 드롭다운 각각의 항목들 */
+.search-dropdown-item {
+    display:block;
+    width:100%;
+    border:0;
+    background-color: #80d0c71f;
+    line-height: 5;
+}
+
+/* 드롭다운 각각의 항목들 마우스 호버 */
+.search-dropdown-item:hover {
+    background-color: #80d0c7e3;
+}
+/* 메인페이지 검색창 드롭다운 창 끝 */
+
 /* 좌측 컨테이너 아이템 이미지 */
 .left-container > img {
     width: 400px;

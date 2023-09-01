@@ -3,6 +3,7 @@ package com.sesac.reuse.model.entity;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 
 @Data
@@ -18,15 +19,16 @@ public class Item {
     private String item_id;
 
     @Column(name = "item_name")
-    private String itemName; // 변수 이름 수정
+    private String itemName;  // 변수 이름 수정
 
     private String recycle_info;
 
     private Boolean recyclable;
 
+//    private String created_at;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     @Enumerated(EnumType.STRING)
     private Category category;
-
 }

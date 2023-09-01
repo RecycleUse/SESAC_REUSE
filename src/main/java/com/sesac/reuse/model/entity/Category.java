@@ -1,5 +1,6 @@
 package com.sesac.reuse.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sesac.reuse.model.enumType.CategoryId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,5 +29,6 @@ public class Category {
 
     // Category 1 : N Item
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    @JsonIgnore // 순환 참조 끊기 (검색창 드롭다운 기능에 사용)
     private List<Item> itemList;
 }
