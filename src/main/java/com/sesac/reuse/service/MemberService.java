@@ -13,6 +13,7 @@ public interface MemberService {
     public MemberDTO findProfileByEmail(String email) throws UsernameNotFoundException;
 
     public void modifyProfile(MemberDTO memberDTO);
-
     public boolean isExistAccount(String email);
+
+    public void resetPwd(String email,String tempPw);
 }

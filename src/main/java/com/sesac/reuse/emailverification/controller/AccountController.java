@@ -2,6 +2,7 @@ package com.sesac.reuse.emailverification.controller;
 
 
 import com.sesac.reuse.emailverification.service.RegisterMailService;
+import com.sesac.reuse.emailverification.service.ResetPwdMailService;
 import com.sesac.reuse.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -22,6 +23,7 @@ public class AccountController {
 // 요청에 넘어온 메일로 인증 코드 넘김 -> 인증번호가 view로 리턴
 
     private final RegisterMailService registerMailService;
+    private final ResetPwdMailService resetPwdMailService;
     private final MemberService memberService;
 
 
@@ -41,6 +43,29 @@ public class AccountController {
 
         String vertificationCode = registerMailService.sendSimpleMessage(email);// param email로 메시지를 보낼거야
         log.info("vertificationCode={}",vertificationCode);
-        return new ResponseEntity<>(vertificationCode, HttpStatus.OK); //서버에 저장해야됨
+        return new ResponseEntity<>(vertificationCode, HttpStatus.OK); //일치확인
     }
+
+
+    @PostMapping("/member/reset-pwd")
+    public ResponseEntity<?> resetPwd(@RequestBody Map<String,String> payload) throws Exception {
+
+        log.info("payload={}",payload);
+        String email = payload.get("email");
+
+        //존재하는 이메일 계정인지 확인
+        if(!memberService.isExistAccount(email)) {
+            return new ResponseEntity<>("존재하지 않는 이메일입니다. 다시 확인해주세요.", HttpStatus.BAD_REQUEST);
+        }
+
+
+        String result = resetPwdMailService.sendSimpleMessage(email);
+        log.info("result={}", result);
+        return new ResponseEntity<>(result,HttpStatus.OK);
+
+    }
+
+
+
+
 }

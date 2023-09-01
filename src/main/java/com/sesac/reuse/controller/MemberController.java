@@ -124,4 +124,10 @@ public class MemberController {
 
         return email;
     }
+
+    @GetMapping("/reset-pwd")
+    public String resetPwd() {
+        log.info("호출됨");
+        return "/member/reset-pwd";
+    }
 }

@@ -2,6 +2,7 @@ package com.sesac.reuse.service;
 
 import com.sesac.reuse.dto.MemberDTO;
 import com.sesac.reuse.dto.MemberProfileDTO;
+import com.sesac.reuse.emailverification.service.ResetPwdMailService;
 import com.sesac.reuse.entity.Member;
 import com.sesac.reuse.entity.MemberRole;
 import com.sesac.reuse.entity.SocialSignUpInfo;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 @Log4j2
@@ -26,6 +28,7 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper mapper;
+    
 
 
     @Override
@@ -76,17 +79,7 @@ public class MemberServiceImpl implements MemberService {
                 .nickname(member.getNickname())
                 .build();
     }
-
-
-    private Member convertMember(MemberDTO memberDTO) {
-        Member member = mapper.map(memberDTO, Member.class);
-        log.info("member={}", member);
-        member.encrptyPassword(passwordEncoder.encode(memberDTO.getPw()));
-        member.addRole(MemberRole.MEMBER);
-//        member.addRole(MemberRole.ADMIN); <--권한 2개 테스트, 관리자 가입 로직 별도로 생성하기
-        member.setSocial(SocialSignUpInfo.STANDARD);
-        return member;
-    }
+    
 
     @Override
     public boolean isExistAccount(String email) {
@@ -99,4 +92,30 @@ public class MemberServiceImpl implements MemberService {
         }
 
     }
+
+    @Override
+    @Transactional
+    public void resetPwd(String email, String tempPw) {
+
+        Member findMember = memberRepository.findByEmail(email).orElseThrow();
+
+        findMember.changePw(passwordEncoder.encode(tempPw));
+        memberRepository.save(findMember);
+    }
+
+
+    public Member findMemberByEmail(String email) {
+       return memberRepository.findByEmail(email).orElseThrow();
+    }
+
+    private Member convertMember(MemberDTO memberDTO) {
+        Member member = mapper.map(memberDTO, Member.class);
+        log.info("member={}", member);
+        member.encrptyPassword(passwordEncoder.encode(memberDTO.getPw()));
+        member.addRole(MemberRole.MEMBER);
+//        member.addRole(MemberRole.ADMIN); <--권한 2개 테스트, 관리자 가입 로직 별도로 생성하기
+        member.setSocial(SocialSignUpInfo.STANDARD);
+        return member;
+    }
+
 }
