@@ -24,6 +24,10 @@
     line-height: 5;
 }
 
+.search-dropdown-item > div {
+    display: inline-block;
+}
+
 /* 드롭다운 각각의 항목들 마우스 호버 */
 .search-dropdown-item:hover {
     background-color: #80d0c7e3;
