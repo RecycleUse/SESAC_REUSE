@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class User {
 
     @Id  // 해당 프로퍼티가 테이블의 기본 키 역할을 한다는 것을 나타냅니다.
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 기본 키 생성 전략을 지정합니다. IDENTITY는 데이터베이스에 위임하는 방식입니다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 기본 키 생성 전략을 지정합니다. IDENTITY는 데이터베이스에 위임하는 방식입니다. AUTO_INCREMENT
     private Long user_id;
 
     private String email;  // 사용자의 이메일 주소를 저장하는 프로퍼티

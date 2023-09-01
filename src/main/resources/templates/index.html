@@ -15,6 +15,7 @@
     <link href="/static2/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static2/css/bootstrap-icons.css" rel="stylesheet">
     <link href="/static2/css/templatemo-topic-listing.css" rel="stylesheet">
+    <link href="/static2/css/search_s.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 
@@ -90,6 +91,7 @@
                         </div>
                     </form>
 
+                    <!-- 검색창 드롭다운 -->
                     <div id="searchResults" class="dropdown"></div>
 
                 </div>
@@ -230,10 +232,10 @@
                         } else {
                             searchResults.innerHTML = "";
                             const dropdown = document.createElement("div");
-                            dropdown.classList.add("dropdown-menu", "show");
+                            dropdown.classList.add("search-dropdown", "show");
                             data.forEach(item => {
                                 const dropdownItem = document.createElement("button");
-                                dropdownItem.classList.add("dropdown-item");
+                                dropdownItem.classList.add("search-dropdown-item");
                                 dropdownItem.type = "button";
                                 dropdownItem.innerText = item.itemName;
                                 dropdownItem.addEventListener("click", function () {
