@@ -49,9 +49,9 @@ class MemberServiceImplTest {
     void modifyProfileTest() {
         //given
         MemberDTO modifyMemberDTO = MemberDTO.builder()
-                .email("the_blue10@naver.com")
-                .pw("password")
-                .confirmPw("password")
+                .email("test@naver.com")
+                .pw("password1")
+                .confirmPw("password1")
                 .nickname("닉네임변경테스트")
                 .build();
 

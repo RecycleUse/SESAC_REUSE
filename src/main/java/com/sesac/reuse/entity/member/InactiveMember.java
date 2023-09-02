@@ -3,7 +3,6 @@ package com.sesac.reuse.entity.member;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 //회원탈퇴시, Member테이블에 memberId(PK), email, del = true(탈퇴여부) 필드값만 유지시키고
