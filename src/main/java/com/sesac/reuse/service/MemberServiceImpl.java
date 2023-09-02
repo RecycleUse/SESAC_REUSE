@@ -1,24 +1,20 @@
 package com.sesac.reuse.service;
 
 import com.sesac.reuse.dto.MemberDTO;
-import com.sesac.reuse.dto.MemberProfileDTO;
-import com.sesac.reuse.emailverification.service.ResetPwdMailService;
-import com.sesac.reuse.entity.Member;
-import com.sesac.reuse.entity.MemberRole;
-import com.sesac.reuse.entity.SocialSignUpInfo;
+import com.sesac.reuse.entity.member.Member;
+import com.sesac.reuse.entity.member.MemberRole;
+import com.sesac.reuse.entity.member.SocialSignUpInfo;
 import com.sesac.reuse.exception.EmailExistException;
 import com.sesac.reuse.exception.UserEmailNotFoundException;
 import com.sesac.reuse.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 @Log4j2
@@ -69,6 +65,7 @@ public class MemberServiceImpl implements MemberService {
         member.changePw(passwordEncoder.encode(memberDTO.getPw()));
 
         memberRepository.save(member);
+        log.info("service modifyProfile call");
 
     }
 

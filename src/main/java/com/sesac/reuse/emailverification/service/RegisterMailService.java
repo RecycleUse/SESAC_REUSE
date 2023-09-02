@@ -42,9 +42,9 @@ public class RegisterMailService implements MailServiceInter {
         msg.append("<p> 감사합니다!<p>");
         msg.append("<br>");
         msg.append("<div align='center' style='border:1px solid black; font-family:verdana';>");
-        msg.append("<h3 style='color:blue;'>회원가입 인증 코드입니다.</h3>");
+        msg.append("<h3 style='color:#00814F;'>회원가입 인증 코드입니다.</h3>");
         msg.append("<div style='font-size:130%'>");
-        msg.append("CODE : <strong>").append(ePw).append("</strong><div><br/> ");
+        msg.append("CODE : <strong style='#00814F';>").append(ePw).append("</strong><div><br/> ");
 
 
         message.setText(msg.toString(), "utf-8", "html");

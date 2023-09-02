@@ -1,6 +1,6 @@
 package com.sesac.reuse.security.service;
 
-import com.sesac.reuse.entity.Member;
+import com.sesac.reuse.entity.member.Member;
 import com.sesac.reuse.repository.MemberRepository;
 import com.sesac.reuse.security.dto.MemberSecurityDTO;
 import lombok.RequiredArgsConstructor;

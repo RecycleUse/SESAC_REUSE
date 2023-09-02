@@ -1,7 +1,7 @@
 package com.sesac.reuse.service;
 
 import com.sesac.reuse.dto.MemberDTO;
-import com.sesac.reuse.entity.Member;
+import com.sesac.reuse.entity.member.Member;
 import com.sesac.reuse.repository.MemberRepository;
 import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
@@ -10,10 +10,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Log4j2

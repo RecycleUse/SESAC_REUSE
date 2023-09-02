@@ -1,4 +1,4 @@
-package com.sesac.reuse.entity;
+package com.sesac.reuse.entity.member;
 
 public enum MemberRole {
     MEMBER,

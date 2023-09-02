@@ -1,6 +1,6 @@
 package com.sesac.reuse.repository;
 
-import com.sesac.reuse.entity.Member;
+import com.sesac.reuse.entity.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

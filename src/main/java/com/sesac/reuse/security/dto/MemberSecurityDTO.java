@@ -1,11 +1,8 @@
 package com.sesac.reuse.security.dto;
 
 
-import com.sesac.reuse.entity.Member;
-import com.sesac.reuse.entity.SocialSignUpInfo;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import com.sesac.reuse.entity.member.Member;
+import com.sesac.reuse.entity.member.SocialSignUpInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -22,7 +19,7 @@ import java.util.Collection;
 
 public class MemberSecurityDTO extends User {
 
-    private Long userId; //DB에서 넘어오는 PK값
+    private Long memberId; //DB에서 넘어오는 PK값
     private String email; // Authentication의 username으로 사용될 필드
     private String pw;
     private String nickname;
@@ -34,7 +31,7 @@ public class MemberSecurityDTO extends User {
     public MemberSecurityDTO(Member member,
                              Collection<? extends GrantedAuthority> authorities) {
         super(member.getEmail(), member.getPw(), authorities);
-        this.userId = member.getUserId();
+        this.memberId = member.getMemberId();
         this.email = member.getEmail(); //<-- 이게 필요한가?
         this.nickname = member.getNickname();
         this.del = member.isDel();
