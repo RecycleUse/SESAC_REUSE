@@ -33,10 +33,10 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private SocialSignUpInfo social;
 
-    @OneToMany(mappedBy="member", cascade = CascadeType.ALL) // 연관관계주인X
+    @OneToMany(mappedBy="writer", cascade = CascadeType.ALL) // 연관관계주인X
     private List<Board> boards;
 
-    @OneToMany(mappedBy="member", cascade =CascadeType.ALL)
+    @OneToMany(mappedBy="writer", cascade =CascadeType.ALL)
     private List<Reply> replies;
 
 

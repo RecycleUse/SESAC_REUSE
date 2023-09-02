@@ -15,7 +15,7 @@ public class Reply extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id") // FK관리
-    private Member member;
+    private Member writert;
 
     @JoinColumn(name="board_id")
     @ManyToOne

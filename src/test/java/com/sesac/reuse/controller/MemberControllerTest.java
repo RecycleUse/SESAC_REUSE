@@ -1,14 +1,11 @@
 package com.sesac.reuse.controller;
 
-import com.sesac.reuse.dto.MemberDTO;
-import com.sesac.reuse.repository.MemberRepository;
-import com.sesac.reuse.service.MemberService;
+import com.sesac.reuse.repository.member.MemberRepository;
+import com.sesac.reuse.service.member.MemberService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;

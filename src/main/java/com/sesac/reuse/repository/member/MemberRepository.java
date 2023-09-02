@@ -1,4 +1,4 @@
-package com.sesac.reuse.repository;
+package com.sesac.reuse.repository.member;
 
 import com.sesac.reuse.entity.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;

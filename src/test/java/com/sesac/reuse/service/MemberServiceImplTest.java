@@ -1,8 +1,9 @@
 package com.sesac.reuse.service;
 
-import com.sesac.reuse.dto.MemberDTO;
+import com.sesac.reuse.dto.member.MemberDTO;
 import com.sesac.reuse.entity.member.Member;
-import com.sesac.reuse.repository.MemberRepository;
+import com.sesac.reuse.repository.member.MemberRepository;
+import com.sesac.reuse.service.member.MemberService;
 import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

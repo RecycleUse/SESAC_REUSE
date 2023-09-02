@@ -1,7 +1,6 @@
-package com.sesac.reuse.service;
+package com.sesac.reuse.service.member;
 
-import com.sesac.reuse.dto.MemberDTO;
-import com.sesac.reuse.dto.MemberProfileDTO;
+import com.sesac.reuse.dto.member.MemberDTO;
 import com.sesac.reuse.exception.EmailExistException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 

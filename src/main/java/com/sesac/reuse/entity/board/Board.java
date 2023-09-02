@@ -23,7 +23,7 @@ public class Board extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id") // FK관리
-    private Member member;
+    private Member writer;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST)
     private List<Reply> replies;

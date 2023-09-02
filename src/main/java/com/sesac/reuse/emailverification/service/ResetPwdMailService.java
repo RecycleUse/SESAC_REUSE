@@ -1,6 +1,6 @@
 package com.sesac.reuse.emailverification.service;
 
-import com.sesac.reuse.service.MemberService;
+import com.sesac.reuse.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.mail.MailException;
@@ -12,7 +12,6 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
-import java.util.Random;
 
 @RequiredArgsConstructor
 @Service

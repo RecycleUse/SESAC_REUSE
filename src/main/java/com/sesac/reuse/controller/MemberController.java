@@ -1,8 +1,8 @@
 package com.sesac.reuse.controller;
 
-import com.sesac.reuse.dto.MemberDTO;
+import com.sesac.reuse.dto.member.MemberDTO;
 import com.sesac.reuse.exception.EmailExistException;
-import com.sesac.reuse.service.MemberService;
+import com.sesac.reuse.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.access.prepost.PreAuthorize;
