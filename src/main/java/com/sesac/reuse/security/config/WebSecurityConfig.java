@@ -36,6 +36,7 @@ public class WebSecurityConfig {
                         .mvcMatchers("/","/index","/home").permitAll() // 해당 경로에 대한 모든 요청(get,put,post,delete) 다 처리 권한없이 허용
                         .mvcMatchers("/user/login","/signup/mailConfirm").permitAll()
                         .mvcMatchers("/reset-pwd").permitAll()
+                        .mvcMatchers("/board","/board/list").permitAll()
                         .mvcMatchers("/admin/**").hasRole("ADMIN")
                 )
                 .httpBasic(withDefaults());

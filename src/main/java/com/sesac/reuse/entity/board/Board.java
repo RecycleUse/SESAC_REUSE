@@ -27,9 +27,7 @@ public class Board extends BaseEntity {
     private String title;
     private String content;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="member_id") // FK관리
-//    private Member writer;
+    private String writer;
 
 //    @OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST)
 //    private List<Reply> replies;
@@ -37,6 +35,7 @@ public class Board extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @PreAuthorize("isAuthenticated()")
     public void change(Type type, String title, String content) {
         this.type = type; // <-- ANNOUNCEMENT 선택 방지는 Controller에서 처리하기
         this.title = title;
