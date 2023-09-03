@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/static2/css/search_s.css"/>
 </head>
 
-<body id="top">
+<body>
 <main>
 
     <!-- 네비바 시작 -->
@@ -90,30 +90,26 @@
 <!--        </article>-->
 <!--    </div>-->
 
-    <div class="bg">
-        <div class="container">
-            <div class="row">
-                <!-- 각 검색 결과를 카드로 래핑 -->
-                <div class="col-md-4 mb-4" th:each="item : ${items}">
-                    <div class="card">
-                        <!-- 아이템 이미지 -->
-                        <img th:src="@{'/static2/images/item_images/' + ${item.item_id} + '.jpg'}" alt="Item Image" class="card-img-top">
-                        <div class="card-body">
-                            <!-- 아이템 이름 -->
-                            <h5 class="card-title">
-                                <a th:href="@{/item-detail(item_id=${item.item_id})}" th:text="${item.itemName}">Item Name</a>
-                            </h5>
-                            <!-- 카테고리 -->
-                            <p class="card-text">Category: <span th:text="${item.category.name}">Category Name</span></p>
-                            <!-- 재활용 가능 여부 -->
-                            <p class="card-text">Recyclable: <span th:text="${item.recyclable}">Yes/No</span></p>
+        <div class="card-container">
+            <div class="card-content">
+                <div th:each="item : ${items}" class="col-md-3 mb-3">
+                    <a th:href="@{/item-detail(item_id=${item.item_id})}">
+                        <div class="card">
+                            <!-- 아이템 이미지 -->
+                            <img th:src="@{'/static2/images/item_images/' + ${item.item_id} + '.jpg'}" alt="${item.itemName}" class="card-img-top">
+                                <div class="card-body">
+                                    <!-- 아이템 이름 -->
+                                    <p><h5 class="card-title" th:text="${item.itemName}">Item Name</h5></p>
+                                    <!-- 카테고리 -->
+                                    <p class="card-text">분류: <span th:text="${item.category.name}">Category Name</span></p>
+                                    <!-- 재활용 가능 여부 -->
+                                    <p class="card-text">재활용 가능 여부: <span th:text="${item.recyclable}">Yes/No</span></p>
+                                </div>
                         </div>
-                    </div>
-                </div>
+                    </a>
             </div>
-        </div>
-    </div>
-
+            </div>
+         </div>
 </main>
 
 <!-- 푸터 시작 -->
@@ -196,16 +192,6 @@
 <script src="/static2/js/jquery.sticky.js"></script>
 <script src="/static2/js/click-scroll.js"></script>
 <script src="/static2/js/custom.js"></script>
-
-<script>
-    // 각 카드를 클릭하면 해당 아이템의 item-detail 페이지로 이동하는 이벤트 처리
-    document.querySelectorAll('.card-link').forEach(function (link) {
-        link.addEventListener('click', function (event) {
-            event.stopPropagation(); // 다른 클릭 이벤트 방지
-            window.location.href = link.getAttribute('href'); // 링크로 이동
-        });
-    });
-</script>
 
 </body>
 </html>
