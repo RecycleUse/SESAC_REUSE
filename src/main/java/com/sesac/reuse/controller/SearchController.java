@@ -22,6 +22,7 @@ public class SearchController {
     @ResponseBody  // JSON 형식으로 응답을 반환함을 선언 (검색 드롭다운 기능에 사용)
     public List<Item> searchItem(@RequestParam("itemName") String itemName) {
         List<Item> foundItems = itemRepository.findByItemNameContaining(itemName);
+
         return foundItems;
     }
 
@@ -53,13 +54,12 @@ public class SearchController {
     public String 게시판() {
         return "게시판";
     }
-
 }
 
 
 //    @GetMapping("/search")
-//    public String searchItem(@RequestParam("itemName") String itemName, Model model) {
-//        List<Item> foundItems = itemRepository.findByItemNameContaining(itemName);
+//    public String searchItem(@RequestParam("item_name") String item_name, Model model) {
+//        List<Item> foundItems = itemRepository.findByitem_nameContaining(item_name);
 //
 //        if (foundItems.isEmpty()) {
 //            return "search-fail";

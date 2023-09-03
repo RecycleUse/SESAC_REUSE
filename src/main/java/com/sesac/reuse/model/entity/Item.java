@@ -1,5 +1,6 @@
 package com.sesac.reuse.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -31,4 +32,9 @@ public class Item {
     @JoinColumn(name = "category_id")
     @Enumerated(EnumType.STRING)
     private Category category;
+
+    @OneToOne(mappedBy = "item")
+    @JoinColumn(name = "image_id")
+    @JsonIgnore  // 순환 참조 방지
+    private Image image;
 }

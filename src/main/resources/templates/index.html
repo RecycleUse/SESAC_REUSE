@@ -86,7 +86,7 @@
                     <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search" action="/search">
                         <div class="input-group input-group-lg">
                             <span class="input-group-text bi-search" id="basic-addon1"></span>
-                            <input name="itemName" type="search" class="form-control" id="keyword" placeholder=" 예) 가습기, 그릇, 액자.." aria-label="Search">
+                            <input name="item_name" type="search" class="form-control" id="keyword" placeholder=" 예) 가습기, 그릇, 액자.." aria-label="Search">
                             <button type="submit" class="form-control" id="searchButton">Search</button>
                         </div>
                     </form>
@@ -213,100 +213,7 @@
     </div>
 </footer>
 
-<!-- JAVASCRIPT FILES -->
-<!-- 검색창 드롭다운 -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const searchButton = document.getElementById("searchButton");
-        const itemNameInput = document.getElementById("keyword");
-        const searchResults = document.getElementById("searchResults");
-
-        itemNameInput.addEventListener("input", function () {
-            const itemName = itemNameInput.value;
-            if (itemName.length >= 1) {  // 검색어 한글자부터 드롭다운 시작
-                fetch(`/search?itemName=${itemName}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.length === 0) {
-                            searchResults.innerHTML = ""; // 드롭다운 비우기
-                        } else {
-                            searchResults.innerHTML = "";
-                            const dropdown = document.createElement("div");
-                            dropdown.classList.add("search-dropdown", "show");
-                            data.forEach(item => {
-                                const dropdownItem = document.createElement("button");
-                                dropdownItem.classList.add("search-dropdown-item");
-                                dropdownItem.type = "button";
-
-                                // 이미지 박스 생성 및 스타일 적용
-                                const imageBox = document.createElement("div");
-                                imageBox.classList.add("item-image");
-                                const image = document.createElement("img");
-                                // 이미지의 상대 경로 설정
-                                image.src = `/static/static2/images/item_images/${item.imagePath}`;
-                                image.alt = item.itemName; // 이미지 대체 텍스트 설정
-                                imageBox.appendChild(image);
-
-                                // 아이템 이름 설정
-                                const itemNameElement = document.createElement("div");
-                                itemNameElement.classList.add("item-name");
-                                itemNameElement.innerText = item.itemName;
-
-                                // 카테고리 이름 설정
-                                const categoryNameElement = document.createElement("div");
-                                categoryNameElement.classList.add("category-name");
-                                categoryNameElement.innerText = item.category.name;
-
-                                // 이미지 박스, 아이템 이름, 카테고리 이름 추가
-                                dropdownItem.appendChild(imageBox);
-                                dropdownItem.appendChild(itemNameElement);
-                                dropdownItem.appendChild(categoryNameElement);
-
-                                dropdownItem.addEventListener("click", function () {
-                                    window.location.href = `/item-detail?item_id=${item.item_id}`;
-                                });
-                                dropdown.appendChild(dropdownItem);
-                            });
-                            searchResults.appendChild(dropdown);
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error fetching search results:", error);
-                    });
-            } else {
-                searchResults.innerHTML = ""; // 검색어가 짧을 때 드롭다운 비우기
-            }
-        });
-
-        searchButton.addEventListener("click", function (event) {
-            event.preventDefault();
-            performSearch();
-        });
-
-        function performSearch() {
-            const searchTerm = itemNameInput.value;
-
-            fetch(`/search?itemName=${searchTerm}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length === 0) {
-                        window.location.href = "/search-fail"; // 검색 결과가 없을 때
-                    } else if (data.length === 1) {
-                        window.location.href = `/item-detail?item_id=${data[0].item_id}`; // 검색 결과가 하나일 때
-                    } else {
-                        if (itemNameInput.value.trim() !== "") {
-                            window.location.href = `/search-success?itemName=${searchTerm}`; // 검색 결과가 여러 개일 때
-                        }
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching search results:", error);
-                });
-        }
-    });
-</script>
-<!-- 검색창 드롭다운 -->
-
+<script src="/static2/js/search-dropdown.js"></script> <!-- 검색창 드롭다운 -->
 <script src="/static2/js/jquery.min.js"></script>
 <script src="/static2/js/bootstrap.bundle.min.js"></script>
 <script src="/static2/js/jquery.sticky.js"></script>

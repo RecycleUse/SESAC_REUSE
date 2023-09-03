@@ -20,17 +20,13 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "image_id")
-    private String imageId; // 변수명 수정
+    private Long image_id;
 
-    @Column(name = "image_path")
-    private String imagePath;
+    private String image_path;
 
-    @Column(name = "image_name")
-    private String imageName;
+    private String image_name;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "item_id")
-    @Enumerated(EnumType.STRING)
     private Item item;
 }
