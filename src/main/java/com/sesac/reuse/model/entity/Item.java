@@ -16,16 +16,18 @@ import javax.persistence.*;
 public class Item {
 
     @Id
-    private String item_id;
+    private String itemId;
 
     @Column(name = "item_name")
     private String itemName;  // 변수 이름 수정
 
+    public String getItemName(){
+        return itemName;
+    }
+
     private String recycle_info;
 
     private Boolean recyclable;
-
-//    private String created_at;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

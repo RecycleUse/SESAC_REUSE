@@ -28,6 +28,13 @@ public class Image {
 
     @Column(name = "image_name")
     private String imageName;
+//
+//    @Lob
+//    @Column(name = "image_data")
+//    private byte[] data;
+
+//    @Column(name = "image_extension")
+//    private String extension;
 
     @ManyToOne
     @JoinColumn(name = "item_id")

@@ -12,4 +12,8 @@ import java.util.List;
 public class ItemWithImagesDTO {
     private Item item;
     private List<Image> images;
+
+    public String getItemName(){
+        return item.getItemName();
+    }
 }

@@ -1,10 +1,9 @@
 package com.sesac.reuse.controller;
 
 import com.sesac.reuse.dto.ItemWithImagesDTO;
-import com.sesac.reuse.model.entity.Image;
 import com.sesac.reuse.model.entity.Item;
-import com.sesac.reuse.repository.ItemRepository;
 import com.sesac.reuse.repository.ImageRepository;
+import com.sesac.reuse.repository.ItemRepository;
 import com.sesac.reuse.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +18,14 @@ import java.util.List;
 public class SearchController {
 
     private final ItemRepository itemRepository;
-    private final SearchService searchService;  // 추가
+    private final SearchService searchService;
+    private final ImageRepository imageRepository;
 
     @Autowired
-    public SearchController(ItemRepository itemRepository, SearchService searchService) {  // 수정
+    public SearchController(ItemRepository itemRepository, SearchService searchService, ImageRepository imageRepository) {  // 수정
         this.itemRepository = itemRepository;
         this.searchService = searchService;
+        this.imageRepository = imageRepository;
     }
     @GetMapping("/search")
     @ResponseBody
@@ -40,17 +41,32 @@ public class SearchController {
     }
 
     @GetMapping("/item-detail")
-    public String itemDetail(@RequestParam("item_id") String itemId, Model model) {
-        ItemWithImagesDTO itemWithImages = searchService.getItem(itemId);  // 변경
-
-        if (itemWithImages.getItem() == null) {
+    public String itemDetail(@RequestParam("itemId") String itemId, Model model){
+        ItemWithImagesDTO itemWithImages;
+        try{
+            itemWithImages = searchService.getItem(itemId);
+        } catch (RuntimeException e){ // 예외처리 추가
             return "search-fail";
         }
 
         model.addAttribute("item", itemWithImages.getItem());
-        model.addAttribute("images", itemWithImages.getImages());  // 이미지 정보 추가
+        model.addAttribute("images", itemWithImages.getImages());
+        model.addAttribute("itemName", itemWithImages.getItemName());
         return "search-detail";
     }
+
+//    @GetMapping("/item-detail")
+//    public String itemDetail(@RequestParam("item_id") String itemId, Model model) {
+//        ItemWithImagesDTO itemWithImages = searchService.getItem(itemId);  // 변경
+//
+//        if (itemWithImages.getItem() == null) {
+//            return "search-fail";
+//        }
+//
+//        model.addAttribute("item", itemWithImages.getItem());
+//        model.addAttribute("images", itemWithImages.getImages());  // 이미지 정보 추가
+//        return "search-detail";
+//    }
 
     @GetMapping("/search-fail")
     public String searchFail() {
