@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             // 이미지 박스 생성 및 스타일 적용
                             const imageBox = document.createElement("div");
-                            imageBox.classList.add("item-image");  // 스타일 클래스
+                            imageBox.classList.add("search-dropdown-image");  // 스타일 클래스
                             const image = document.createElement("img");
 
 
                             // 이미지의 상대 경로 설정
-                            if (item.image && item.image.image_name) {
-                                image.src = `/static2/images/item_images/${item.image.image_name}`;
+                            if (item.item_id) {
+                                image.src = `/static2/images/item_images/${item.item_id}.jpg`;
                                 image.alt = item.itemName;  // 이미지 대체 텍스트
                                 imageBox.appendChild(image);
                             } else {
@@ -36,16 +36,25 @@ document.addEventListener("DOMContentLoaded", function () {
                                 imageBox.style.display = "none";
                             }
 
+                            // if (item.image && item.image.image_name) {
+                            //     image.src = `/static2/images/item_images/${item.image.image_name}`;
+                            //     image.alt = item.itemName;  // 이미지 대체 텍스트
+                            //     imageBox.appendChild(image);
+                            //   } else {
+                            //      // 이미지 정보가 없을 경우 이미지 박스를 숨김 처리 (이미지 엑박 방지)
+                            //      imageBox.style.display = "none";
+                            //   }
+
 
                             // 아이템 이름 설정
                             const itemNameElement = document.createElement("div");
-                            itemNameElement.classList.add("item-name");  // 스타일 클래스
+                            itemNameElement.classList.add("search-dropdown-name");  // 스타일 클래스
                             itemNameElement.innerText = item.itemName;
 
                             // 카테고리 이름 설정
                             const categoryNameElement = document.createElement("div");
-                            categoryNameElement.classList.add("category-name");  // 스타일 클래스
-                            categoryNameElement.innerText = item.category.name;
+                            categoryNameElement.classList.add("search-dropdown-category");  // 스타일 클래스
+                            categoryNameElement.innerText = `${item.category.name}`;
 
                             // 이미지 박스, 아이템 이름, 카테고리 이름 추가
                             dropdownItem.appendChild(imageBox);

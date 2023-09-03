@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -33,8 +34,8 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @OneToOne(mappedBy = "item")
-    @JoinColumn(name = "image_id")
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "item")
     @JsonIgnore  // 순환 참조 방지
     private Image image;
 }

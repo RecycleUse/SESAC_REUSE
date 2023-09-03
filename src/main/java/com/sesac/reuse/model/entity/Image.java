@@ -20,13 +20,17 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "image_id")
     private Long image_id;
 
+    @Column(name = "image_path")
     private String image_path;
 
+    @Column(name = "image_name")
     private String image_name;
 
-    @OneToOne
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 }

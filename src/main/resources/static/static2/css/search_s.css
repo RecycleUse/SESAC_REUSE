@@ -7,94 +7,137 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
     border-bottom-right-radius: 20px;  /* 모서리를 둥글게 처리 */
     border-bottom-left-radius: 20px;
-    z-index: 1000; /* 화면 상위에 표시하기 위한 우선순위 설정 */
     width: 90%; /* 드롭다운의 너비를 컨테이너와 일치시킴 */
     background-color: white;
-    top: 100%; /* 드롭다운을 검색창 아래로 이동 */
     left: 50%; /* 가로 중앙 정렬 */
     transform: translateX(-50%); /* 중앙 정렬을 위한 가로 이동 */
 }
 /* 드롭다운 각각의 항목들 */
 .search-dropdown-item {
-    display:block;
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
     width:100%;
     border:0;
-    background-color: #bfd3d11f;
-    line-height: 5;
-}
-.search-dropdown-item > div {
-    display: inline-block;
+    background-color: #ffffff;
+    line-height: 4px;
 }
 /* 드롭다운 각각의 항목들 마우스 호버 */
 .search-dropdown-item:hover {
     background-color: #80d0c7e3;
 }
 /* 이미지 크기 조절을 위한 클래스 */
-.item-image img {
-    width: 100px;
-    height: 100px;
-    /* 다른 스타일 속성을 추가할 수 있습니다. */
+.search-dropdown-image img {
+    width: 80px;
+    height: 80px;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+/* 카테고리 이름 */
+.search-dropdown-category {
+    margin-left: auto; /* 오른쪽 마진을 최대화하여 오른쪽 정렬 */
+    margin-right: 40px;
+    color: #117383FF;
 }
 /* 메인페이지 검색창 드롭다운 창 끝 */
 
 
-/* search-success.html 시작 */
+/* item-detail.html 시작 */
 /* 네비바 */
 .navbar-background {
     background-color: #80d0c7;
 }
-
-
+/* container box */
+.main {
+    padding: 170px 120px 120px 120px;
+    height: 900px;
+}
+/* 좌측 구역 */
+.left-container {
+    float: left;
+    margin-right: 100px;
+    height: 100%;
+}
 /* 좌측 컨테이너 아이템 이미지 */
 .left-container > img {
     width: 400px;
     height: 400px;
 }
-
-/* 전체 배경 */
-/*.bg {*/
-/*    background-color: #deeee8;*/
-/*}*/
-
-/* 메인 컨테이너 배경 */
-/*.square {*/
-/*    background-color: white;*/
-/*    padding: 5px;*/
-/*    width: 1240px;*/
-/*    height: 900px;*/
-/*    margin-left: 350px;*/
-/*}*/
-
-/* container box */
-.main {
-    padding: 120px;
-    height: 900px;
-}
-
-/* 좌측 구역 */
-.left-container {
-    float: left;
-    margin-right: 50px;
-}
-
 /* 우측 구역 */
 .right-container {
-    margin: 10px;
+}
+
+.item-name {
+    margin-bottom: 60px;
+}
+
+.category {
+    margin-bottom: 50px;
+}
+.category > h6 {
+    color: #000000;
+}
+
+.enable-status {
+    margin-bottom: 50px;
+}
+.enable-status > h6 {
+    color: #000000;
+}
+
+.guide {
+    margin-bottom: 50px;
+}
+.guide > h6 {
+    color: #000000;
+}
+
+.similar-item {
+    margin-bottom: 120px;
+}
+.similar-item > h6 {
+    color: #000000;
 }
 
 /* 수정요청 문구 */
 .ps {
     float: right;
-    top: 50px;
 }
-
 /* 수정요청 버튼 */
-input {
+.ps > p > a {
     margin-left: 15px;
 }
+/* item-detatl.html 끝 */
 
-/* 줄긋기 */
-hr {
-    margin-top: 50px;
+
+/* search-success.html 시작  */
+/* 카드 스타일 */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
 }
-/* search-success.html 끝 */
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title a {
+    text-decoration: none;
+    color: #333;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-img-top {
+    max-height: 200px;
+    object-fit: cover;
+}
+
+/* 카드 간격 및 여백 조정 */
+.mb-4 {
+    margin-bottom: 1rem;
+}
+/* search-success.html 끝  */

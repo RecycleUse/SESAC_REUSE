@@ -1,16 +1,211 @@
+<!-- 검색 성공 페이지 -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charSet="UTF-8">
-    <title>Search Results</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Item Detail</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="/static2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static2/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static2/css/templatemo-topic-listing.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static2/css/search_s.css"/>
 </head>
-<body>
-<h1>Search Results</h1>
-<ul>
-    <li th:each="item : ${items}">
-        <a th:href="@{/item-detail(item_id=${item.item_id})}">
-            <span th:text="${item.item_name}"></span>
-        </a>
-    </li>
-</ul>
+
+<body id="top">
+<main>
+
+    <!-- 네비바 시작 -->
+    <nav class="navbar navbar-expand-lg navbar-background">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">
+                <img src="/static2/images/logo.png" class="logo" alt="">
+                <span>Reuse</span>
+            </a>
+
+            <div class="d-lg-none ms-auto me-4">
+                <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" th:href="@{/}">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" th:href="@{/게시판}">Community</a>
+                    </li>
+
+                    <!-- 회원가입 -->
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/user/join}">회원가입</a>
+                    </li>
+
+                    <!-- 로그인한 회원만 볼수있는 메뉴 -->
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_USER')" th:href="@{/}">마이페이지</a>
+                    </li>
+
+                    <!-- 로그인, 로그아웃-->
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+                    </li>
+
+                </ul>
+
+                <div class="d-none d-lg-block">
+                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- 네비바 끝 -->
+
+<!--    <div class="bg">-->
+<!--        <article class="square">-->
+<!--            <div class="main">-->
+<!--                <ul>-->
+<!--                    <li th:each="item : ${items}">-->
+<!--                        <a th:href="@{/item-detail(item_id=${item.item_id})}">-->
+<!--                            <span th:text="${item.itemName}"></span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </article>-->
+<!--    </div>-->
+
+    <div class="bg">
+        <div class="container">
+            <div class="row">
+                <!-- 각 검색 결과를 카드로 래핑 -->
+                <div class="col-md-4 mb-4" th:each="item : ${items}">
+                    <div class="card">
+                        <!-- 아이템 이미지 -->
+                        <img th:src="@{'/static2/images/item_images/' + ${item.item_id} + '.jpg'}" alt="Item Image" class="card-img-top">
+                        <div class="card-body">
+                            <!-- 아이템 이름 -->
+                            <h5 class="card-title">
+                                <a th:href="@{/item-detail(item_id=${item.item_id})}" th:text="${item.itemName}">Item Name</a>
+                            </h5>
+                            <!-- 카테고리 -->
+                            <p class="card-text">Category: <span th:text="${item.category.name}">Category Name</span></p>
+                            <!-- 재활용 가능 여부 -->
+                            <p class="card-text">Recyclable: <span th:text="${item.recyclable}">Yes/No</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- 푸터 시작 -->
+<footer class="site-footer section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-12 mb-4 pb-2">
+                <a class="navbar-brand mb-2" href="index.html">
+                    <img src="/static2/images/logo.png" class="logo" alt="">
+                    <span>Reuse</span>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+                <h6 class="site-footer-title mb-3">Resources</h6>
+
+                <ul class="site-footer-links">
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Home</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Community</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">SIGN IN</a>
+                    </li>
+
+                    <li class="site-footer-link-item">
+                        <a href="#" class="site-footer-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                <h6 class="site-footer-title mb-3">Information</h6>
+
+                <p class="text-white d-flex mb-1">
+                    <a href="tel: 305-240-9671" class="site-footer-link">
+                        305-240-9671
+                    </a>
+                </p>
+
+                <p class="text-white d-flex">
+                    <a href="mailto:reuse@company.com" class="site-footer-link">
+                        reuse@company.com
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-12 mt-4 mt-lg-0 ms-auto">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        English</button>
+
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" type="button">Thai</button></li>
+
+                        <li><button class="dropdown-item" type="button">Myanmar</button></li>
+
+                        <li><button class="dropdown-item" type="button">Arabic</button></li>
+                    </ul>
+                </div>
+
+                <p class="copyright-text mt-lg-5 mt-4">Copyright © 2048 Topic Listing Center. All rights reserved.
+                    <br><br>Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a> Distribution <a href="https://themewagon.com">ThemeWagon</a></p>
+
+            </div>
+
+        </div>
+    </div>
+</footer>
+<!-- 푸터 끝 -->
+
+<!-- JAVASCRIPT FILES -->
+<script src="/static2/js/jquery.min.js"></script>
+<script src="/static2/js/bootstrap.bundle.min.js"></script>
+<script src="/static2/js/jquery.sticky.js"></script>
+<script src="/static2/js/click-scroll.js"></script>
+<script src="/static2/js/custom.js"></script>
+
+<script>
+    // 각 카드를 클릭하면 해당 아이템의 item-detail 페이지로 이동하는 이벤트 처리
+    document.querySelectorAll('.card-link').forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            event.stopPropagation(); // 다른 클릭 이벤트 방지
+            window.location.href = link.getAttribute('href'); // 링크로 이동
+        });
+    });
+</script>
+
 </body>
 </html>
