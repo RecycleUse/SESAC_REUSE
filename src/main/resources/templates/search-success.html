@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+    <meta charSet="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+<h1>Search Results</h1>
+<ul>
+    <li th:each="item : ${items}">
+        <a th:href="@{/item-detail(itemId=${item.itemId})}">
+            <span th:text="${item.itemName}"></span>
+        </a>
+    </li>
+</ul>
+</body>
+</html>
