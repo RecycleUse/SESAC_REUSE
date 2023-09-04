@@ -1,7 +1,7 @@
-package com.sesac.reuse.service;
+package com.sesac.reuse.security.service;
 
-import com.sesac.reuse.model.entity.User;
-import com.sesac.reuse.repository.UserRepository;
+import com.sesac.reuse.entity.member.Member;
+import com.sesac.reuse.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,10 +19,10 @@ import java.util.Map;
 
 @Service  // 해당 클래스를 Spring의 Service로 등록합니다. 비즈니스 로직을 포함하는 클래스에 주로 사용됩니다.
 @RequiredArgsConstructor
-public class CustomOAuth2UserService extends DefaultOAuth2UserService {
+public class CustomOAuth2MemberService extends DefaultOAuth2UserService {
 
     @Autowired  // Spring의 DI를 사용하여 userRepository 인스턴스를 자동으로 주입받습니다.
-    private UserRepository userRepository;
+    private MemberRepository memberRepository;
 
     private final HttpSession httpSession;
 
@@ -53,10 +53,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         // 데이터베이스에서 해당 이메일을 가진 사용자를 찾습니다.
         // 없을 경우 새로운 User 객체를 생성하고 저장한 뒤 반환합니다.
-        User user = userRepository.findByEmail(email)
+        Member member = memberRepository.findByEmail(email)
                 .orElseGet(() -> {
-                    User newUser = new User(email, nickname);
-                    return userRepository.save(newUser);
+                    Member newMember = new Member(email, nickname);
+                    return memberRepository.save(newMember);
                 });
 
         // OAuth2 인증에 사용될 사용자 정보를 담고 있는 DefaultOAuth2User 객체를 생성하여 반환합니다.

@@ -1,4 +1,4 @@
-package com.sesac.reuse.model.entity;
+package com.sesac.reuse.entity.itemSearch;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -6,7 +6,6 @@ import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
