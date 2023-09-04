@@ -126,7 +126,7 @@
               <!-- /Logo -->
               <h4 class="mb-2">Forgot Password? 🔒</h4>
               <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
-              <form id="formAuthentication" class="mb-3" th:action="@{/member/reset-pwd}" method="POST">
+              <form id="formAuthentication" class="mb-3" th:action="@{/auth2/reset-pwd}" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
@@ -141,7 +141,7 @@
                 <button id="resetPwBtn" class="btn btn-primary d-grid w-100">임시 비밀번호 발급받기</button>
               </form>
               <div class="text-center">
-                <a th:href="@{/member/login}" class="d-flex align-items-center justify-content-center">
+                <a th:href="@{/auth2/login}" class="d-flex align-items-center justify-content-center">
                   <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
                   로그인 페이지로 이동
                 </a>

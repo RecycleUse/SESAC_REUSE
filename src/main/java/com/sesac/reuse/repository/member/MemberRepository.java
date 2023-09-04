@@ -11,4 +11,5 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
 
 
     public boolean existsByEmail(String email); //메서드명 s 주의
+
 }

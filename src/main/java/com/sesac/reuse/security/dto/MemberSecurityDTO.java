@@ -32,7 +32,7 @@ public class MemberSecurityDTO extends User {
     public MemberSecurityDTO(Member member,
                              Collection<? extends GrantedAuthority> authorities) {
         super(member.getEmail(), member.getPw(), authorities);
-        this.memberId = member.getMemberId();
+        this.memberId = member.getId();
         this.email = member.getEmail(); //<-- 이게 필요한가?
         this.nickname = member.getNickname();
         this.isActive = member.getIsActive();

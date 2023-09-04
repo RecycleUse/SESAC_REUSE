@@ -3,6 +3,7 @@ package com.sesac.reuse.entity.member;
 import com.sesac.reuse.base.BaseEntity;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -12,12 +13,12 @@ import java.util.Set;
 @Entity
 @Getter
 @ToString
+@Setter
 public class Member extends BaseEntity {
 
     @Id
-    @Column(name="member_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberId;
+    private Long id;
     private String email;
     private String pw;
     private String nickname;
@@ -37,6 +38,14 @@ public class Member extends BaseEntity {
 //    @OneToMany(mappedBy="writer", cascade =CascadeType.ALL)
 //    private List<Reply> replies;
 
+    public Member(String email, String nickname) {
+        this.email = email;
+        this.nickname = nickname;
+    }
+
+    public Member() {
+
+    }
 
     public void encrptyPassword(String encryptedPw) {
         this.pw = encryptedPw;

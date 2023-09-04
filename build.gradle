@@ -41,6 +41,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+//	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.1'
+
 
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
@@ -52,12 +54,16 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	// security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-//	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	testImplementation 'org.springframework.security:spring-security-test'
+
+	implementation 'org.springframework.security:spring-security-oauth2-client'
 
 	implementation 'org.modelmapper:modelmapper:3.1.0'
 
 	implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.15'
+
+
 
 	//    swagger ui
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
@@ -74,6 +80,7 @@ dependencies {
 			"javax.annotation:javax.annotation-api",
 
 			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+
 
 
 }

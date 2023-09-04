@@ -1,13 +1,13 @@
 <!DOCTYPE html>
+
 <html
         lang="en"
+        xmlns:th="http://www.thymeleaf.org"
         class="light-style customizer-hide"
         dir="ltr"
         data-theme="theme-default"
         data-assets-path="/static1/assets/"
         data-template="vertical-menu-template-free"
-        xmlns:th="http://www.thymeleaf.org"
-
 >
 <head>
   <meta charset="utf-8" />
@@ -16,7 +16,7 @@
           content="width=device-width, initial-scale=1.0, member-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
   />
 
-  <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+  <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
   <meta name="description" content="" />
 
@@ -38,7 +38,6 @@
   <link rel="stylesheet" href="/static1/assets/vendor/css/core.css" class="template-customizer-core-css" />
   <link rel="stylesheet" href="/static1/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
   <link rel="stylesheet" href="/static1/assets/css/demo.css" />
-  <link rel="stylesheet" href="/static1/assets/css/userpage.css" />
 
   <!-- Vendors CSS -->
   <link rel="stylesheet" href="/static1/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -60,7 +59,7 @@
 <div class="container-xxl">
   <div class="authentication-wrapper authentication-basic container-p-y">
     <div class="authentication-inner">
-      <!-- Register -->
+      <!-- Register Card -->
       <div class="card">
         <div class="card-body">
           <!-- Logo -->
@@ -121,40 +120,38 @@
                       </g>
                     </svg>
                   </span>
-              <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
-            </a>
-          </div>
-          <!-- Logo -->
-          <div class="app-brand justify-content-center">
-            <a href="../index.html" class="app-brand-link gap-2">
-                  <span class="app-brand-logo demo">
-                    <img src="/static1/assets/img/logo/logo.png" class="login-logo" th:href="@{/static}"/>
-                  </span>
+              <span class="app-brand-text demo text-body fw-bolder">RESUE</span>
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-2">Welcome to Reuse 👋</h4>
-          <p class="mb-4">Please sign-in to your account</p>
+          <h4 class="mb-2">Adventure starts here 🚀</h4>
+          <p class="mb-4">Make your app management easy and fun!</p>
 
-          <form id="formAuthentication" class="mb-3" th:action="@{/member/login}" method="POST">
+          <form id="formAuthentication" class="mb-3" th:action="@{/member/signup}" method="POST" th:object="${memberDTO}">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
-                      type="text"
+                      type="email"
                       class="form-control"
                       id="email"
                       name="email"
-                      placeholder="Enter your email"
+                      placeholder="이메일을 입력해주세요."
+                      value="email"
                       autofocus
+                      required
               />
+              <button class="btn btn-outline-primary" type="button" id="emailChkCodeBtn">인증번호</button>
+              <div class="form-group last mb-4 check_input">
+                <label for="emailChkCode" id="emailChkCodeLabel">인증번호를 입력해주세요</label>
+                <input type="text" class="form-control" id="emailChkCode">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="nickname" class="form-label">USER NAME</label>
+              <input type="text" class="form-control" id="nickname" name="nickname" placeholder="사용하실 닉네임을 입력해주세요." required/>
             </div>
             <div class="mb-3 form-password-toggle">
-              <div class="d-flex justify-content-between">
-                <label class="form-label" for="pw">Password</label>
-                <a th:href="@{/member/reset-pwd}">
-                  <small>Forgot Password?</small>
-                </a>
-              </div>
+              <label class="form-label" for="pw">Password</label>
               <div class="input-group input-group-merge">
                 <input
                         type="password"
@@ -163,37 +160,50 @@
                         name="pw"
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         aria-describedby="password"
+                        required
                 />
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
             </div>
-            <div class="mb-3">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="remember-me" />
-                <label class="form-check-label" for="remember-me"> Remember Me </label>
+            <div class="mb-3 form-password-toggle">
+              <label class="form-label" for="confirmPw">Confirm Password</label>
+              <div class="input-group input-group-merge">
+                <input
+                        type="password"
+                        id="confirmPw"
+                        class="form-control"
+                        name="confirmPw"
+                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                        aria-describedby="password"
+                        required
+                />
+                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
             </div>
+            <em id='message'></em>
+
+
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
+                <label class="form-check-label" for="terms-conditions">
+                  I agree to
+                  <a href="javascript:void(0);">privacy policy & terms</a>
+                </label>
+              </div>
             </div>
+            <input type="submit" class="btn btn-primary d-grid w-100">Sign up</input>
           </form>
 
-          <!-- 카카오 로그인 -->
-          <div>
-            <button class="kakaologo" type="button" onclick="location.href='/oauth2/authorization/kakao'">
-              <img src="/static1/assets/img/logo/kakao.png"/>
-            </button>
-          </div>
-
           <p class="text-center">
-            <span>처음이신가요?</span>
-            <a th:href="@{/auth2/signup}">
-              <span>회원가입</span>
+            <span>Already have an account?</span>
+            <a th:href="@{/auth2/login}">
+              <span>Sign in instead</span>
             </a>
           </p>
         </div>
       </div>
-      <!-- /Register -->
+      <!-- Register Card -->
     </div>
   </div>
 </div>
@@ -225,7 +235,11 @@
 <script src="/static1/assets/js/main.js"></script>
 
 <!-- Page JS -->
-
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script th:inline="javascript">
+  const error = [[${error}]];
+</script>
+<script th:src="@{/static1/js/member/signup.js}"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
