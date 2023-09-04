@@ -15,14 +15,14 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Log4j2
 @Entity
-@Table(name="reply", indexes = { //게시물당 댓글 수, 댓글 목록을 조회하다보니, 댓글 인덱스로 board_id를 사용
-        @Index(name="idx_reply_board_boardId",columnList = "board_board_id")
-})
+//@Table(name="reply", indexes = { //게시물당 댓글 수, 댓글 목록을 조회하다보니, 댓글 인덱스로 board_id를 사용
+//        @Index(name="idx_reply_board_boardId",columnList = "board_board_id")
+//})
 public class Reply extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long replyId;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board; //Reply가 연관관계 주인 , FK 관리

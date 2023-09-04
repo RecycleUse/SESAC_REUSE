@@ -20,7 +20,7 @@ async function modifyProfile(formObj) {
 
     const response = await axios({
         method:'post',
-        url:'/member/modify-profile',
+        url:'/auth2/modify-profile',
         data:formObj instanceof FormData ? formObj : JSON.stringify(formObj),
         headers: {
             'Content-Type': formObj instanceof FormData ? undefined : 'application/json'

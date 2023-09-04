@@ -34,7 +34,7 @@ class BoardRepositoryTest {
                     .build();
 
             Board savedBoard = boardRepository.save(board);
-            log.info("board Id={}", savedBoard.getBoardId());
+            log.info("board Id={}", savedBoard.getId());
         });
     }
 

@@ -38,7 +38,7 @@ public class BoardServiceImpl implements BoardService {
         Board board = modelMapper.map(boardDTO, Board.class);
 
         try {
-            return boardRepository.save(board).getBoardId();
+            return boardRepository.save(board).getId();
         } catch (IllegalArgumentException e) { // <-- 무슨 에러발생하는지 찾아서 세밀하게 처리하기
             log.error("게시글 저장 중 오류 발생");
             throw new Exception("arguments error 발생", e);

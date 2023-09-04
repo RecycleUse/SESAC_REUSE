@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ReplyRepository extends JpaRepository<Reply,Long> {
 
-    @Query("select r from Reply r where r.board.boardId = :boardId")
+    @Query("select r from Reply r where r.board.id = :boardId")
     Page<Reply> listOfBoard(@Param("boardId") Long boardId, Pageable pageable); //굳이 댓글 페이징 처리해야할까?
 
 }

@@ -78,7 +78,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
             }
             query.where(booleanBuilder);
         }
-        query.where(board.boardId.gt(0L));
+        query.where(board.id.gt(0L));
 
         //페이징처리
         this.getQuerydsl().applyPagination(pageable,query);

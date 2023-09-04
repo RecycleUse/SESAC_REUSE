@@ -18,10 +18,10 @@ import javax.persistence.*;
 @Entity
 public class Board extends BaseEntity {
 
-    @Column(name="board_id")
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long boardId;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private Type type; //글 종류 분류
