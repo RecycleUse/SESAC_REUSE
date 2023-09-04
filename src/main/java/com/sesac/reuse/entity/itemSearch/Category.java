@@ -1,7 +1,6 @@
-package com.sesac.reuse.model.entity;
+package com.sesac.reuse.entity.itemSearch;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sesac.reuse.model.enumType.CategoryId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

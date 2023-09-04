@@ -24,7 +24,7 @@
   <meta charset="utf-8" />
   <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+          content="width=device-width, initial-scale=1.0, member-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
   />
 
   <title>Login Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
@@ -77,16 +77,16 @@
         <div class="card-body">
           <!-- Logo -->
           <div class="app-brand justify-content-center">
-            <a href="index.html" class="app-brand-link gap-2">
+            <a href="../index.html" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
-                    <img src="/static1/assets/img/logo/logo.png" class="login-logo" th:href="@{/}"/>
+                    <img src="/static1/assets/img/logo/logo.png" class="login-logo" th:href="@{/static}"/>
                   </span>
             </a>
           </div>
           <!-- /Logo -->
           <h4 class="mb-2">Welcome to Reuse! 👋</h4>
 
-          <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+          <form id="formAuthentication" class="mb-3" action="../index.html" method="POST">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
@@ -140,7 +140,7 @@
           <!-- 회원가입 -->
           <p class="text-center">
             <span>처음이신가요?</span>
-            <a th:href="@{/user/join}">
+            <a th:href="@{/member/singup}">
               <span>회원가입</span>
             </a>
           </p>

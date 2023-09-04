@@ -1,4 +1,4 @@
-package com.sesac.reuse.model.entity;
+package com.sesac.reuse.entity.itemSearch;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

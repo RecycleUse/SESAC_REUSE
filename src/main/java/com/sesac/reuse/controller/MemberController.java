@@ -1,6 +1,5 @@
 package com.sesac.reuse.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -14,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 // Login 컨트롤러
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/member")
+public class MemberController {
 
     @GetMapping("/login")
     public String login() {
@@ -32,9 +31,9 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/join")
+    @GetMapping("/singup")
     public String join() {
-        return "join";
+        return "singup";
     }
 
 //    private final OAuth2AuthorizedClientService authorizedClientService;

@@ -1,7 +1,7 @@
 package com.sesac.reuse.controller;
 
-import com.sesac.reuse.model.entity.Item;
-import com.sesac.reuse.repository.ItemRepository;
+import com.sesac.reuse.entity.itemSearch.Item;
+import com.sesac.reuse.repository.itemSearch.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +26,12 @@ public class SearchController {
         return foundItems;
     }
 
+
     @GetMapping("/search-success")
     public String searchSuccess(@RequestParam("itemName") String itemName, Model model) {
         List<Item> foundItems = itemRepository.findByItemNameContaining(itemName);
         model.addAttribute("items", foundItems);
-        return "search-success"; // 검색 결과 페이지로 이동
+        return "item/search-success"; // 검색 결과 페이지로 이동
     }
 
     @GetMapping("/item-detail")
@@ -38,22 +39,18 @@ public class SearchController {
         Item foundItem = itemRepository.findById(itemId).orElse(null);
 
         if (foundItem == null) {
-            return "search-fail";  // 검색 실패 페이지로 이동
+            return "item/search-fail";  // 검색 실패 페이지로 이동
         }
 
         model.addAttribute("item", foundItem);
-        return "search-detail";  // 검색 상세 페이지로 이동
+        return "item/search-detail";  // 검색 상세 페이지로 이동
     }
 
     @GetMapping("/search-fail")
     public String searchFail() {
-        return "search-fail"; // 검색 실패 페이지로 이동
+        return "item/search-fail"; // 검색 실패 페이지로 이동
     }
 
-    @GetMapping("/게시판")
-    public String 게시판() {
-        return "게시판";
-    }
 }
 
 
