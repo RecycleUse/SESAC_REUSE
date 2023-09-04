@@ -84,9 +84,9 @@ function checkEmailConfirm(data, emailConfirm, emailChkCodeLabel) {
             chkSpan.style.fontWeight = "bold";
             chkSpan.style.fontSize = "10px";
 
-            if (emailChkCodeLabel.children.length > 0) {
-                emailChkCodeLabel.removeChild(emailChkCodeLabel.firstChild);
-            }
+            // if (emailChkCodeLabel.children.length > 0) {
+            //     emailChkCodeLabel.removeChild(emailChkCodeLabel.firstChild);
+            // }
 
             emailChkCodeLabel.appendChild(chkSpan);
 
