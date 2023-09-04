@@ -70,7 +70,7 @@ public class MemberController {
 ////            return "redirect:/member/signup";
 //        }
 
-        validatePwAndRedirect(memberDTO, bindingResult, "/member/signup");
+        validatePwAndRedirect(memberDTO, bindingResult, "/auth2/signup");
 
 
         try {
@@ -79,11 +79,11 @@ public class MemberController {
             log.error("이미 존재하는 회원입니다."); // 프론트단으로 에러보내주기
             redirectAttributes.addFlashAttribute("error", "email"); //리다이렉트 컨트롤러에 세션(임시)로 담아 넘김 -> @ModelAttribute로 접근, 프론트단은 Model객체로 접근
             //여기선 어차피 GET으로가니까 컨트롤러에서는 접근할 필요없고, 프론트단에서만 접근하겠지
-            return "redirect:/member/signup";
+            return "redirect:/auth2/signup";
         }
 
         redirectAttributes.addFlashAttribute("result", "success");
-        return "redirect:/member/login";
+        return "redirect:/auth2/login";
     }
 
     @PreAuthorize("isAuthenticated()")
@@ -116,7 +116,7 @@ public class MemberController {
         //이제 DB에 로직 변경을 해야함
         memberService.modifyProfile(memberDTO);
 
-        return "redirect:/member/profile";
+        return "redirect:/auth2/profile";
     }
 
 

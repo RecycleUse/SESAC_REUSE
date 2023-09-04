@@ -120,14 +120,14 @@
                       </g>
                     </svg>
                   </span>
-              <span class="app-brand-text demo text-body fw-bolder">RESUE</span>
+              <span class="app-brand-text demo text-body fw-bolder">REUSE</span>
             </a>
           </div>
           <!-- /Logo -->
           <h4 class="mb-2">Adventure starts here 🚀</h4>
           <p class="mb-4">Make your app management easy and fun!</p>
 
-          <form id="formAuthentication" class="mb-3" th:action="@{/member/signup}" method="POST" th:object="${memberDTO}">
+          <form id="formAuthentication" class="mb-3" th:action="@{/auth2/signup}" method="POST" th:object="${memberDTO}">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
@@ -136,7 +136,6 @@
                       id="email"
                       name="email"
                       placeholder="이메일을 입력해주세요."
-                      value="email"
                       autofocus
                       required
               />

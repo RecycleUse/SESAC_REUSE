@@ -60,7 +60,7 @@ public class WebSecurityConfig {
                         .loginPage("/auth2/login") // 시큐리티 default login페이지를 안쓰고 커스텀 쓰는경우에는 GET요청 Controller 생성해줘야함
                         .usernameParameter("email")
                         .passwordParameter("pw")
-                        .defaultSuccessUrl("/member/profile")
+                        .defaultSuccessUrl("/auth2/profile")
                         .permitAll()
                 ); //시큐리티의 경우 filter에서 요청받고 내부적으로 controller구성 , 로그인,로그아웃 Controller는 직접 생성 안해도됨
 
@@ -78,7 +78,7 @@ public class WebSecurityConfig {
 
                 // 카카오 로그아웃
                 .logout()
-                .logoutUrl("/member/logout")  // 로그아웃을 수행하는 URL
+                .logoutUrl("/auth2/logout")  // 로그아웃을 수행하는 URL
                 .logoutSuccessUrl("/")  // 로그아웃 성공 후 리다이렉트할 URL
                 .invalidateHttpSession(true) // 세션 무효화
                 .addLogoutHandler((request, response, authentication) -> {  // 소셜 로그아웃 처리 및 세션 관련 작업 등 추가
@@ -87,7 +87,7 @@ public class WebSecurityConfig {
 
 
                 })
-                .logoutSuccessHandler((request, response, authentication) -> response.sendRedirect("/member/login"))
+                .logoutSuccessHandler((request, response, authentication) -> response.sendRedirect("/auth2/login"))
                 .deleteCookies("remember-me");
 
         return http.build();
