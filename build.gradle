@@ -1,8 +1,17 @@
+buildscript { // buildscript : Gradle이 특정 task를 실행할 때 사용하는 설정
+	ext {
+		queryDslVersion = "5.0.0"
+	}
+}
+
+
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.15'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
+
 
 group = 'com.sesac'
 version = '0.0.1-SNAPSHOT'
@@ -24,12 +33,59 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.projectlombok:lombok:1.18.26'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	// security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	implementation 'org.modelmapper:modelmapper:3.1.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.15'
+
+	//    swagger ui
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
+
+	//querydsl
+	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+
+	annotationProcessor(
+
+			"javax.persistence:javax.persistence-api",
+
+			"javax.annotation:javax.annotation-api",
+
+			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+sourceSets { //sourceSets 블록은 프로젝트의 소스 코드 디렉토리와 리소스 디렉토리를 구성하는 데 사용, querydsl의 Q엔티티 생성될 경로때문에 사용하는듯!
+	main {
+		java {
+			srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"] // 전자: java 클래스파일 경로, 후자 : QEntity 생성되는  경로
+		}
+	}
 }

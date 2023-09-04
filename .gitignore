@@ -18,6 +18,10 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+/build/classes/java/main/com/sesac/reuse/config/MailConfig.class
+/build/
+/src/main/java/com/sesac/reuse/config/MailConfig.java
+application-userinfo.properties
 .idea
 *.iws
 *.iml
