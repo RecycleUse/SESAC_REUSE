@@ -122,7 +122,7 @@
 }
 /* 각각의 카드 */
 .card {
-    width: 250px;
+    width: 260px;
     height: 400px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -133,7 +133,7 @@
 }
 /* 카드 사이의 간격 설정 */
 .col-md-3 {
-    margin-right: -1rem;
+    margin-right: -5%;
 }
 
 .card-title {
