@@ -6,3 +6,4 @@ public enum SocialSignUpInfo {
     GOOGLE,
     NAVER
 }
+

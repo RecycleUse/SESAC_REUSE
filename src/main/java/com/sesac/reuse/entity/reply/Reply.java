@@ -2,6 +2,7 @@ package com.sesac.reuse.entity.reply;
 
 import com.sesac.reuse.base.BaseEntity;
 import com.sesac.reuse.entity.board.Board;
+import com.sesac.reuse.entity.member.MEMBER_STATUS;
 import lombok.*;
 import lombok.extern.log4j.Log4j2;
 
@@ -29,4 +30,6 @@ public class Reply extends BaseEntity {
     private String writer;
 
     private String content;
+
+    private MEMBER_STATUS isActive;
 }

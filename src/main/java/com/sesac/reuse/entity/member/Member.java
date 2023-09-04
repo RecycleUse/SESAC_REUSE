@@ -26,7 +26,7 @@ public class Member extends BaseEntity {
     @ElementCollection(fetch = FetchType.LAZY) //권한을 별도의 엔티티가 아닌 Member엔티티에서 관리하도록 하는 어노테이션, 간편용, 찐은 별도테이블 구성하는게 좋음
     private Set<MemberRole> roleSet = new HashSet<>();
 
-    private boolean del; //탈퇴여부
+    private MEMBER_STATUS isActive; //탈퇴여부
 
     @Enumerated(EnumType.STRING)
     private SocialSignUpInfo social;
@@ -38,8 +38,8 @@ public class Member extends BaseEntity {
 //    private List<Reply> replies;
 
 
-    public void encrptyPassword(String encrptedPw) {
-        this.pw = encrptedPw;
+    public void encrptyPassword(String encryptedPw) {
+        this.pw = encryptedPw;
     }
 
     public void addRole(MemberRole memberRole) {

@@ -2,6 +2,7 @@ package com.sesac.reuse.entity.board;
 
 import com.sesac.reuse.base.BaseEntity;
 
+import com.sesac.reuse.entity.member.MEMBER_STATUS;
 import lombok.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,7 +34,9 @@ public class Board extends BaseEntity {
 //    private List<Reply> replies;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status; //처리 상태
+
+    private MEMBER_STATUS isActive;
 
     @PreAuthorize("isAuthenticated()")
     public void change(Type type, String title, String content) {

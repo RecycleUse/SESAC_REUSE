@@ -1,6 +1,7 @@
 package com.sesac.reuse.security.dto;
 
 
+import com.sesac.reuse.entity.member.MEMBER_STATUS;
 import com.sesac.reuse.entity.member.Member;
 import com.sesac.reuse.entity.member.SocialSignUpInfo;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,7 +24,7 @@ public class MemberSecurityDTO extends User {
     private String email; // Authentication의 username으로 사용될 필드
     private String pw;
     private String nickname;
-    private boolean del; //회원 탈퇴 여부
+    private MEMBER_STATUS isActive; //회원 탈퇴 여부
     private SocialSignUpInfo social; //우선 false로 설정하고 진행
 
 
@@ -34,7 +35,7 @@ public class MemberSecurityDTO extends User {
         this.memberId = member.getMemberId();
         this.email = member.getEmail(); //<-- 이게 필요한가?
         this.nickname = member.getNickname();
-        this.del = member.isDel();
+        this.isActive = member.getIsActive();
         this.social = member.getSocial();
 
     }

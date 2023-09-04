@@ -17,9 +17,10 @@ public class InactiveMember  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String email;
+
     private Long memberId;
 
-    private String email;
 
     @CreatedDate
     @Column(name="inactive_data", updatable = false)
