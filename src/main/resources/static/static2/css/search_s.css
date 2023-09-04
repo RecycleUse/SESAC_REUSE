@@ -1,0 +1,152 @@
+/* 메인페이지 검색창 드롭다운 창 시작 */
+/* 드롭다운 전체 창 */
+.search-dropdown {
+    position: relative;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    border-bottom-right-radius: 20px;  /* 모서리를 둥글게 처리 */
+    border-bottom-left-radius: 20px;
+    width: 90%; /* 드롭다운의 너비를 컨테이너와 일치시킴 */
+    background-color: white;
+    left: 50%; /* 가로 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬을 위한 가로 이동 */
+}
+/* 드롭다운 각각의 항목들 */
+.search-dropdown-item {
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    width:100%;
+    border:0;
+    background-color: #ffffff;
+    line-height: 4px;
+}
+/* 드롭다운 각각의 항목들 마우스 호버 */
+.search-dropdown-item:hover {
+    background-color: #80d0c7e3;
+}
+/* 이미지 크기 조절을 위한 클래스 */
+.search-dropdown-image img {
+    width: 80px;
+    height: 80px;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+/* 카테고리 이름 */
+.search-dropdown-category {
+    margin-left: auto; /* 오른쪽 마진을 최대화하여 오른쪽 정렬 */
+    margin-right: 40px;
+    color: #117383FF;
+}
+/* 메인페이지 검색창 드롭다운 창 끝 */
+
+
+/* item-detail.html 시작 */
+/* 네비바 */
+.navbar-background {
+    background-color: #80d0c7;
+}
+/* container box */
+.main {
+    padding: 170px 120px 120px 120px;
+    height: 900px;
+}
+/* 좌측 구역 */
+.left-container {
+    float: left;
+    margin-right: 100px;
+    height: 100%;
+}
+/* 좌측 컨테이너 아이템 이미지 */
+.left-container > img {
+    width: 400px;
+    height: 400px;
+}
+/* 우측 구역 */
+.right-container {
+}
+
+.item-name {
+    margin-bottom: 60px;
+}
+
+.category {
+    margin-bottom: 50px;
+}
+.category > h6 {
+    color: #000000;
+}
+
+.enable-status {
+    margin-bottom: 50px;
+}
+.enable-status > h6 {
+    color: #000000;
+}
+
+.guide {
+    margin-bottom: 50px;
+}
+.guide > h6 {
+    color: #000000;
+}
+
+.similar-item {
+    margin-bottom: 120px;
+}
+.similar-item > h6 {
+    color: #000000;
+}
+
+/* 수정요청 문구 */
+.ps {
+    float: right;
+}
+/* 수정요청 버튼 */
+.ps > p > a {
+    margin-left: 15px;
+}
+/* item-detatl.html 끝 */
+
+
+/* search-success.html 시작  */
+/* 카드 스타일 */
+.card-container {
+    margin-top: 120px; /* 카드를 아래로 내리는데 사용할 여백을 조정합니다. */
+}
+/* 카드 가운데 정렬 */
+.card-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* 각각의 카드 */
+.card {
+    width: 260px;
+    height: 400px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+/* 카드 사이의 간격 설정 */
+.col-md-3 {
+    margin-right: -5%;
+}
+
+.card-title {
+    text-decoration: none;
+    color: #333;
+}
+.card-text {
+    font-size: 14px;
+}
+
+/* 이미지 위에 얼마나 자를지 */
+.card-img-top {
+    max-height: 250px;
+    object-fit: cover;
+}
+/* search-success.html 끝  */
