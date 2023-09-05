@@ -13,15 +13,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="/static2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static2/css/bootstrap-icons.css" rel="stylesheet">
-    <link href="/static2/css/templatemo-topic-listing.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static2/css/search_s.css"/>
-    <script src="/static2/js/jquery.min.js"></script>
-    <script src="/static2/js/bootstrap.bundle.min.js"></script>
-    <script src="/static2/js/jquery.sticky.js"></script>
-    <script src="/static2/js/click-scroll.js"></script>
-    <script src="/static2/js/custom.js"></script>
+    <link href="/static/static2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/static2/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/static2/css/templatemo-topic-listing.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/static2/css/search_s.css"/>
+    <script src="/static/static2/js/jquery.min.js"></script>
+    <script src="/static/static2/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/static2/js/jquery.sticky.js"></script>
+    <script src="/static/static2/js/click-scroll.js"></script>
+    <script src="/static/static2/js/custom.js"></script>
 </head>
 
 <body>
@@ -30,8 +30,8 @@
     <!-- 네비바 시작 -->
     <nav class="navbar navbar-expand-lg navbar-background">
         <div class="container">
-            <a class="navbar-brand" th:href="@{/static}">
-                <img src="/static2/images/logo.png" class="logo" alt="">
+            <a class="navbar-brand" th:href="@{/}">
+                <img src="/static/static2/images/logo.png" class="logo" alt="">
                 <span>Reuse</span>
             </a>
 
@@ -46,29 +46,29 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-lg-5 me-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" th:href="@{/static}">Home</a>
+                        <a class="nav-link click-scroll" th:href="@{/}">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" th:href="@{/게시판}">Community</a>
+                        <a class="nav-link click-scroll" th:href="@{/board/list}">게시판</a>
                     </li>
 
                     <!-- 회원가입 -->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/member/join}">회원가입</a>
+                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>
                     </li>
 
                     <!-- 로그인한 회원만 볼수있는 메뉴 -->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_USER')" th:href="@{/static}">마이페이지</a>
+                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_USER')" th:href="@{/profile}">마이페이지</a>
                     </li>
 
                     <!-- 로그인, 로그아웃-->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/member/login}">로그인</a>
+                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/login}">로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="isAuthenticated()" th:href="@{/member/logout}">로그아웃</a>
+                        <a class="nav-link click-scroll" sec:authorize="isAuthenticated()" th:href="@{/auth2/logout}">로그아웃</a>
                     </li>
 
                 </ul>
@@ -81,40 +81,26 @@
     </nav>
     <!-- 네비바 끝 -->
 
-<!--    <div class="bg">-->
-<!--        <article class="square">-->
-<!--            <div class="main">-->
-<!--                <ul>-->
-<!--                    <li th:each="item : ${items}">-->
-<!--                        <a th:href="@{/item-detail(item_id=${item.item_id})}">-->
-<!--                            <span th:text="${item.itemName}"></span>-->
-<!--                        </a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </article>-->
-<!--    </div>-->
-
-        <div class="card-container">
-            <div class="card-content">
-                <div th:each="item : ${items}" class="col-md-3 mb-3">
-                    <a th:href="@{/item-detail(item_id=${item.item_id})}">
-                        <div class="card">
-                            <!-- 아이템 이미지 -->
-                            <img th:src="@{'/static2/images/item_images/' + ${item.item_id} + '.jpg'}" alt="${item.itemName}" class="card-img-top">
-                                <div class="card-body">
-                                    <!-- 아이템 이름 -->
-                                    <p><h5 class="card-title" th:text="${item.itemName}">Item Name</h5></p>
-                                    <!-- 카테고리 -->
-                                    <p class="card-text">분류: <span th:text="${item.category.name}">Category Name</span></p>
-                                    <!-- 재활용 가능 여부 -->
-                                    <p class="card-text">재활용 가능 여부: <span th:text="${item.recyclable}">Yes/No</span></p>
-                                </div>
+    <div class="card-container">
+        <div class="card-content">
+            <div th:each="item : ${items}" class="col-md-3 mb-3">
+                <a th:href="@{/item-detail(item_id=${item.item_id})}">
+                    <div class="card">
+                        <!-- 아이템 이미지 -->
+                        <img th:src="@{'/static/static2/images/item_images/' + ${item.item_id} + '.jpg'}" alt="${item.itemName}" class="card-img-top">
+                        <div class="card-body">
+                            <!-- 아이템 이름 -->
+                            <p><h5 class="card-title" th:text="${item.itemName}">Item Name</h5></p>
+                            <!-- 카테고리 -->
+                            <p class="card-text">분류: <span th:text="${item.category.name}">Category Name</span></p>
+                            <!-- 재활용 가능 여부 -->
+                            <p class="card-text">재활용 가능 여부: <span th:text="${item.recyclable}">Yes/No</span></p>
                         </div>
-                    </a>
+                    </div>
+                </a>
             </div>
-            </div>
-         </div>
+        </div>
+    </div>
 </main>
 
 <!-- 푸터 시작 -->
@@ -123,7 +109,7 @@
         <div class="row">
 
             <div class="col-lg-3 col-12 mb-4 pb-2">
-                <a class="navbar-brand mb-2" href="../index.html">
+                <a class="navbar-brand mb-2" href="index.html">
                     <img src="/static2/images/logo.png" class="logo" alt="">
                     <span>Reuse</span>
                 </a>

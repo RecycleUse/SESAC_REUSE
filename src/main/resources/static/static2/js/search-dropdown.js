@@ -25,26 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
                             imageBox.classList.add("search-dropdown-image");  // 스타일 클래스
                             const image = document.createElement("img");
 
-
                             // 이미지의 상대 경로 설정
                             if (item.item_id) {
-                                image.src = `/static2/images/item_images/${item.item_id}.jpg`;
+                                image.src = `/static/static2/images/item_images/${item.item_id}.jpg`;
                                 image.alt = item.itemName;  // 이미지 대체 텍스트
                                 imageBox.appendChild(image);
                             } else {
                                 // 이미지 정보가 없을 경우 이미지 박스를 숨김 처리 (이미지 엑박 방지)
                                 imageBox.style.display = "none";
                             }
-
-                            // if (item.image && item.image.image_name) {
-                            //     image.src = `/static2/images/item_images/${item.image.image_name}`;
-                            //     image.alt = item.itemName;  // 이미지 대체 텍스트
-                            //     imageBox.appendChild(image);
-                            //   } else {
-                            //      // 이미지 정보가 없을 경우 이미지 박스를 숨김 처리 (이미지 엑박 방지)
-                            //      imageBox.style.display = "none";
-                            //   }
-
 
                             // 아이템 이름 설정
                             const itemNameElement = document.createElement("div");
