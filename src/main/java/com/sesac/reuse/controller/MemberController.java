@@ -57,13 +57,6 @@ public class MemberController {
 
         log.info("memberDTO={}", memberDTO);
 
-        //validation 부분이 안먹혀서 추가 검증 로직 필요
-//        if(bindingResult.hasErrors()) {
-//            log.error(bindingResult.getFieldError("email").toString());
-//            model.addAttribute("memberDTO",memberDTO);
-//            return "member/signup";
-//        }
-
         validatePwAndRedirect(memberDTO, bindingResult, "/auth2/signup");
 
 
