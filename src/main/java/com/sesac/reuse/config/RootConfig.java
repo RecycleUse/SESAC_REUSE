@@ -12,10 +12,9 @@ public class RootConfig {
     public ModelMapper getMapper() {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration()
-                .setFieldMatchingEnabled(true) //getter,setter없이도 필드값 get,set가능
+                .setFieldMatchingEnabled(true)
                 .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
-                .setMatchingStrategy(MatchingStrategies.LOOSE); //최대한 loose하게 매칭
-
+                .setMatchingStrategy(MatchingStrategies.LOOSE);
         return modelMapper;
     }
 }

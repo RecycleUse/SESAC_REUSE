@@ -136,7 +136,7 @@
           <h4 class="mb-2">Welcome to Reuse 👋</h4>
           <p class="mb-4">Please sign-in to your account</p>
 
-          <form id="formAuthentication" class="mb-3" th:action="@{/member/login}" method="POST">
+          <form id="formAuthentication" class="mb-3" th:action="@{/auth2/login}" method="POST">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
@@ -151,7 +151,7 @@
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
                 <label class="form-label" for="pw">Password</label>
-                <a th:href="@{/member/reset-pwd}">
+                <a th:href="@{/auth2/reset-pwd}">
                   <small>Forgot Password?</small>
                 </a>
               </div>

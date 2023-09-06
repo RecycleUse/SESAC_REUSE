@@ -6,7 +6,7 @@ document.getElementById("resetPwBtn").addEventListener("click",e => {
     e.preventDefault()
     e.stopPropagation();
 
-    axios.post("/member/reset-pwd", {
+    axios.post("/auth2/reset-pwd", {
         email : email
     })
         .then(response => {

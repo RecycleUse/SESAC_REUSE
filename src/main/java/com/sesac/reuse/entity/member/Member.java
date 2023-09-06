@@ -24,19 +24,13 @@ public class Member extends BaseEntity {
     private String nickname;
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection(fetch = FetchType.LAZY) //권한을 별도의 엔티티가 아닌 Member엔티티에서 관리하도록 하는 어노테이션, 간편용, 찐은 별도테이블 구성하는게 좋음
+    @ElementCollection(fetch = FetchType.LAZY)
     private Set<MemberRole> roleSet = new HashSet<>();
 
     private MEMBER_STATUS isActive; //탈퇴여부
 
     @Enumerated(EnumType.STRING)
     private SocialSignUpInfo social;
-
-//    @OneToMany(mappedBy="writer", cascade = CascadeType.ALL) // 연관관계주인X
-//    private List<Board> boards;
-//
-//    @OneToMany(mappedBy="writer", cascade =CascadeType.ALL)
-//    private List<Reply> replies;
 
     public Member(String email, String nickname) {
         this.email = email;
