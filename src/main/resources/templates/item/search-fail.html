@@ -12,25 +12,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="/static2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static2/css/bootstrap-icons.css" rel="stylesheet">
-    <link href="/static2/css/templatemo-topic-listing.css" rel="stylesheet">
+    <link href="/static/static2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/static2/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/static2/css/templatemo-topic-listing.css" rel="stylesheet">
+    <link href="/static/static2/css/search_s.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <script src="/static2/js/jquery.min.js"></script>
-    <script src="/static2/js/bootstrap.bundle.min.js"></script>
-    <script src="/static2/js/jquery.sticky.js"></script>
-    <script src="/static2/js/click-scroll.js"></script>
-    <script src="/static2/js/custom.js"></script>
+    <script src="/static/static2/js/jquery.min.js"></script>
+    <script src="/static/static2/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/static2/js/jquery.sticky.js"></script>
+    <script src="/static/static2/js/click-scroll.js"></script>
+    <script src="/static/static2/js/custom.js"></script>
 </head>
 
 <body id="top">
 <main>
 
-<!-- 네비바 시작 -->
+    <!-- 네비바 시작 -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" th:href="@{/static}">
-                <img src="/static2/images/logo.png" class="logo" alt="">
+            <a class="navbar-brand" th:href="@{/}">
+                <img src="/static/static2/images/logo.png" class="logo" alt="">
                 <span>Reuse</span>
             </a>
 
@@ -44,31 +45,30 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-lg-5 me-lg-auto">
-
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" th:href="@{/static}">Home</a>
+                        <a class="nav-link click-scroll" th:href="@{/}">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" th:href="@{/게시판}">Community</a>
+                        <a class="nav-link click-scroll" th:href="@{/}">게시판</a>
                     </li>
 
                     <!-- 회원가입 -->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/member/join}">회원가입</a>
+                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>
                     </li>
 
                     <!-- 로그인한 회원만 볼수있는 메뉴 -->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_USER')" th:href="@{/static}">마이페이지</a>
+                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_USER')" th:href="@{/auth2/profile}">마이페이지</a>
                     </li>
 
                     <!-- 로그인, 로그아웃-->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/member/login}">로그인</a>
+                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/login}">로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="isAuthenticated()" th:href="@{/member/logout}">로그아웃</a>
+                        <a class="nav-link click-scroll" sec:authorize="isAuthenticated()" th:href="@{/auth2/logout}">로그아웃</a>
                     </li>
 
                 </ul>
@@ -79,21 +79,21 @@
             </div>
         </div>
     </nav>
-<!-- 네비바 끝 -->
+    <!-- 네비바 끝 -->
 
     <section class="search-fail-top d-flex justify-content-center align-items-center" id="section_1">
         <div class="container">
 
-            <img src="/static2/images/exclamation-mark.png" class="exclamation-mark-img" alt="">
+            <img src="/static/static2/images/exclamation-mark.png" class="exclamation-mark-img" alt="">
 
             <h4 class="text-white text-center search-fail-text-1">검색 결과가 없습니다.</h4>
 
-                <div class="search-fail-btn-aline">
-                    <a th:href="@{/static}" class="btn search-btn">돌아가기</a>
-                </div>
-                <div class="search-fail-btn-aline">
-                    <a th:href="@{/게시판}" class="btn search-btn">재활용 추가 신청</a>
-                </div>
+            <div class="search-fail-btn-aline">
+                <a th:href="@{/}" class="btn search-btn">돌아가기</a>
+            </div>
+            <div class="search-fail-btn-aline">
+                <a th:href="@{/board/list}" class="btn search-btn">재활용 추가 신청</a>
+            </div>
         </div>
     </section>
 
@@ -101,11 +101,11 @@
         <div class="container">
             <div class="row">
                 <h6 class="search-fail-text-2">혹시 이런건 어떠세요?</h6>
-                    <div class="col-lg-8">
-                        <a th:href="@{/게시판}" class="btn search-fail-text-btn">우산</a>
-                        <a th:href="@{/게시판}" class="btn search-fail-text-btn">그릇</a>
-                        <a th:href="@{/게시판}" class="btn search-fail-text-btn">보조배터리</a>
-                    </div>
+                <div class="col-lg-8">
+                    <a th:href="@{/board/list}" class="btn search-fail-text-btn">우산</a>
+                    <a th:href="@{/board/list}" class="btn search-fail-text-btn">그릇</a>
+                    <a th:href="@{/board/list}" class="btn search-fail-text-btn">보조배터리</a>
+                </div>
             </div>
         </div>
     </section>

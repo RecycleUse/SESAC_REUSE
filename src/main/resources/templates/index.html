@@ -49,12 +49,12 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" th:href="@{/}">Community</a>
+                        <a class="nav-link click-scroll" th:href="@{/board/list}">게시판</a>
                     </li>
 
                     <!-- 회원가입 -->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/singup}">회원가입</a>
+                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>
                     </li>
 
                     <!-- 로그인한 회원만 볼수있는 메뉴 -->
