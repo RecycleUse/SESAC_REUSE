@@ -1,3 +1,4 @@
+
 /* 메인페이지 검색창 드롭다운 창 시작 */
 /* 드롭다운 전체 창 */
 .search-dropdown {
@@ -48,22 +49,24 @@
 }
 /* container box */
 .main {
-    padding: 170px 120px 120px 120px;
-    height: 900px;
+    padding: 140px 0px 0px 430px;
+    height: 750px;
 }
 /* 좌측 구역 */
 .left-container {
     float: left;
-    margin-right: 100px;
-    height: 100%;
+    margin-right: 150px;
+    height: 90%;
+
 }
+
 /* 좌측 컨테이너 아이템 이미지 */
 .left-container > img {
     width: 400px;
     height: 400px;
 }
 /* 우측 구역 */
-.right-container {
+.right-container { padding: 30px;
 }
 
 .item-name {
@@ -92,15 +95,17 @@
 }
 
 .similar-item {
-    margin-bottom: 120px;
+    margin-bottom: 50px;
 }
 .similar-item > h6 {
     color: #000000;
 }
 
+hr{width: 1500px;}
+
 /* 수정요청 문구 */
 .ps {
-    float: right;
+    margin-left: 1350px;
 }
 /* 수정요청 버튼 */
 .ps > p > a {
