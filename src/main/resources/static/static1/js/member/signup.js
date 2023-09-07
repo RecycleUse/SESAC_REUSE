@@ -34,6 +34,8 @@ let emailChkCodeLabel = document.getElementById('emailChkCodeLabel');
 
 emailChkCodeBtn.addEventListener('click', e => {
 
+    console.log('click');
+
     axios.post("/signup/mailConfirm", {
         email: email.value
     })

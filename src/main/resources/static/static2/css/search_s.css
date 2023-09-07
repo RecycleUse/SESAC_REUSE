@@ -52,12 +52,18 @@
     padding: 140px 0px 0px 430px;
     height: 750px;
 }
+
+/* 좋아요 */
+#likeImage{
+    width: 32px; height: 44px;
+    margin-left: 1000px;
+}
+
 /* 좌측 구역 */
 .left-container {
     float: left;
     margin-right: 150px;
     height: 90%;
-
 }
 
 /* 좌측 컨테이너 아이템 이미지 */

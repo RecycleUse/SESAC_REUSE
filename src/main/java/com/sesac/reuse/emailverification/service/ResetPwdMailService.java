@@ -47,9 +47,8 @@ public class ResetPwdMailService implements MailServiceInter{
         msg.append("<div style='font-size:130%'>");
         msg.append("CODE : <strong>").append(tempPw).append("</strong><div><br/> ");
 
-
         message.setText(msg.toString(), "utf-8", "html");
-        message.setFrom(new InternetAddress("the_blue10@naver.com", "REUSE_ADMIN"));
+        message.setFrom(new InternetAddress("yirangj@naver.com", "REUSE_ADMIN"));
 
         return message; //내용, 수신인, 발신인 설정
     }

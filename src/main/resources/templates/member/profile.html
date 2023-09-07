@@ -15,7 +15,7 @@
           content="width=device-width, initial-scale=1.0, member-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
   />
 
-  <title>Account settings - Account | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+  <title> 회원정보 수정 </title>
 
   <meta name="description" content="" />
 
@@ -583,7 +583,7 @@
                 </li>
               </ul>
               <div class="card mb-4">
-                <h5 class="card-header">Profile Details</h5>
+                <h5 class="card-header">회원 상세정보</h5>
                 <!-- Account -->
                 <div class="card-body">
                   <form id="formAccountSettings" method="POST" onsubmit="return false" >
@@ -620,8 +620,8 @@
                       </div>
                     </div>
                     <div class="mt-2">
-                      <button type="submit" class="btn btn-primary me-2 saveBtn" id="saveBtn">Save changes</button>
-                      <button type="reset" class="btn btn-outline-secondary" id="cancleBtn">Cancel</button>
+                      <button type="submit" class="btn btn-primary me-2 saveBtn" id="saveBtn">변경내용 저장하기</button>
+                      <button type="reset" class="btn btn-outline-secondary" id="cancleBtn">취소</button>
                     </div>
                   </form>
                 </div>
@@ -632,8 +632,8 @@
                 <div class="card-body">
                   <div class="mb-3 col-12 mb-0">
                     <div class="alert alert-warning">
-                      <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-                      <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+                      <h6 class="alert-heading fw-bold mb-1">정말 계정을 삭제하시겠습니까?</h6>
+                      <p class="mb-0">계정을 삭제하면 되돌릴 수 없습니다. 확실히 하시기 바랍니다.</p>
                     </div>
                   </div>
                   <form id="formAccountDeactivation" onsubmit="return false">
@@ -645,10 +645,10 @@
                               id="accountActivation"
                       />
                       <label class="form-check-label" for="accountActivation"
-                      >I confirm my account deactivation</label
+                      >계정 탈퇴를 확인합니다.</label
                       >
                     </div>
-                    <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
+                    <button type="submit" class="btn btn-danger deactivate-account">회원 탈퇴</button>
                   </form>
                 </div>
               </div>
@@ -701,15 +701,6 @@
   <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
-
-<div class="buy-now">
-  <a
-          href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-          target="_blank"
-          class="btn btn-danger btn-buy-now"
-  >Upgrade to Pro</a
-  >
-</div>
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->

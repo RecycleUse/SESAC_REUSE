@@ -16,7 +16,7 @@
           content="width=device-width, initial-scale=1.0, member-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
   />
 
-  <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+  <title>회원가입 페이지</title>
 
   <meta name="description" content="" />
 
@@ -73,9 +73,6 @@
             </a>
           </div>
           <!-- /Logo -->
-
-          <h4 class="mb-2">Adventure starts here 🚀</h4>
-          <p class="mb-4">Make your app management easy and fun!</p>
 
           <form id="formAuthentication" class="mb-3" th:action="@{/auth2/signup}" method="POST" th:object="${memberDTO}">
             <div class="mb-3">
@@ -136,18 +133,18 @@
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
                 <label class="form-check-label" for="terms-conditions">
-                  I agree to
-                  <a href="javascript:void(0);">privacy policy & terms</a>
+                  동의합니다.
+                  <a href="javascript:void(0);">개인정보 정책</a>
                 </label>
               </div>
             </div>
-            <input type="submit" class="btn btn-primary d-grid w-100">Sign up</input>
+            <input type="submit" class="btn btn-primary d-grid w-100"></input>
           </form>
 
           <p class="text-center">
-            <span>Already have an account?</span>
+            <span>이미 계정이 있으신가요?</span>
             <a th:href="@{/auth2/login}">
-              <span>Sign in instead</span>
+              <span>로그인하기</span>
             </a>
           </p>
         </div>
