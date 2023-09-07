@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +29,7 @@ public class MemberController {
 
     @GetMapping("/auth2/login")
     public String loginPage() {
+
         return "member/login";
     }
 
