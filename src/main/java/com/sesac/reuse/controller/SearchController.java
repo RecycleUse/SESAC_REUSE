@@ -1,7 +1,7 @@
 package com.sesac.reuse.controller;
 
-import com.sesac.reuse.entity.itemSearch.Item;
-import com.sesac.reuse.repository.itemSearch.ItemRepository;
+import com.sesac.reuse.entity.item.Item;
+import com.sesac.reuse.repository.item.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,23 +20,23 @@ public class SearchController {
 
     @GetMapping("/search")
     @ResponseBody  // JSON 형식으로 응답을 반환함을 선언 (검색 드롭다운 기능에 사용)
-    public List<Item> searchItem(@RequestParam("itemName") String itemName) {
-        List<Item> foundItems = itemRepository.findByItemNameContaining(itemName);
+    public List<Item> searchItem(@RequestParam("name") String name) {
+        List<Item> foundItems = itemRepository.findByNameContaining(name);
 
         return foundItems;
     }
 
 
     @GetMapping("/search-success")
-    public String searchSuccess(@RequestParam("itemName") String itemName, Model model) {
-        List<Item> foundItems = itemRepository.findByItemNameContaining(itemName);
+    public String searchSuccess(@RequestParam("name") String name, Model model) {
+        List<Item> foundItems = itemRepository.findByNameContaining(name);
         model.addAttribute("items", foundItems);
         return "item/search-success"; // 검색 결과 페이지로 이동
     }
 
     @GetMapping("/item-detail")
-    public String itemDetail(@RequestParam("item_id") String itemId, Model model) {
-        Item foundItem = itemRepository.findById(itemId).orElse(null);
+    public String itemDetail(@RequestParam("id") String id, Model model) {
+        Item foundItem = itemRepository.findById(id).orElse(null);
 
         if (foundItem == null) {
             return "item/search-fail";  // 검색 실패 페이지로 이동

@@ -85,12 +85,12 @@
         <div class="main">
             <div class="left-container">
                 <!-- DB 에서 item 이미지 연결하기 -->
-                <img th:src="@{'/static/static2/images/item_images/' + ${item.image.image_name}}" alt=item.itemName />
+                <img th:src="@{'/static/static2/images/item_images/' + ${item.image.name}}" alt=item.image.name />
             </div>
 
             <div class="right-container">
                 <div class="item-name">
-                    <h2><span th:text="${item.itemName}"></span></h2>
+                    <h2><span th:text="${item.name}"></span></h2>
                 </div>
 
                 <div class="category">
@@ -105,7 +105,7 @@
 
                 <div class="guide">
                     <h6>버리는 방법</h6>
-                    <span th:text="${item.recycle_info}"></span>
+                    <span th:text="${item.recycleInfo}"></span>
                 </div>
 
                 <div class="similar-item">
