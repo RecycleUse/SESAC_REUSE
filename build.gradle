@@ -4,8 +4,6 @@ buildscript { // buildscript : Gradle이 특정 task를 실행할 때 사용하�
 	}
 }
 
-
-
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.15'
@@ -52,6 +50,8 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'javax.validation:validation-api'
+
 	// security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
@@ -63,9 +63,15 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.15'
 
+	// Elasticsearch
+	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+	implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.15.0'
+	compileOnly 'org.elasticsearch:elasticsearch:7.17.1'
 
+	// Opensearch
+	implementation "org.opensearch.client:spring-data-opensearch:1.2.0"
 
-	//    swagger ui
+	// swagger ui
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 
@@ -80,8 +86,6 @@ dependencies {
 			"javax.annotation:javax.annotation-api",
 
 			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
-
-
 
 }
 
