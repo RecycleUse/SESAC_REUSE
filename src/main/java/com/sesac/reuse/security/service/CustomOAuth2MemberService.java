@@ -6,9 +6,7 @@ import com.sesac.reuse.entity.member.MemberRole;
 import com.sesac.reuse.entity.member.SocialSignUpInfo;
 import com.sesac.reuse.repository.member.MemberRepository;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,8 +17,9 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 // 카카오 OAuth2 사용자 정보를 처리하기 위한 서비스 클래스로, 사용자 정보를 가져와서 회원 정보로 변환하고 권한을 부여
 @Service
@@ -30,8 +29,6 @@ public class CustomOAuth2MemberService extends DefaultOAuth2UserService {
 
     @Autowired
     private MemberRepository memberRepository;
-
-//    private final HttpSession httpSession;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
