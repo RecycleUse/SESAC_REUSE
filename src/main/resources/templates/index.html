@@ -59,7 +59,7 @@
 
                     <!-- 로그인한 회원만 볼수있는 메뉴 -->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_USER')" th:href="@{/auth2/profile}">마이페이지</a>
+                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/auth2/profile}">마이페이지</a>
                     </li>
 
                     <!-- 로그인, 로그아웃-->
@@ -73,7 +73,7 @@
                 </ul>
 
                 <div class="d-none d-lg-block">
-                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    <a th:href="@{/auth2/profile}" class="navbar-icon bi-person smoothscroll"></a>
                 </div>
             </div>
         </div>
