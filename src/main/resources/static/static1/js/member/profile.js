@@ -31,3 +31,10 @@ async function modifyProfile(formObj) {
 
     return response.data;
 }
+
+
+const withDrawResult = [[$withDrawResult]];
+if( withDrawResult !== "") {
+    alert(withDrawResult);
+}
+

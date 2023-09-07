@@ -26,7 +26,7 @@ public class Item {
 
     private Boolean recyclable;
 
-//    private String created_at;
+    private String created_at;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

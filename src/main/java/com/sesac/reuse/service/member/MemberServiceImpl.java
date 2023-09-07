@@ -100,6 +100,13 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(findMember);
     }
 
+    @Override
+    public void withdrawMember(String email) {
+
+            Member member = memberRepository.findByEmail(email).orElseThrow();
+            memberRepository.delete(member);
+
+    }
 
     public Member findMemberByEmail(String email) {
        return memberRepository.findByEmail(email).orElseThrow();
