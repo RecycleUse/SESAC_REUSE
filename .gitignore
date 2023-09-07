@@ -40,3 +40,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+### openai ###
+application.properties
+apiconfig.properties
