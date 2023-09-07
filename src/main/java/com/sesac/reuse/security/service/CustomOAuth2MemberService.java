@@ -5,6 +5,7 @@ import com.sesac.reuse.entity.member.Member;
 import com.sesac.reuse.entity.member.MemberRole;
 import com.sesac.reuse.entity.member.SocialSignUpInfo;
 import com.sesac.reuse.repository.member.MemberRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.*;
 // 카카오 OAuth2 사용자 정보를 처리하기 위한 서비스 클래스로, 사용자 정보를 가져와서 회원 정보로 변환하고 권한을 부여
 @Service  // 해당 클래스를 Spring의 Service로 등록합니다. 비즈니스 로직을 포함하는 클래스에 주로 사용됩니다.
 @RequiredArgsConstructor
+@Log4j2
 public class CustomOAuth2MemberService extends DefaultOAuth2UserService {
 
     @Autowired  // Spring의 DI를 사용하여 userRepository 인스턴스를 자동으로 주입받습니다.
@@ -35,30 +37,18 @@ public class CustomOAuth2MemberService extends DefaultOAuth2UserService {
         OAuth2User oauth2User = super.loadUser(userRequest);  // 부모 클래스의 loadUser 메소드를 호출하여 기본 OAuth2User를 가져옵니다.
 
         // 사용자의 OAuth2 인증 정보에서 가져온 속성들을 저장하는 Map 객체를 생성합니다.
-//        Map<String, Object> attributes = new HashMap<>(oauth2User.getAttributes());
-//        System.out.println(attributes);  // 가져온 속성들을 로그로 출력합니다.
-//
-//        // 카카오 API로부터 반환된 "kakao_account" 속성을 맵으로 추출합니다.
-//        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
-//        String email = (String) kakaoAccount.get("email");  // "kakao_account"에서 "email" 속성을 가져옵니다.
-//
-//        // "kakao_account"의 "profile" 속성을 맵으로 추출합니다.
-//        Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
-//        String nickname = (String) profile.get("nickname");  // "profile"에서 "nickname" 속성을 가져옵니다.
-
-        // 카카오로부터 가져온 속성 중에 이메일과 닉네임을 추출
         Map<String, Object> attributes = new HashMap<>(oauth2User.getAttributes());
-        String email = (String) attributes.get("email");
-        String nickname = (String) attributes.get("nickname");
+        System.out.println(attributes);  // 가져온 속성들을 로그로 출력합니다.
 
+        // 카카오 API로부터 반환된 "kakao_account" 속성을 맵으로 추출합니다.
+        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
+        String email = (String) kakaoAccount.get("email");  // "kakao_account"에서 "email" 속성을 가져옵니다.
 
-//        // "kakao_account"의 "profile" 속성을 맵으로 추출합니다.
-//        Map<String, Object> profile2 = (Map<String, Object>) kakaoAccount.get("profile");
-//        String pw = (String) profile2.get("pw");  // "profile2"에서 "pw" 속성을 가져옵니다.
-
+        // "kakao_account"의 "profile" 속성을 맵으로 추출합니다.
+        Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
+        String nickname = (String) profile.get("nickname");  // "profile"에서 "nickname" 속성을 가져옵니다.
 
         // 데이터베이스에서 해당 이메일을 가진 사용자를 찾거나 생성
-        // 없을 경우 새로운 User 객체를 생성하고 저장한 뒤 반환
         Member member = memberRepository.findByEmail(email)
                 .orElseGet(() -> {
                     Member newMember = new Member(email, nickname);
@@ -68,13 +58,13 @@ public class CustomOAuth2MemberService extends DefaultOAuth2UserService {
                     return memberRepository.save(newMember);
                 });
 
-        // 권한 정보 설정
-        Collection<? extends GrantedAuthority> authorities = Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+        // 권한 정보 설정 (여기에서는 기본적으로 MEMBER 권한을 설정)
+        Collection<? extends GrantedAuthority> authorities = Collections.singleton(
+                new SimpleGrantedAuthority("ROLE_MEMBER"));
 
         // 사용자 정보를 포함한 OAuth2User 객체 생성하여 반환
-        OAuth2User oauth2UserWithAuthorities = new DefaultOAuth2User(oauth2User.getAuthorities(),
-                attributes,
-                "email");
+        OAuth2User oauth2UserWithAuthorities = new DefaultOAuth2User(
+                authorities, attributes, "email");
 
         return oauth2UserWithAuthorities; // OAuth2User 정보를 포함한 객체 반환
     }
