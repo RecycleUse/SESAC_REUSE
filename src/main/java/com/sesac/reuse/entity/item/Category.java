@@ -1,4 +1,4 @@
-package com.sesac.reuse.entity.itemSearch;
+package com.sesac.reuse.entity.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ public class Category {
 
     @Id
     @Enumerated(EnumType.STRING)
-    private CategoryId category_id;
+    private CategoryId categoryId;
 
     private String name;
 
