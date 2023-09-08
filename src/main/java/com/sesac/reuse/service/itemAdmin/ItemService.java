@@ -7,7 +7,6 @@ import com.sesac.reuse.repository.item.CategoryRepository;
 import com.sesac.reuse.repository.item.ImageRepository;
 import com.sesac.reuse.repository.item.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -54,23 +53,23 @@ public class ItemService {
 
 
     // 아이템 생성
-    public Item createItem(Item item) {
-
-        Item newItem = Item.builder()
-                .id(item.getId())
-                .name(item.getName())
-                .recyclable(item.getRecyclable())
-                .recycleInfo(item.getRecycleInfo())
-                .category(item.getCategory())
-                .createdAt(LocalDateTime.now())
-                .build();
-
-        return itemRepository.save(newItem);
-    }
+//    public Item createItem(Item item) {
+//
+//        Item newItem = Item.builder()
+//                .id(item.getId())
+//                .name(item.getName())
+//                .recyclable(item.getRecyclable())
+//                .recycleInfo(item.getRecycleInfo())
+//                .category(item.getCategory())
+//                .createdAt(LocalDateTime.now())
+//                .build();
+//
+//        return itemRepository.save(newItem);
+//    }
 
 
     // 아이템 수정
-    public Item updateItem(Item item) {
+    public Item updateItem(ItemDTO item) {
         Optional<Item> optional = itemRepository.findById(item.getId());
 
         return optional.map(entityItem -> {
@@ -97,17 +96,9 @@ public class ItemService {
         Pageable pageable = PageRequest.of(page, 10, sort);
         return itemRepository.findAll(pageable);
     }
-    
-    // 이미지 파일 조회
-//    public ItemImage getItemImage(String itemId) {
-//        Optional<ItemImage> itemImage = imageRepository.findByItemId(itemId);
-//        if (itemImage.isPresent()) {
-//            return itemImage.get();
-//        } else {
-//            throw new RuntimeException();
-//        }
-//    }
 
+
+    // 아이템 생성 : 파일 업로드 추가
     public void saveItem(ItemDTO itemDto) throws IOException {
         Item item = new Item();
         item.setId(itemDto.getId());
