@@ -85,13 +85,13 @@
     <div class="card-container">
         <div class="card-content">
             <div th:each="item : ${items}" class="col-md-3 mb-3">
-                <a th:href="@{/item-detail(item_id=${item.item_id})}">
+                <a th:href="@{/item-detail(id=${item.id})}">
                     <div class="card">
                         <!-- 아이템 이미지 -->
-                        <img th:src="@{'/static/static2/images/item_images/' + ${item.item_id} + '.jpg'}" alt="${item.itemName}" class="card-img-top">
+                        <img th:src="@{'/static/static2/images/item_images/' + ${item.id} + '.jpg'}" alt="${item.itemName}" class="card-img-top">
                         <div class="card-body">
                             <!-- 아이템 이름 -->
-                            <p><h5 class="card-title" th:text="${item.itemName}">Item Name</h5></p>
+                            <p><h5 class="card-title" th:text="${item.name}">Item Name</h5></p>
                             <!-- 카테고리 -->
                             <p class="card-text">분류: <span th:text="${item.category.name}">Category Name</span></p>
                             <!-- 재활용 가능 여부 -->
