@@ -1,4 +1,4 @@
-package com.sesac.reuse.entity.itemSearch;
+package com.sesac.reuse.entity.item;
 
 
 public enum CategoryId {

@@ -1,9 +1,9 @@
-package com.sesac.reuse.service.itemSearch;
+package com.sesac.reuse.service.item;
 
-import com.sesac.reuse.entity.itemSearch.Image;
-import com.sesac.reuse.entity.itemSearch.Item;
-import com.sesac.reuse.repository.itemSearch.CategoryRepository;
-import com.sesac.reuse.repository.itemSearch.ItemRepository;
+import com.sesac.reuse.entity.item.Image;
+import com.sesac.reuse.entity.item.Item;
+import com.sesac.reuse.repository.item.CategoryRepository;
+import com.sesac.reuse.repository.item.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

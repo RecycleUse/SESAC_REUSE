@@ -1,7 +1,7 @@
 package com.sesac.reuse.controller;
 
-import com.sesac.reuse.entity.itemSearch.Item;
-import com.sesac.reuse.repository.itemSearch.ItemRepository;
+import com.sesac.reuse.entity.item.Item;
+import com.sesac.reuse.repository.item.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

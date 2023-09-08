@@ -1,6 +1,6 @@
-package com.sesac.reuse.repository.itemSearch;
+package com.sesac.reuse.repository.item;
 
-import com.sesac.reuse.entity.itemSearch.Category;
+import com.sesac.reuse.entity.item.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
