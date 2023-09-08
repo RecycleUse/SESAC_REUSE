@@ -55,13 +55,13 @@
                     </li>
 
                     <!-- 회원가입 -->
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>
-                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>-->
+<!--                    </li>-->
 
                     <!-- 로그인한 회원만 볼수있는 메뉴 -->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/profile}">마이페이지</a>
+                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{auth2/profile}">마이페이지</a>
                     </li>
 
                     <!-- 로그인, 로그아웃-->
@@ -85,7 +85,12 @@
         <div class="main">
             <div class="left-container">
                 <!-- DB 에서 item 이미지 연결하기 -->
-                <img th:src="@{'/static/static2/images/item_images/' + ${item.image.image_name}}" alt=item.itemName />
+                <img th:if="${item.image != null}" th:src="@{'/static/static2/images/item_images/' + ${item.image.image_name}}" th:alt="${item.itemName}" />
+
+                <!-- 이미지가 없는 경우 대체 텍스트 또는 기본 이미지 표시 -->
+                <div th:unless="${item.image != null}">
+                    <p>이미지가 없습니다.</p>
+                </div>
             </div>
 
             <div class="right-container">

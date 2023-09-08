@@ -55,9 +55,9 @@
                     </li>
 
                     <!-- 회원가입 -->
-                    <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>
-                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>-->
+<!--                    </li>-->
 
                     <!-- 로그인한 회원만 볼수있는 메뉴 -->
                     <li class="nav-item">
@@ -88,8 +88,14 @@
                 <a th:href="@{/item-detail(item_id=${item.item_id})}">
                     <div class="card">
                         <!-- 아이템 이미지 -->
-                        <img th:src="@{'/static/static2/images/item_images/' + ${item.image.image_name}}" alt=item.itemName class="card-img-top">
-                        <div class="card-body">
+                        <img th:if="${item.image != null}" th:src="@{'/static/static2/images/item_images/' + ${item.image.image_name}}" th:alt="${item.itemName}" class="card-img-top">
+
+                        <!-- 이미지가 없는 경우 대체 텍스트 또는 기본 이미지 표시 -->
+                        <div th:unless="${item.image != null}">
+                            <p>이미지가 없습니다.</p>
+                        </div>
+
+                            <div class="card-body">
                             <!-- 아이템 이름 -->
                             <p><h5 class="card-title" th:text="${item.itemName}">Item Name</h5></p>
                             <!-- 카테고리 -->

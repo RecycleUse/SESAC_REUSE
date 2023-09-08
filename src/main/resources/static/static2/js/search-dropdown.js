@@ -27,8 +27,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             // 이미지의 상대 경로 설정
                             if (item.item_id) {
+                                image.onload = function() {
+                                    // 이미지 로드 완료 후 이미지 박스를 표시
+                                    imageBox.style.display = "block";
+                                };
                                 image.src = `/static/static2/images/item_images/${item.item_id}.jpg`;
-                                image.alt = item.itemName;  // 이미지 대체 텍스트
+                                image.alt = item.itemName;
                                 imageBox.appendChild(image);
                             } else {
                                 // 이미지 정보가 없을 경우 이미지 박스를 숨김 처리 (이미지 엑박 방지)
