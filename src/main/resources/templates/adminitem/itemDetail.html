@@ -603,13 +603,13 @@
                       <div class="mb-4">
                         <label class="form-label">이미지 파일</label>
                         <div class="card bg-dark border-0 text-white" th:if="${itemDetail.image}">
-                          <img class="card-img"  th:src="@{|/${itemDetail.image.path}|}" alt="Card image">
+                          <img class="card-img" th:src="@{|../../static${itemDetail.image.path}${itemDetail.image.name}|}"
+                          alt="Card image">
                         </div>
                         <div th:unless="${itemDetail.image}">
                           <p>이미지가 존재하지 않습니다</p>
                         </div>
-                      </div>
-                      <div class="mb-4">
+
                         <button type="submit" class="btn btn-success">
                           <a href="javascript:void(0);" th:data-uri="@{|/item/update/${itemDetail.id}|}"
                              class="update"
@@ -621,7 +621,6 @@
                         </button>
                       </div>
 
-                      <!-- 파일 업로드 -->
 
                     </form>
                   </div>

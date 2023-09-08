@@ -1,5 +1,6 @@
 package com.sesac.reuse.service.itemAdmin;
 
+import com.sesac.reuse.dto.item.ItemDTO;
 import com.sesac.reuse.entity.item.Image;
 import com.sesac.reuse.entity.item.Item;
 import com.sesac.reuse.repository.item.CategoryRepository;
@@ -12,7 +13,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -23,9 +27,7 @@ public class ItemService {
     private final ItemRepository itemRepository;
     private final ImageRepository imageRepository;
 
-
-//    @Value("${com.sesac.reuse.upload.path}")// import 시에 springframework으로 시작하는 Value
-//    private String uploadPath;
+    private final String UPLOAD_DIR = "C:\\upload\\";
 
     @Autowired
     public ItemService(CategoryRepository categoryRepository, ItemRepository itemRepository, ImageRepository imageRepository) {
@@ -106,6 +108,30 @@ public class ItemService {
 //        }
 //    }
 
-    //
+    public void saveItem(ItemDTO itemDto) throws IOException {
+        Item item = new Item();
+        item.setId(itemDto.getId());
+        item.setName(itemDto.getName());
+        item.setCategory(itemDto.getCategory());
+        item.setCreatedAt(LocalDateTime.now());
+        Item savedItem = itemRepository.save(item);
+
+        MultipartFile file = itemDto.getImage();
+        String imagePath = storeFile(itemDto.getImage());
+        Image itemImage = new Image();
+        itemImage.setItem(savedItem);
+        itemImage.setName(file.getOriginalFilename());
+        itemImage.setPath(imagePath + file.getOriginalFilename());
+        imageRepository.save(itemImage);
+
+        // Save the file to the filesystem
+        File fileToSave = new File(UPLOAD_DIR + file.getOriginalFilename());
+        file.transferTo(fileToSave);
+    }
+
+    private String storeFile(MultipartFile file) throws IOException {
+        // Logic to save the file to a server directory and return the path
+        return "/static2/images/item_images/"; // This is just a placeholder
+    }
 
 }

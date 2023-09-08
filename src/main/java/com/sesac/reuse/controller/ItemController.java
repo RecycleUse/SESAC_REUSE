@@ -1,5 +1,6 @@
 package com.sesac.reuse.controller;
 
+import com.sesac.reuse.dto.item.ItemDTO;
 import com.sesac.reuse.entity.item.Category;
 import com.sesac.reuse.entity.item.Item;
 import com.sesac.reuse.service.itemAdmin.CategoryService;
@@ -7,10 +8,12 @@ import com.sesac.reuse.service.itemAdmin.ItemCustomIdSevice;
 import com.sesac.reuse.service.itemAdmin.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +56,7 @@ public class ItemController {
 
     // 아이템 추가
     @GetMapping("/register")
-    public String addItem(Model model){
+    public String addItem(Model model) {
         List<Category> categories = categoryService.getCategoryList();
         Map<String, String> itemCustomIdList = itemCustomIdSevice.getItemCustomIdList();
         model.addAttribute("categories", categories);
@@ -62,8 +65,10 @@ public class ItemController {
     }
 
     @PostMapping("/register")
-    public String addItem(Item item){
-        itemService.createItem(item);
+    public String addItem(@ModelAttribute ItemDTO itemDto) throws IOException {
+        System.out.println("itemDto = " + itemDto);
+        itemService.saveItem(itemDto);
+        //itemService.createItem(item);
         return "redirect:/item";
     }
 
@@ -93,6 +98,12 @@ public class ItemController {
             return "redirect:/item/detail/" + itemId;
         }
 
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> uploadItem(@ModelAttribute ItemDTO itemDto) throws IOException {
+        itemService.saveItem(itemDto);
+        return ResponseEntity.ok().build();
     }
 
 
