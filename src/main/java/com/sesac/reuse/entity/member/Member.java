@@ -27,6 +27,7 @@ public class Member extends BaseEntity {
     @ElementCollection(fetch = FetchType.LAZY)
     private Set<MemberRole> roleSet = new HashSet<>();
 
+    @Enumerated(EnumType.STRING)
     private MEMBER_STATUS isActive; //탈퇴여부
 
     @Enumerated(EnumType.STRING)
@@ -52,6 +53,15 @@ public class Member extends BaseEntity {
     public void setSocial(SocialSignUpInfo social) {
         this.social = social;
     }
+
+
+    public void setIsActive(MEMBER_STATUS isActive) {
+        this.isActive = isActive;
+    }
+//    public void setIsActive(String isActive) {
+//        // 문자열로 받은 활성화 상태를 해당 열거형 값으로 변환하여 설정
+//        this.isActive = MEMBER_STATUS.valueOf(isActive);
+//    }
 
 
     public void changeNickname(String nickname) {
