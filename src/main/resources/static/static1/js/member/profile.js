@@ -33,8 +33,15 @@ async function modifyProfile(formObj) {
 }
 
 
-const withDrawResult = [[$withDrawResult]];
-if( withDrawResult !== "") {
-    alert(withDrawResult);
-}
+if(withdrawResult) alert(withdrawResult);
 
+const deactiveCheckBox = document.getElementById('accountActivation');
+deactiveCheckBox.addEventListener('change', e => {
+    const detectiveBtn = document.querySelector('.deactivate-account');
+
+    if(deactiveCheckBox.checked) {
+        detectiveBtn.removeAttribute('disabled');
+    } else {
+        detectiveBtn.setAttribute('disabled','disabled');
+    }
+});

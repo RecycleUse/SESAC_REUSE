@@ -563,13 +563,13 @@
         <!-- Content -->
 
         <div class="container-xxl flex-grow-1 container-p-y">
-          <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Account</h4>
+          <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">계정 설정 /</span> 계정</h4>
 
           <div class="row">
             <div class="col-md-12">
               <ul class="nav nav-pills flex-column flex-md-row mb-3">
                 <li class="nav-item">
-                  <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-member me-1"></i> Account</a>
+                  <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-member me-1"></i> 계정</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/static1//static1//static1//static1//static1//static1/members/yejin/Downloads/sneat-1.0.0/sneat-1.0.0/html/pages-account-settings-notifications.html"
@@ -583,7 +583,7 @@
                 </li>
               </ul>
               <div class="card mb-4">
-                <h5 class="card-header">Profile Details</h5>
+                <h5 class="card-header">프로필 상세 정보</h5>
                 <!-- Account -->
                 <div class="card-body">
                   <form id="formAccountSettings" method="POST" onsubmit="return false" >
@@ -604,7 +604,7 @@
                         <input class="form-control" type="password" name="pw" id="pw" />
                       </div>
                       <div class="mb-3 col-md-6">
-                        <label for="email" class="form-label">E-mail</label>
+                        <label for="email" class="form-label">이메일</label>
                         <input
                                 class="form-control"
                                 type="text"
@@ -620,8 +620,8 @@
                       </div>
                     </div>
                     <div class="mt-2">
-                      <button type="submit" class="btn btn-primary me-2 saveBtn" id="saveBtn">Save changes</button>
-                      <button type="reset" class="btn btn-outline-secondary" id="cancleBtn">Cancel</button>
+                      <button type="submit" class="btn btn-primary me-2 saveBtn" id="saveBtn">저장</button>
+                      <button type="reset" class="btn btn-outline-secondary" id="cancleBtn">취소</button>
                     </div>
                   </form>
                 </div>
@@ -632,8 +632,8 @@
                 <div class="card-body">
                   <div class="mb-3 col-12 mb-0">
                     <div class="alert alert-warning">
-                      <h6 class="alert-heading fw-bold mb-1">Are you sure you want to delete your account?</h6>
-                      <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+                      <h6 class="alert-heading fw-bold mb-1">"계정을 삭제하시겠습니까?</h6>
+                      <p class="mb-0">계정을 삭제하면 되돌릴 수 없습니다. 확실하신가요? 반드시 신중하게 결정해 주세요.</p>
                     </div>
                   </div>
                   <form id="formAccountDeactivation" th:action="@{/auth2/withdraw}" th:method="post">
@@ -648,7 +648,7 @@
                       >회원 탈퇴</label
                       >
                     </div>
-                    <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
+                    <button type="submit" class="btn btn-danger deactivate-account" disabled>계정 삭제 하기</button>
                   </form>
                 </div>
               </div>
@@ -729,7 +729,12 @@
 <!-- Page JS -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/static1/assets/js/pages-account-settings-account.js"></script>
+<script th:inline="javascript">
+  const withdrawResult = [[${withDrawResult}]];
+</script>
+
 <script th:src="@{/static1/js/member/profile.js}"></script>
+
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
