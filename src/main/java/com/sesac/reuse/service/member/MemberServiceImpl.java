@@ -115,9 +115,12 @@ public class MemberServiceImpl implements MemberService {
     private Member convertMember(MemberDTO memberDTO) {
         Member member = mapper.map(memberDTO, Member.class);
         log.info("member={}", member);
+
+        MemberRole role = memberDTO.getRole();
+
         member.encrptyPassword(passwordEncoder.encode(memberDTO.getPw()));
         member.addRole(MemberRole.MEMBER);
-//        member.addRole(MemberRole.ADMIN); <--권한 2개 테스트, 관리자 가입 로직 별도로 생성하기
+        member.addRole(role); //관리자
         member.setSocial(SocialSignUpInfo.STANDARD);
         return member;
     }
