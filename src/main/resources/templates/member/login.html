@@ -156,7 +156,10 @@
 <script src="/static1/assets/js/main.js"></script>
 
 <!-- Page JS -->
-
+<script th:inline="javascript">
+  const error = [[${error}]];
+</script>
+<script th:src="@{/static1/js/member/login.js}"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>

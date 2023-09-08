@@ -100,6 +100,13 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(findMember);
     }
 
+    @Override
+    public void withdrawMember(String email) {
+
+            Member member = memberRepository.findByEmail(email).orElseThrow();
+            memberRepository.delete(member);
+
+    }
 
     public Member findMemberByEmail(String email) {
        return memberRepository.findByEmail(email).orElseThrow();
@@ -108,9 +115,12 @@ public class MemberServiceImpl implements MemberService {
     private Member convertMember(MemberDTO memberDTO) {
         Member member = mapper.map(memberDTO, Member.class);
         log.info("member={}", member);
+
+        MemberRole role = memberDTO.getRole();
+
         member.encrptyPassword(passwordEncoder.encode(memberDTO.getPw()));
         member.addRole(MemberRole.MEMBER);
-//        member.addRole(MemberRole.ADMIN); <--권한 2개 테스트, 관리자 가입 로직 별도로 생성하기
+        member.addRole(role); //관리자
         member.setSocial(SocialSignUpInfo.STANDARD);
         return member;
     }

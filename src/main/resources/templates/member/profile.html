@@ -636,7 +636,7 @@
                       <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
                     </div>
                   </div>
-                  <form id="formAccountDeactivation" onsubmit="return false">
+                  <form id="formAccountDeactivation" th:action="@{/auth2/withdraw}" th:method="post">
                     <div class="form-check mb-3">
                       <input
                               class="form-check-input"
@@ -645,7 +645,7 @@
                               id="accountActivation"
                       />
                       <label class="form-check-label" for="accountActivation"
-                      >I confirm my account deactivation</label
+                      >회원 탈퇴</label
                       >
                     </div>
                     <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>

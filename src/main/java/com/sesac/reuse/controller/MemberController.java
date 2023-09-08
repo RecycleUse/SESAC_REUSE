@@ -6,6 +6,7 @@ import com.sesac.reuse.exception.EmailExistException;
 import com.sesac.reuse.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +21,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -72,6 +74,26 @@ public class MemberController {
         redirectAttributes.addFlashAttribute("result", "success");
         return "redirect:/auth2/login";
     }
+
+
+    @PostMapping("/auth2/withdraw")
+    public String withdrawMember(Principal principal,RedirectAttributes redirectAttributes) {
+
+        String email = principal.getName();
+
+        try {
+            memberService.withdrawMember(email);
+            log.info("회원 탈퇴 성공");
+            redirectAttributes.addFlashAttribute("withDrawResult","회원 탈퇴가 성공적으로 처리되었습니다.");
+            return "redirect:/";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("withDrawResult", "회원 탈퇴에 실패했습니다.");
+            return "redirect:/auth2/profile";
+        }
+
+    }
+
+
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/auth2/profile")

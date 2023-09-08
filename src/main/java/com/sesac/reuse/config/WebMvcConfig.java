@@ -13,6 +13,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index"); //setViewName : viewName 이라서 "/index" 이렇게 경로 ㄴㄴ
         registry.addViewController("/home").setViewName("index");
+        registry.addViewController("/").setViewName("index");
+
     }
 
     @Override
