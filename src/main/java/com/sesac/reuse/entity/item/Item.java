@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -17,24 +18,26 @@ import javax.persistence.*;
 public class Item {
 
     @Id
-    private String item_id;
+    @Column(name= "item_id")
+    private String id;
 
     @Column(name = "item_name")
-    private String itemName;  // 변수 이름 수정
+    private String name;  // 변수 이름 수정
 
-    private String recycle_info;
+    @Column(name = "recycle_info")
+    private String recycleInfo;
 
     private Boolean recyclable;
 
-    private String created_at;
+    private LocalDateTime createdAt;
 
-    @ManyToOne
+    @ManyToOne // Item N : 1 Category
     @JoinColumn(name = "category_id")
     @Enumerated(EnumType.STRING)
     private Category category;
 
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "item")
+    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
     @JsonIgnore  // 순환 참조 방지
     private Image image;
 }

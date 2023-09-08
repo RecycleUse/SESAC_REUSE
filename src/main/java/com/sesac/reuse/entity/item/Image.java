@@ -21,13 +21,13 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
-    private Long image_id;
+    private Long id;
 
     @Column(name = "image_path")
-    private String image_path;
+    private String path;
 
     @Column(name = "image_name")
-    private String image_name;
+    private String name;
 
 
     @OneToOne(fetch = FetchType.LAZY)

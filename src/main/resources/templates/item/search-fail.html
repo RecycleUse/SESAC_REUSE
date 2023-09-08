@@ -54,9 +54,9 @@
                     </li>
 
                     <!-- 회원가입 -->
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>-->
-<!--                    </li>-->
+                    <!--                    <li class="nav-item">-->
+                    <!--                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>-->
+                    <!--                    </li>-->
 
                     <!-- 로그인한 회원만 볼수있는 메뉴 -->
                     <li class="nav-item">
@@ -88,27 +88,45 @@
 
             <h4 class="text-white text-center search-fail-text-1">검색 결과가 없습니다.</h4>
 
-            <div class="search-fail-btn-aline">
-                <a th:href="@{/}" class="btn search-btn">돌아가기</a>
+            <div class="search-fail-btns">
+                <div class="search-fail-btn-aline">
+                    <a th:href="@{/}" class="btn search-btn">돌아가기</a>
+                </div>
+                <div class="search-fail-btn-aline">
+                    <a th:href="@{/board/list}" class="btn search-btn">재활용 추가 신청</a>
+                </div>
             </div>
-            <div class="search-fail-btn-aline">
-                <a th:href="@{/board/list}" class="btn search-btn">재활용 추가 신청</a>
-            </div>
-        </div>
-    </section>
 
-    <section class="featured-section">
-        <div class="container">
-            <div class="row">
-                <h6 class="search-fail-text-2">혹시 이런건 어떠세요?</h6>
-                <div class="col-lg-8">
-                    <a th:href="@{/board/list}" class="btn search-fail-text-btn">우산</a>
-                    <a th:href="@{/board/list}" class="btn search-fail-text-btn">그릇</a>
-                    <a th:href="@{/board/list}" class="btn search-fail-text-btn">보조배터리</a>
+            <div class="chatgpt-section">
+                <h4 class="text-white text-center">ChatGPT 사용해서 검색을 해볼까요?</h4>
+                <form method="get" class="custom-form mt-4 pt-2 mb-lg-0 mb-5" role="search" action="/openai/chat/{name}">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text bi-search" id="basic-addon1"></span>
+                        <input type="search" class="form-control" id="keyword" placeholder=" 예) 가습기, 그릇, 액자.." aria-label="Search">
+                        <button type="submit" class="form-control" id="searchButton">Search</button>
+                    </div>
+                </form>
+
+                <div id="resultContainer">
+                    <!-- 결과를 업데이트할 컨테이너 -->
                 </div>
             </div>
         </div>
     </section>
+
+    <!--    <section class="featured-section">-->
+    <!--        <div class="container">-->
+    <!--            <div class="row">-->
+    <!--                <h6 class="search-fail-text-2">혹시 이런건 어떠세요?</h6>-->
+    <!--                <div class="col-lg-8">-->
+    <!--                    <a th:href="@{/board/list}" class="btn search-fail-text-btn">우산</a>-->
+    <!--                    <a th:href="@{/board/list}" class="btn search-fail-text-btn">그릇</a>-->
+    <!--                    <a th:href="@{/board/list}" class="btn search-fail-text-btn">보조배터리</a>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </section>-->
+
 
 </main>
 
@@ -185,5 +203,6 @@
     </div>
 </footer>
 <!-- 푸터 끝 -->
+<script src="/static/static2/js/search-fail-chatgpt.js"></script>
 </body>
 </html>

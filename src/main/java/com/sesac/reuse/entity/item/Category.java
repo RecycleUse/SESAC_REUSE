@@ -22,7 +22,7 @@ public class Category {
 
     @Id
     @Enumerated(EnumType.STRING)
-    private CategoryId category_id;
+    private CategoryId categoryId;
 
     private String name;
 

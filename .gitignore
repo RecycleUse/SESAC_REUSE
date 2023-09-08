@@ -23,6 +23,7 @@ bin/
 /src/main/java/com/sesac/reuse/config/MailConfig.java
 application-userinfo.properties
 application-api-key.properties
+application-API-KEY.properties
 .idea
 *.iws
 *.iml

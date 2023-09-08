@@ -1,4 +1,4 @@
-package com.sesac.reuse.service.item;
+package com.sesac.reuse.service.itemSearch;
 
 import com.sesac.reuse.entity.item.Image;
 import com.sesac.reuse.entity.item.Item;

@@ -155,3 +155,47 @@ hr{width: 1500px;}
     object-fit: cover;
 }
 /* search-success.html 끝  */
+
+
+/* search-fail.html 시작 */
+.search-fail-btns {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.chatgpt-section {
+    padding-top : 50px;
+}
+
+.chatgpt-section .input-group {
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-large);
+    padding: 10px 15px;
+}
+
+.chatgpt-section .input-group-text {
+    background-color: transparent;
+    border: 0;
+}
+
+.chatgpt-section input[type="search"] {
+    border: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.chatgpt-section button[type="submit"] {
+    background-color: var(--custom-btn-bg-color);
+    border: 0;
+    border-radius: var(--border-radius-large) !important;
+    color: var(--white-color);
+    max-width: 150px;
+}
+
+#resultContainer {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    padding-top: 30px;
+    color: #fff;
+}
