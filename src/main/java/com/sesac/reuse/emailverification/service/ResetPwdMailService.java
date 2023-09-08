@@ -49,7 +49,7 @@ public class ResetPwdMailService implements MailServiceInter{
 
 
         message.setText(msg.toString(), "utf-8", "html");
-        message.setFrom(new InternetAddress("the_blue10@naver.com", "REUSE_ADMIN"));
+        message.setFrom(new InternetAddress("ekgml4122@naver.com", "REUSE_ADMIN"));
 
         return message; //내용, 수신인, 발신인 설정
     }

@@ -54,6 +54,9 @@ public class Member extends BaseEntity {
         this.social = social;
     }
 
+    public void setIsActive(MEMBER_STATUS isActive) {
+        this.isActive = isActive;
+    }
 
     public void changeNickname(String nickname) {
 
