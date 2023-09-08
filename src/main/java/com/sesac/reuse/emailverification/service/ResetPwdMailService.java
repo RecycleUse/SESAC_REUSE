@@ -3,6 +3,7 @@ package com.sesac.reuse.emailverification.service;
 import com.sesac.reuse.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class ResetPwdMailService implements MailServiceInter{
 
     private final JavaMailSender mailSender;
     private final MemberService memberService;
+
+    @Value("{spring.mail.email}")
+    private String email;
     private String tempPw;
 
     @Override
@@ -49,7 +53,7 @@ public class ResetPwdMailService implements MailServiceInter{
 
 
         message.setText(msg.toString(), "utf-8", "html");
-        message.setFrom(new InternetAddress("ekgml4122@naver.com", "REUSE_ADMIN"));
+        message.setFrom(new InternetAddress(email, "REUSE_ADMIN"));
 
         return message; //내용, 수신인, 발신인 설정
     }
@@ -72,6 +76,6 @@ public class ResetPwdMailService implements MailServiceInter{
             throw new IllegalStateException();
         }
 
-        return "changePw"; //여긴 실시간으로 일치하는지 확인할 필요는 없다보니..
+        return "changePw";
     }
 }

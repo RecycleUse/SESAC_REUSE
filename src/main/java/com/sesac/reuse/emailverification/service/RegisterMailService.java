@@ -2,6 +2,7 @@ package com.sesac.reuse.emailverification.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ import java.util.Random;
 public class RegisterMailService implements MailServiceInter {
 
     private final JavaMailSender mailSender;
+
+    @Value("{spring.mail.email}")
+    private String email;
     public String ePw; //인증 번호
 
     @Override
@@ -48,7 +52,7 @@ public class RegisterMailService implements MailServiceInter {
 
 
         message.setText(msg.toString(), "utf-8", "html");
-        message.setFrom(new InternetAddress("ekgml4122@naver.com", "REUSE_ADMIN"));
+        message.setFrom(new InternetAddress(email, "REUSE_ADMIN"));
 
         return message; //내용, 수신인, 발신인 설정
     }
