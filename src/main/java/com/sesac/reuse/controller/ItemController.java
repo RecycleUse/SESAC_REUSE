@@ -86,12 +86,12 @@ public class ItemController {
 
     // 아이템 수정
     @PostMapping("/update/{itemId}")
-    public String updateItem(@PathVariable("itemId") String itemId, ItemDTO updateItem) throws IOException {
+    public String updateItem(@PathVariable("itemId") String itemId, Item updateItem){
         updateItem.setCreatedAt(LocalDateTime.now());
 
         if(!itemId.equals(updateItem.getId())) { // 기존 item_id 와 다르면 삭제하고 다시 추가
             itemService.deleteItem(itemId);
-            itemService.saveItem(updateItem);
+            itemService.createItem(updateItem);
             return "redirect:/item";
         } else { // 기존 item_id 와 같으면 수정
             Item item = itemService.updateItem(updateItem);
