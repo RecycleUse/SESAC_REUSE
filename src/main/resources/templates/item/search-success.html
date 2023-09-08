@@ -61,7 +61,7 @@
 
                     <!-- 로그인한 회원만 볼수있는 메뉴 -->
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_USER')" th:href="@{/profile}">마이페이지</a>
+                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/auth2/profile}">마이페이지</a>
                     </li>
 
                     <!-- 로그인, 로그아웃-->
@@ -75,7 +75,7 @@
                 </ul>
 
                 <div class="d-none d-lg-block">
-                    <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                    <a th:href="@{/auth2/profile}" class="navbar-icon bi-person smoothscroll"></a>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
                 <a th:href="@{/item-detail(item_id=${item.item_id})}">
                     <div class="card">
                         <!-- 아이템 이미지 -->
-                        <img th:src="@{'/static/static2/images/item_images/' + ${item.item_id} + '.jpg'}" alt="${item.itemName}" class="card-img-top">
+                        <img th:src="@{'/static/static2/images/item_images/' + ${item.image.image_name}}" alt=item.itemName class="card-img-top">
                         <div class="card-body">
                             <!-- 아이템 이름 -->
                             <p><h5 class="card-title" th:text="${item.itemName}">Item Name</h5></p>

@@ -73,7 +73,7 @@ public class WebSecurityConfig {
 
                 // 카카오 로그아웃
                 .logout()
-                .logoutUrl("/member/logout")  // 로그아웃을 수행하는 URL
+                .logoutUrl("/auth2/logout")  // 로그아웃을 수행하는 URL
                 .logoutSuccessUrl("/")  // 로그아웃 성공 후 리다이렉트할 URL
                 .invalidateHttpSession(true) // 세션 무효화
                 .addLogoutHandler((request, response, authentication) -> {  // 소셜 로그아웃 처리 및 세션 관련 작업 등 추가
@@ -82,7 +82,7 @@ public class WebSecurityConfig {
 
 
                 })
-                .logoutSuccessHandler((request, response, authentication) -> response.sendRedirect("/member/login"))
+                .logoutSuccessHandler((request, response, authentication) -> response.sendRedirect("/"))
                 .deleteCookies("remember-me");
 
         return http.build();
