@@ -71,6 +71,7 @@
     width: 400px;
     height: 400px;
 }
+
 /* 우측 구역 */
 .right-container { padding: 30px;
 }
@@ -82,6 +83,7 @@
 .category {
     margin-bottom: 50px;
 }
+
 .category > h6 {
     color: #000000;
 }
