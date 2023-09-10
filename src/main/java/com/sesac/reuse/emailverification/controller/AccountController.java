@@ -44,7 +44,7 @@ public class AccountController {
     }
 
 
-    @PostMapping("/member/reset-pwd")
+    @PostMapping("/auth2/reset-pwd")
     public ResponseEntity<?> resetPwd(@RequestBody Map<String,String> payload) throws Exception {
 
         log.info("payload={}",payload);

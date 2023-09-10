@@ -111,18 +111,19 @@ public class MemberController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/auth2/modify-profile")
-    public String modifyProfie(@Valid MemberDTO memberDTO, BindingResult bindingResult, Model model) {
+    public String modifyProfie(@Valid MemberDTO memberDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         log.info("memberDTO={}", memberDTO);
 
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("bindingResult", bindingResult.getAllErrors());
-            return "member/profile";
-        }
+//        if (bindingResult.hasErrors()) {
+//            model.addAttribute("bindingResult", bindingResult.getAllErrors());
+//            return "member/profile";
+//        }
 
-        validatePwAndRedirect(memberDTO, bindingResult, "/member/profile");
+        validatePwAndRedirect(memberDTO, bindingResult, "/auth2/profile");
 
         memberService.modifyProfile(memberDTO);
+        redirectAttributes.addAttribute("resultMessage", "비밀번호 변경이 완료되었습니다.");
 
         return "redirect:/auth2/profile";
     }
@@ -149,7 +150,7 @@ public class MemberController {
     @GetMapping("/auth2/reset-pwd")
     public String resetPwd() {
         log.info("호출됨");
-        return "/auth2/reset-pwd";
+        return "/member/reset-pwd";
     }
 
 }

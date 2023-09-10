@@ -24,7 +24,7 @@ public class MemberDTO {
     @NotEmpty
     private String confirmPw;
 
-    @NotEmpty
+
     @Length(min=3, max=20)
     private String nickname;
 

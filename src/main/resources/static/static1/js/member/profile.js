@@ -45,3 +45,15 @@ deactiveCheckBox.addEventListener('change', e => {
         detectiveBtn.setAttribute('disabled','disabled');
     }
 });
+
+// console.log(resultMessage);
+// if (resultMessage) {
+//     alert(resultMessage);
+// }
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log(resultMessage);
+    if (resultMessage) {
+        alert(resultMessage);
+    }
+});

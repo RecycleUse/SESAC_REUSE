@@ -21,8 +21,7 @@ public class RegisterMailService implements MailServiceInter {
 
     private final JavaMailSender mailSender;
 
-    @Value("{spring.mail.email}")
-    private String email;
+    private String email = "the_blue10@naver.com";
     public String ePw; //인증 번호
 
     @Override

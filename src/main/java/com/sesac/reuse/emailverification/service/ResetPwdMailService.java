@@ -22,8 +22,7 @@ public class ResetPwdMailService implements MailServiceInter{
     private final JavaMailSender mailSender;
     private final MemberService memberService;
 
-    @Value("{spring.mail.email}")
-    private String email;
+    private String email = "the_blue10@naver.com";
     private String tempPw;
 
     @Override
