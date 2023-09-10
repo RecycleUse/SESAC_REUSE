@@ -85,7 +85,7 @@
         <div class="main">
             <div class="left-container">
                 <!-- DB 에서 item 이미지 연결하기 -->
-                <img th:if="${item.image != null}" th:src="@{'/static/static2/images/item_images/' + ${item.image.name}}" th:alt="${item.name}" />
+                <img th:if="${item.image != null}" th:src="@{'/static/' + ${item.image.path}}" th:alt="${item.name}" />
 
                 <!-- 이미지가 없는 경우 대체 텍스트 또는 기본 이미지 표시 -->
                 <div th:unless="${item.image != null}">
@@ -110,12 +110,12 @@
 
                 <div class="guide">
                     <h6>버리는 방법</h6>
-                    <span th:text="${item.recycleInfo}"></span>
+                    <span th:utext="${item.recycleInfo}"></span>
                 </div>
 
-                <div class="similar-item">
-                    <h6>비슷한 아이템</h6>
-                </div>
+<!--                <div class="similar-item">-->
+<!--                    <h6>비슷한 아이템</h6>-->
+<!--                </div>-->
             </div>
         </div>
         <center><hr></center>

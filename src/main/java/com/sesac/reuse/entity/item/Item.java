@@ -37,7 +37,7 @@ public class Item {
     private Category category;
 
 
-    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // FetchType.LAZY 설정
     @JsonIgnore  // 순환 참조 방지
     private Image image;
 }
