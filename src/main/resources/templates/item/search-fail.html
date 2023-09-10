@@ -53,6 +53,11 @@
                         <a class="nav-link click-scroll" th:href="@{/}">게시판</a>
                     </li>
 
+                    <!-- 관리자만 볼수있는 메뉴 -->
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/item}">관리자</a>
+                    </li>
+
                     <!-- 회원가입 -->
                     <!--                    <li class="nav-item">-->
                     <!--                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>-->
@@ -106,6 +111,11 @@
                         <button type="submit" class="form-control" id="searchButton">Search</button>
                     </div>
                 </form>
+
+                <!-- 로딩 인디케이터 (초기에는 숨김) -->
+                <div id="loadingIndicator" style="display: none;">
+                    <p>로딩 중입니다. 잠시만 기다려주세요</p>
+                </div>
 
                 <div id="resultContainer">
                     <!-- 결과를 업데이트할 컨테이너 -->

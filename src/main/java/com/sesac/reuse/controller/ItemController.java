@@ -2,6 +2,7 @@ package com.sesac.reuse.controller;
 
 import com.sesac.reuse.dto.item.ItemDTO;
 import com.sesac.reuse.entity.item.Category;
+import com.sesac.reuse.entity.item.Image;
 import com.sesac.reuse.entity.item.Item;
 import com.sesac.reuse.service.itemAdmin.CategoryService;
 import com.sesac.reuse.service.itemAdmin.ItemCustomIdSevice;
@@ -36,7 +37,7 @@ public class ItemController {
     public String getItemList(Model model, @RequestParam(value="page", defaultValue="0") int page){
         Page<Item> itemPaging = itemService.getList(page);
         model.addAttribute("itemPaging", itemPaging);
-        return "adminitem/itemList";
+        return "admin/itemList";
     }
 
     // 아이템 조회
@@ -44,7 +45,7 @@ public class ItemController {
     public String getItem(@PathVariable("itemId") String itemId, Model model){
         Item itemDetail = itemService.getItem(itemId);
         model.addAttribute("itemDetail", itemDetail);
-        return "adminitem/itemDetail";
+        return "admin/itemDetail";
     }
 
     // 아이템 삭제
@@ -61,7 +62,7 @@ public class ItemController {
         Map<String, String> itemCustomIdList = itemCustomIdSevice.getItemCustomIdList();
         model.addAttribute("categories", categories);
         model.addAttribute("itemCustomIdList", itemCustomIdList);
-        return "adminitem/addItem";
+        return "admin/addItem";
     }
 
     @PostMapping("/register")
@@ -81,20 +82,20 @@ public class ItemController {
         model.addAttribute("categories", categories);
         model.addAttribute("itemCustomIdList", itemCustomIdList);
         model.addAttribute("itemDetail", itemDetail);
-        return "adminitem/itemUpdate";
+        return "admin/itemUpdate";
     }
 
     // 아이템 수정
     @PostMapping("/update/{itemId}")
-    public String updateItem(@PathVariable("itemId") String itemId, Item updateItem){
+    public String updateItem(@PathVariable("itemId") String itemId, ItemDTO updateItem) throws IOException {
         updateItem.setCreatedAt(LocalDateTime.now());
 
         if(!itemId.equals(updateItem.getId())) { // 기존 item_id 와 다르면 삭제하고 다시 추가
             itemService.deleteItem(itemId);
-            itemService.createItem(updateItem);
+            itemService.saveItem(updateItem);
             return "redirect:/item";
         } else { // 기존 item_id 와 같으면 수정
-            Item item = itemService.updateItem(updateItem);
+            itemService.updateItem(updateItem);
             return "redirect:/item/detail/" + itemId;
         }
 
@@ -105,6 +106,8 @@ public class ItemController {
         itemService.saveItem(itemDto);
         return ResponseEntity.ok().build();
     }
+
+
 
 
 }

@@ -2,6 +2,7 @@ package com.sesac.reuse.controller;
 
 import com.sesac.reuse.entity.item.Item;
 import com.sesac.reuse.repository.item.ItemRepository;
+import com.sesac.reuse.service.itemSearch.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,10 @@ public class SearchController {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private SearchService searchService;
+
 
     @GetMapping("/search")
     @ResponseBody  // JSON 형식으로 응답을 반환함을 선언 (검색 드롭다운 기능에 사용)
