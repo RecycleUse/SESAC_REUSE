@@ -6,18 +6,21 @@ import com.sesac.reuse.entity.item.Item;
 import com.sesac.reuse.repository.item.CategoryRepository;
 import com.sesac.reuse.repository.item.ImageRepository;
 import com.sesac.reuse.repository.item.ItemRepository;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ItemService {
@@ -34,11 +37,7 @@ public class ItemService {
         this.itemRepository = itemRepository;
         this.imageRepository = imageRepository;
     }
-
-    // 카테고리별 아이템 조회
-//    public List<Item> getItemsByCategoryId(String category_id) {
-//        return itemRepository.getItemsByCategoryId(category_id);
-//    }
+    
 
     // 아이템 조회
     public Item getItem(String itemId) {
@@ -66,22 +65,37 @@ public class ItemService {
 
         return itemRepository.save(newItem);
     }
-
-
+    
     // 아이템 수정
-    public Item updateItem(Item item) {
-        Optional<Item> optional = itemRepository.findById(item.getId());
+        public void updateItem(@ModelAttribute ItemDTO itemDTO) throws IOException {
+            Item item = itemRepository.findById(itemDTO.getId()).orElseThrow(() -> new RuntimeException("Item not found"));
 
-        return optional.map(entityItem -> {
-                    // data -> update
-                    entityItem.setId(item.getId())
-                            .setName(item.getName())
-                            .setRecycleInfo(item.getRecycleInfo())
-                            .setRecyclable(item.getRecyclable())
-                            .setCategory(item.getCategory());
-                    return itemRepository.save(entityItem);
-                })
-                .orElseThrow(() -> new RuntimeException("Update error"));
+            // update item
+            item.setId(itemDTO.getId());
+            item.setName(itemDTO.getName());
+            item.setRecycleInfo(itemDTO.getRecycleInfo());
+            item.setRecyclable(itemDTO.getRecyclable());
+            item.setCategory(itemDTO.getCategory());
+
+            Item saveItem = itemRepository.save(item);
+
+            // save file
+            String imagePath = storeFile(itemDTO.getImage());
+
+            // update image
+            MultipartFile file = itemDTO.getImage();
+            String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename()); // Apache Commons IO를 사용한 확장자 추출
+            String newFilename = itemDTO.getId() + "_" + UUID.randomUUID().toString() + "." + fileExtension; // UUID로 새로운 파일명 생성
+            Image image = saveItem.getImage();
+            image.setItem(saveItem);
+            image.setName(newFilename);
+            image.setPath(imagePath + newFilename);
+            imageRepository.save(image);
+
+            // Save the file to the filesystem
+            File fileToSave = new File(UPLOAD_DIR + newFilename);
+            file.transferTo(fileToSave);
+
     }
 
 
@@ -96,35 +110,31 @@ public class ItemService {
         Pageable pageable = PageRequest.of(page, 10, sort);
         return itemRepository.findAll(pageable);
     }
-    
-    // 이미지 파일 조회
-//    public ItemImage getItemImage(String itemId) {
-//        Optional<ItemImage> itemImage = imageRepository.findByItemId(itemId);
-//        if (itemImage.isPresent()) {
-//            return itemImage.get();
-//        } else {
-//            throw new RuntimeException();
-//        }
-//    }
 
+    // 아이템 생성
     public void saveItem(ItemDTO itemDto) throws IOException {
         Item item = new Item();
         item.setId(itemDto.getId());
         item.setName(itemDto.getName());
+        item.setRecyclable(itemDto.getRecyclable());
+        item.setRecycleInfo(itemDto.getRecycleInfo());
         item.setCategory(itemDto.getCategory());
         item.setCreatedAt(LocalDateTime.now());
         Item savedItem = itemRepository.save(item);
 
         MultipartFile file = itemDto.getImage();
+        String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename()); // Apache Commons IO를 사용한 확장자 추출
+        String newFilename = itemDto.getId() + "_" + UUID.randomUUID().toString() + "." + fileExtension; // UUID로 새로운 파일명 생성
+
         String imagePath = storeFile(itemDto.getImage());
         Image itemImage = new Image();
         itemImage.setItem(savedItem);
-        itemImage.setName(file.getOriginalFilename());
-        itemImage.setPath(imagePath + file.getOriginalFilename());
+        itemImage.setName(newFilename);
+        itemImage.setPath(imagePath + newFilename);
         imageRepository.save(itemImage);
 
-        // Save the file to the filesystem
-        File fileToSave = new File(UPLOAD_DIR + file.getOriginalFilename());
+        // 파일 저장
+        File fileToSave = new File(UPLOAD_DIR + newFilename);
         file.transferTo(fileToSave);
     }
 
@@ -132,5 +142,13 @@ public class ItemService {
         // Logic to save the file to a server directory and return the path
         return "/static2/images/item_images/"; // This is just a placeholder
     }
+
+
+
+    // 이미지 조회
+//    public List<Image> getImageList(String itemId) {
+//        Optional<Image> byItem = imageRepository.findByItemId(itemId);
+//        return byItem;
+//    }
 
 }

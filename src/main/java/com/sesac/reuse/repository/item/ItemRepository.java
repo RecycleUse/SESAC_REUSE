@@ -16,6 +16,11 @@ public interface ItemRepository extends JpaRepository<Item, String> {
 
 //    Item findByitem_nameContaining(String item_name);
 
+
+    @Query("SELECT i.image.path FROM Item i WHERE i.id = :itemId")
+    String findImageByItemId(@Param("itemId") String itemId);
+
+
     List<Item> findByNameContaining(String name);
 
 

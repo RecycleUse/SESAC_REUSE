@@ -49,15 +49,14 @@
 }
 /* container box */
 .main {
-    padding: 140px 0px 0px 430px;
-    height: 750px;
+    padding: 12% 10% 0% 20%;
+    height: 850px;
 }
 /* 좌측 구역 */
 .left-container {
     float: left;
     margin-right: 150px;
-    height: 90%;
-
+    height: 100%;
 }
 
 /* 좌측 컨테이너 아이템 이미지 */
@@ -66,50 +65,55 @@
     height: 400px;
 }
 /* 우측 구역 */
-.right-container { padding: 30px;
-}
+/*.right-container { padding: 2%;*/
+/*}*/
 
 .item-name {
-    margin-bottom: 60px;
+    margin-bottom: 6%;
 }
 
 .category {
-    margin-bottom: 50px;
+    margin-bottom: 5%;
 }
 .category > h6 {
     color: #000000;
 }
 
 .enable-status {
-    margin-bottom: 50px;
+    margin-bottom: 5%;
 }
 .enable-status > h6 {
     color: #000000;
 }
 
 .guide {
-    margin-bottom: 50px;
+    margin-bottom: 5%;
 }
 .guide > h6 {
     color: #000000;
 }
 
 .similar-item {
-    margin-bottom: 50px;
+    margin-bottom: 5%;
 }
 .similar-item > h6 {
     color: #000000;
 }
 
-hr{width: 1500px;}
+hr{width: 100%;}
 
 /* 수정요청 문구 */
 .ps {
-    margin-left: 1350px;
+    margin-left: 80%;
+    margin-right: 3%;
 }
 /* 수정요청 버튼 */
 .ps > p > a {
-    margin-left: 15px;
+    margin-left: 30%;
+}
+/* recycle_info 개행 */
+.guide span {
+    white-space: pre-line;
 }
 /* item-detatl.html 끝 */
 
@@ -198,4 +202,14 @@ hr{width: 1500px;}
     white-space: pre-wrap;
     padding-top: 30px;
     color: #fff;
+}
+
+#loadingIndicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
 }

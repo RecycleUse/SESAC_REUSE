@@ -18,31 +18,77 @@ document.addEventListener("DOMContentLoaded", function () {
                             const dropdownItem = document.createElement("button");
                             dropdownItem.classList.add("search-dropdown-item");
                             dropdownItem.type = "button";
+
                             // 이미지 박스 생성 및 스타일 적용
                             const imageBox = document.createElement("div");
                             imageBox.classList.add("search-dropdown-image");  // 스타일 클래스
-                            const image = document.createElement("img");
-                            // 이미지의 상대 경로 설정
-                            if (item.id) {
-                                image.onload = function() {
-                                    // 이미지 로드 완료 후 이미지 박스를 표시
-                                    imageBox.style.display = "block";
-                                };
-                                image.src = `/static/static2/images/item_images/${item.id}.jpg`;
-                                image.alt = item.name;
-                                imageBox.appendChild(image);
-                            } else {
-                                // 이미지 정보가 없을 경우 이미지 박스를 숨김 처리 (이미지 엑박 방지)
-                                imageBox.style.display = "none";
+
+
+                            const itemImage = document.createElement("img");
+
+                            // 아이템의 ID를 가져옴 (이 부분은 원하는 Item의 ID를 가져오는 방식에 따라 변경해야 함)
+                            const itemId = item.id; // 예: 서버에서 동적으로 가져옴
+
+                            // 이미지 정보를 비동기적으로 가져오는 함수
+                            async function fetchItemImage() {
+                                try {
+                                    const response = await fetch(`/api/getItemImagePath?itemId=${itemId}`);
+                                    if (response.ok) {
+                                        const imagePath = await response.text(); // imagePath로 수정
+                                        if (imagePath) {
+                                            itemImage.onload = function () {
+                                                // 이미지 로드 완료 후 이미지 박스를 표시
+                                                imageBox.style.display = "block";
+                                            };
+                                            itemImage.src = `/static/${imagePath}`; // imagePath로 수정
+                                            itemImage.alt = item.name;
+                                            imageBox.appendChild(itemImage);
+                                        } else {
+                                            // 이미지 정보가 없을 경우 이미지 박스를 숨김 처리 (이미지 엑박 방지)
+                                            imageBox.style.display = "none";
+                                        }
+                                    } else {
+                                        console.error("Error fetching image path:", response.status);
+                                    }
+                                } catch (error) {
+                                    console.error("Error fetching image path:", error);
+                                }
                             }
+
+                            // 이미지 정보 가져오기
+                            fetchItemImage();
+
+                            // // 이미지의 상대 경로 설정
+                            // fetch(`/api/getItemImageName?itemId=${itemId}`)
+                            //     .then(response => response.text())
+                            //     .then(imageName => {
+                            //         if (imageName) {
+                            //             itemImage.onload = function() {
+                            //                 // 이미지 로드 완료 후 이미지 박스를 표시
+                            //                 imageBox.style.display = "block";
+                            //             };
+                            //             itemImage.src = `/static/static2/images/item_images/${imageName}`;
+                            //             itemImage.alt = item.name;
+                            //             imageBox.appendChild(itemImage);
+                            //         } else {
+                            //             // 이미지 정보가 없을 경우 이미지 박스를 숨김 처리 (이미지 엑박 방지)
+                            //             imageBox.style.display = "none";
+                            //         }
+                            //     })
+                            //     .catch(error => {
+                            //         console.error("Error fetching image name:", error);
+                            //     });
+
                             // 아이템 이름 설정
                             const itemNameElement = document.createElement("div");
                             itemNameElement.classList.add("search-dropdown-name");  // 스타일 클래스
                             itemNameElement.innerText = item.name;
+
                             // 카테고리 이름 설정
                             const categoryNameElement = document.createElement("div");
                             categoryNameElement.classList.add("search-dropdown-category");  // 스타일 클래스
                             categoryNameElement.innerText = `${item.category.name}`;
+
                             // 이미지 박스, 아이템 이름, 카테고리 이름 추가
                             dropdownItem.appendChild(imageBox);
                             dropdownItem.appendChild(itemNameElement);
@@ -52,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             });
                             dropdown.appendChild(dropdownItem);
                         });
+
                         // 드롭다운을 추가한 후에 스타일 클래스를 적용하고 화면에 표시
                         searchResults.appendChild(dropdown);
                     }

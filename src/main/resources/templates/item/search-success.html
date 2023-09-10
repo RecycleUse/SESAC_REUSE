@@ -54,6 +54,11 @@
                         <a class="nav-link click-scroll" th:href="@{/board/list}">게시판</a>
                     </li>
 
+                    <!-- 관리자만 볼수있는 메뉴 -->
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/item}">관리자</a>
+                    </li>
+
                     <!-- 회원가입 -->
                     <!--                    <li class="nav-item">-->
                     <!--                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>-->
@@ -88,7 +93,7 @@
                 <a th:href="@{/item-detail(id=${item.id})}">
                     <div class="card">
                         <!-- DB 에서 item 이미지 연결하기 -->
-                        <img th:if="${item.image != null}" th:src="@{'/static/static2/images/item_images/' + ${item.image.name}}" th:alt="${item.name}" />
+                        <img th:if="${item.image != null}" th:src="@{'/static/' + ${item.image.path}}" th:alt="${item.name}" class="card-img-top" />
 
                         <!-- 이미지가 없는 경우 대체 텍스트 또는 기본 이미지 표시 -->
                         <div th:unless="${item.image != null}">
