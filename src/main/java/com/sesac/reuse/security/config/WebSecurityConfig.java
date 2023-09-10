@@ -66,8 +66,7 @@ public class WebSecurityConfig {
                         .usernameParameter("email")
                         .passwordParameter("pw")
                         .defaultSuccessUrl("/auth2/profile")
-//                        .failureUrl("/auth2/login?error=true")
-//                        .failureHandler(authenticationFailureHandler)
+
                         .permitAll()
                 ); //시큐리티의 경우 filter에서 요청받고 내부적으로 controller구성 , 로그인,로그아웃 Controller는 직접 생성 안해도됨
 

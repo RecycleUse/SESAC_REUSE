@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 //Member 테이블이랑 InactiveMember 테이블을 엮어놓으면 문제 생기니까 별도로 관리 (연관관계x)
 //id, email값은 복사해서 값을 넣는 방식으로
 
-@Entity
+//@Entity
 public class InactiveMember  {
 
     @Id

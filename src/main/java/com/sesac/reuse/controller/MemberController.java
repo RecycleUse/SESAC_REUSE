@@ -52,6 +52,11 @@ public class MemberController {
         return "member/signup";
     }
 
+    @GetMapping("/admin/auth2/signup")
+    public String signUpPageAdmin() {
+        return "admin/signup";
+    }
+
     @PostMapping("/auth2/signup")
     public String signUp(@Valid MemberDTO memberDTO, BindingResult bindingResult,
                          RedirectAttributes redirectAttributes,

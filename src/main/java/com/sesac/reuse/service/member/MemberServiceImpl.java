@@ -122,6 +122,7 @@ public class MemberServiceImpl implements MemberService {
         member.addRole(MemberRole.MEMBER);
         member.addRole(role); //관리자
         member.setSocial(SocialSignUpInfo.STANDARD);
+        log.info("member={}", member);
         return member;
     }
 

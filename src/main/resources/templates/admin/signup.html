@@ -1,13 +1,13 @@
 <!DOCTYPE html>
+
 <html
         lang="en"
+        xmlns:th="http://www.thymeleaf.org"
         class="light-style customizer-hide"
         dir="ltr"
         data-theme="theme-default"
         data-assets-path="/static1/assets/"
         data-template="vertical-menu-template-free"
-        xmlns:th="http://www.thymeleaf.org"
-
 >
 <head>
   <meta charset="utf-8" />
@@ -16,7 +16,7 @@
           content="width=device-width, initial-scale=1.0, member-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
   />
 
-  <title>Login</title>
+  <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
   <meta name="description" content="" />
 
@@ -60,7 +60,7 @@
 <div class="container-xxl">
   <div class="authentication-wrapper authentication-basic container-p-y">
     <div class="authentication-inner">
-      <!-- Register -->
+      <!-- Register Card -->
       <div class="card">
         <div class="card-body">
 
@@ -73,28 +73,34 @@
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-2">Welcome to Reuse 👋</h4>
-          <p class="mb-4">계정에 로그인해 주세요.</p>
 
-          <form id="formAuthentication" class="mb-3" th:action="@{/auth2/login}" method="POST">
+          <h4 class="mb-2">Adventure starts here 🚀</h4>
+          <p class="mb-4"></p>
+
+          <form id="formAuthentication" class="mb-3" th:action="@{/auth2/signup}" method="POST" th:object="${memberDTO}">
             <div class="mb-3">
               <label for="email" class="form-label">이메일</label>
               <input
-                      type="text"
+                      type="email"
                       class="form-control"
                       id="email"
                       name="email"
-                      placeholder="이메일을 입력해주세요"
+                      placeholder="이메일을 입력해주세요."
                       autofocus
+                      required
               />
+              <button class="btn btn-outline-primary" type="button" id="emailChkCodeBtn">인증번호</button>
+              <div class="form-group last mb-4 check_input">
+                <label for="emailChkCode" id="emailChkCodeLabel">인증번호를 입력해주세요</label>
+                <input type="text" class="form-control" id="emailChkCode">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="nickname" class="form-label">사용자 이름</label>
+              <input type="text" class="form-control" id="nickname" name="nickname" placeholder="사용하실 닉네임을 입력해주세요." required/>
             </div>
             <div class="mb-3 form-password-toggle">
-              <div class="d-flex justify-content-between">
-                <label class="form-label" for="pw">패스워드</label>
-                <a th:href="@{/auth2/reset-pwd}">
-                  <small>비밀번호를 잊으셨나요?</small>
-                </a>
-              </div>
+              <label class="form-label" for="pw">비밀번호</label>
               <div class="input-group input-group-merge">
                 <input
                         type="password"
@@ -103,33 +109,49 @@
                         name="pw"
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         aria-describedby="password"
+                        required
                 />
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-password-toggle">
+              <label class="form-label" for="confirmPw">확인 비밀번호</label>
+              <div class="input-group input-group-merge">
+                <input
+                        type="password"
+                        id="confirmPw"
+                        class="form-control"
+                        name="confirmPw"
+                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                        aria-describedby="password"
+                        required
+                />
+                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+              </div>
             </div>
+            <em id='message'></em>
+
+
             <div class="mb-3">
-              <button class="btn btn-primary d-grid w-100" type="submit">로그인</button>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="role" name="role" value="ADMIN" />
+                <label class="form-check-label" for="role">
+                  관리자 가입
+                </label>
+              </div>
             </div>
+            <input type="submit" class="btn btn-primary d-grid w-100">회원 가입</input>
           </form>
 
-          <!-- 카카오 로그인 -->
-          <div>
-            <button class="kakaologo" type="button" onclick="location.href='/oauth2/authorization/kakao'">
-              <img src="/static1/assets/img/logo/kakao.png"/>
-            </button>
-          </div>
-
           <p class="text-center">
-            <span>처음이신가요?</span>
-            <a th:href="@{/auth2/signup}">
-              <span>회원가입</span>
+            <span>이미 계정이 있으신가요??</span>
+            <a th:href="@{/auth2/login}">
+              <span>로그인 하러 가기</span>
             </a>
           </p>
         </div>
       </div>
-      <!-- /Register -->
+      <!-- Register Card -->
     </div>
   </div>
 </div>
@@ -152,12 +174,11 @@
 <script src="/static1/assets/js/main.js"></script>
 
 <!-- Page JS -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script th:inline="javascript">
-  // const error = [[${error}]];
-  const notFountUserError = [[${notFountUserError}]];
+  const error = [[${error}]];
 </script>
-
-<script th:src="@{/static1/js/member/login.js}"></script>
+<script th:src="@{/static1/js/member/signup.js}"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
