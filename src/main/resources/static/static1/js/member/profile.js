@@ -27,10 +27,24 @@ async function modifyProfile(formObj) {
         },
     });
 
-    console.log(response.data);
+    // console.log(response.data);
 
     return response.data;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    // const resultMessage = "${resultMessage}";
+
+    console.log(resultMessage);
+
+    if (resultMessage && resultMessage.length > 0) {
+        // resultMessage가 존재하면 알림창을 띄우기
+        alert(resultMessage);
+    }
+});
+
+
+
 
 
 if(withdrawResult) alert(withdrawResult);

@@ -54,6 +54,7 @@ public class WebSecurityConfig {
                         .mvcMatchers("/signup/mailConfirm").permitAll()
                         .mvcMatchers("/board", "/board/list").permitAll()
                         .mvcMatchers("/reset-pwd").permitAll()
+                        .mvcMatchers("/admin/auth2/signup").permitAll()
                         .mvcMatchers("/admin/**").hasRole("ADMIN")
 
                 )

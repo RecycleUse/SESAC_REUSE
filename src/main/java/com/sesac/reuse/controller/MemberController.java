@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import javax.servlet.http.HttpServletRequest;
@@ -102,7 +103,7 @@ public class MemberController {
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/auth2/profile")
-    public String myProfile(Model model) {
+    public String myProfile(Model model,  @RequestParam(name = "resultMessage", required = false) String resultMessage) {
 
         String principalEmail = getPrincipalEmail();
 
@@ -110,6 +111,10 @@ public class MemberController {
 
         log.info("profileDTO={}", profileDTO);
         model.addAttribute("profileDTO", profileDTO);
+
+        if (resultMessage != null) {
+            model.addAttribute("resultMessage", resultMessage);
+        }
 
         return "member/profile";
     }
