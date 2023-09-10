@@ -21,6 +21,7 @@ public class SearchService {
         this.itemRepository = itemRepository;
     }
 
+
     // 아이템 조회 및 이미지 정보 함께 가져오기
     public Item getItemWithImage(String item_id) {
         Optional<Item> itemOptional = itemRepository.findById(item_id);
@@ -28,6 +29,7 @@ public class SearchService {
             Item item = itemOptional.get();
             // 아이템의 item_id를 사용하여 이미지 정보 가져오기
             Image image = item.getImage();
+            System.out.println("image = " + image);
             if (image != null) {
                 // 이미지 정보가 있을 경우 아이템에 설정
                 item.setImage(image);

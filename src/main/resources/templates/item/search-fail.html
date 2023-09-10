@@ -53,6 +53,11 @@
                         <a class="nav-link click-scroll" th:href="@{/}">게시판</a>
                     </li>
 
+                    <!-- 관리자만 볼수있는 메뉴 -->
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/item}">관리자</a>
+                    </li>
+
                     <!-- 회원가입 -->
                     <!--                    <li class="nav-item">-->
                     <!--                        <a class="nav-link click-scroll" sec:authorize="isAnonymous()" th:href="@{/auth2/signup}">회원가입</a>-->
