@@ -25,11 +25,10 @@ public class SearchController {
 
     @GetMapping("/search")
     @ResponseBody  // JSON 형식으로 응답을 반환함을 선언 (검색 드롭다운 기능에 사용)
-    public void searchItem(@RequestParam("name") String name, Item item, Model model) {
+    public List<Item> searchItem(@RequestParam("name") String name) {
         List<Item> foundItems = itemRepository.findByNameContaining(name);
-        Item itemWithImage = searchService.getItemWithImage(item.getId());
-        model.addAttribute("foundItems", foundItems);
-        model.addAttribute("itemWithImage", itemWithImage);
+
+        return foundItems;
     }
 
 
