@@ -182,8 +182,8 @@
                       <div class="mb-4">
                         <label class="form-label">이미지 파일</label>
                         <div class="card bg-dark border-0 text-white" th:if="${itemDetail.image}">
-                          <img class="card-img" th:src="@{|../../static${itemDetail.image.path}${itemDetail.image.name}|}" th:value="${itemDetail.image.name}"
-                          alt="Card image">
+                          <img class="card-img" th:src="@{|../../static/${itemDetail.image.path}|}" th:value="${itemDetail.image.name}"
+                               alt="Card image">
                         </div>
                         <div th:unless="${itemDetail.image}">
                           <p>이미지가 존재하지 않습니다</p>

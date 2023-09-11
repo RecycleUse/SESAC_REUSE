@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="/static1/assets/"
+  data-template="vertical-menu-template-free"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, member-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>Tables - Basic Tables | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static1/assets/img/favicon/favicon.ico" />
+
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- 버튼 에서 가져옴 -->
+
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="/static1/assets/vendor/fonts/boxicons.css" />
+
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/static1/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/static1/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="/static1/assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="/static1/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="/static1/assets/css/board.css">
+
+    <!-- Helpers -->
+    <script src="/static1/assets/vendor/js/helpers.js"></script>
+
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="/static1/assets/js/config.js"></script>
+
+
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar"
+          >
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <form th:action="@{/board/list}" method="get" id="searchForm">
+<!--                &lt;!&ndash;              옵션 &ndash;&gt;-->
+<!--                <div class="col-md-3">-->
+<!--                  <label class="form-label" for="boardSearchOption" style="display: none;">Type</label>-->
+<!--                  <select id="boardSearchOption" name="boardSearchOption" class="form-select color-dropdown">-->
+<!--                    <option th:each="option : ${T(com.sesac.reuse.entity.board.BoardSearchOption).values()}"-->
+<!--                            th:value="${option}" th:text="${option.displayName}"/>-->
+<!--                  </select>-->
+<!--                </div>-->
+
+                <!-- Search -->
+                <div class="navbar-nav align-items-center">
+                  <!--              옵션 -->
+                  <div class="col-md-3">
+                    <label class="form-label" for="boardSearchOption" style="display: none;">Type</label>
+                    <select id="boardSearchOption" name="boardSearchOption" class="form-select color-dropdown">
+                      <option th:each="option : ${T(com.sesac.reuse.entity.board.BoardSearchOption).values()}"
+                              th:value="${option}" th:text="${option.displayName}"/>
+                    </select>
+                  </div>
+<!--                    검색 -->
+                  <div class="nav-item d-flex align-items-center">
+                    <i class="bx bx-search fs-4 lh-0"></i>
+                    <input
+                            type="text"
+                            class="form-control border-0 shadow-none"
+                            placeholder="검색어를 입력하세요."
+                            aria-label="Search..."
+                            name="keyword"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">검색</button>
+                </div>
+                <!-- /Search -->
+<!--                <button type="submit" class="btn btn-primary">검색</button>-->
+              </form>
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- Place this tag where you want the button to render. -->
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-member dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="/static/static2/images/logo.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <!-- Navbar -->
+                    <li>
+                      <a class="dropdown-item" th:href="@{../auth2/profile}">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/">
+                        <i class="bx bx-home me-2"></i>
+                        <span class="align-middle">Home</span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" th:href="@{/auth2/logout}">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+          </nav>
+          <!-- / Navbar -->
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- Responsive Table -->
+              <div class="card">
+                <h5 class="card-header">Responsive Table</h5>
+                <div class="table-responsive text-nowrap">
+                  <table class="table">
+                    <thead>
+                      <tr class="text-nowrap">
+                        <th>번호</th>
+                        <th>분류</th>
+                        <th>제목</th>
+                        <th>작성일</th>
+                        <th>작성자</th>
+                        <th>처리 상태</th>
+                      </tr>
+                    </thead>
+                    <tbody th:with="link = ${pageRequestDTO.getLink()}">
+                    <!-- 반복문으로 데이터 출력시켜버리기  -->
+                    <tr th:each="dto:${responseDTO.dtoList}">
+                      <td>[[${dto.boardId}]]</td>
+                      <td th:text="${dto.type?.getDisplayTypeName() ?: ''}"></td>
+                      <td>
+                        <!--  타이틀 출력하는 곳에 reply 갯수 함께 출력-->
+                        <a th:href="|@{/board/read(boardId =${dto.boardId})}&${link}|" class="text-decoration-none">
+                          [[${dto.title}]] </a>
+                        <span class="badge progress-bar-success"
+                              style="background-color: #0a53be">[[${dto.replyCount}]]</span>
+                      </td>
+                      <td>[[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm')}]]</td>
+                      <td>[[${dto.nickname}]]</td>
+                      <td th:text="${dto.status?.getDisplayStatusName ?: ''}"></td>                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+<!--                <button type="submit" class="btn btn-primary">검색</button>-->
+<!--                <button type="button" class="btn btn-outline-primary custom-btn register-btn">글쓰기</button>  기존 코드-->
+<!--                <button type="button" class="btn btn-primary register-btn">글쓰기</button>-->
+
+                <!-- Basic Pagination -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <small class="text-light fw-semibold">Basic</small>
+                      <div class="demo-inline-spacing">
+                        <!-- Basic Pagination -->
+                        <nav aria-label="Page navigation">
+                          <ul class="pagination">
+                            <li class="page-item first">
+                              <a class="page-link" th:href="@{/board/list?page=1}">
+                                <i class="fa-solid fa-angles-left"></i>
+                              </a>
+                            </li>
+                            <li class="page-item prev" th:if="${responseDTO.prev}">
+                              <a class="page-link" th:href="@{/board/list(page=${responseDTO.page-1})}">
+                                <i class="fa-solid fa-angle-left"></i>
+                              </a>
+                            </li>
+
+                            <th:block th:each="i: ${#numbers.sequence(responseDTO.start, responseDTO.end)}">
+                              <li th:class="${responseDTO.page == i}?'page-item active':'page-item'" >
+                                <a class="page-link" th:href="@{/board/list(page=${i})}" th:data-num="${i}">[[${i}]]</a>
+                              </li>
+                            </th:block>
+
+                            <li class="page-item next" th:if="${responseDTO.next}">
+                              <a class="page-link" th:href="@{/board/list(page=${responseDTO.page+1})}">
+                                <<i class="fa-solid fa-angle-right"></i>
+                              </a>
+                            </li>
+
+                            <li class="page-item last">
+                              <a class="page-link" th:href="@{/board/list(page=${responseDTO.last})}">
+                                <i class="fa-solid fa-angles-right"></i>                              </a>
+                            </li>
+                          </ul>
+                          <button type="button" class="btn btn-primary register-btn">글쓰기</button>
+                        </nav>
+                        <!--/ Basic Pagination -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+              <!--/ Responsive Table -->
+
+            </div>
+            <!-- / Content -->
+
+
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  , made with ❤️ by
+                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+                </div>
+                <div>
+                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+                  <a
+                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Documentation</a
+                  >
+
+                  <a
+                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Support</a
+                  >
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="/static1/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="/static1/assets/vendor/libs/popper/popper.js"></script>
+    <script src="/static1/assets/vendor/js/bootstrap.js"></script>
+    <script src="/static1/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="/static1/assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="/static1/assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="https://kit.fontawesome.com/c604e8dba8.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:inline="javascript">
+      // const error = [[${error}]];
+    </script>
+    <script th:src="@{/static1/js/board/list.js}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>

@@ -153,11 +153,6 @@
                     </div>
                 </div>
                 <!-- / Content -->
-                <div th:if="${param.resultMessage}">
-                    <script>
-                        alert([[${param.resultMessage}]]);
-                    </script>
-                </div>
 
                 <!-- Footer -->
                 <footer class="content-footer footer bg-footer-theme">
@@ -226,9 +221,7 @@
 <script src="/static1/assets/js/pages-account-settings-account.js"></script>
 <script th:inline="javascript">
     const withdrawResult = [[${withDrawResult}]];
-
     const resultMessage = [[${resultMessage}]];
-    console.log(resultMessage);
 </script>
 <script th:src="@{/static1/js/member/profile.js}"></script>
 

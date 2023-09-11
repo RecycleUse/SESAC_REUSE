@@ -140,7 +140,7 @@ public class ItemService {
 
     private String storeFile(MultipartFile file) throws IOException {
         // Logic to save the file to a server directory and return the path
-        return "/static2/images/item_images/"; // This is just a placeholder
+        return "static2/images/item_images/"; // This is just a placeholder
     }
 
 

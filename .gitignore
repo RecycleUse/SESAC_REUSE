@@ -41,6 +41,7 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/static/static2/images/item_images/
 
 
 ### openai ###
