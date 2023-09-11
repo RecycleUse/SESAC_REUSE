@@ -62,14 +62,14 @@ public class WebSecurityConfig {
 
         http
                 .formLogin(form -> form
-                        .loginPage("/auth2/login") // 시큐리티 default login페이지를 안쓰고 커스텀 쓰는경우에는 GET요청 Controller 생성해줘야함
+                        .loginPage("/auth2/login")
                         .failureHandler(authenticationFailureHandler)
                         .usernameParameter("email")
                         .passwordParameter("pw")
                         .defaultSuccessUrl("/auth2/profile")
 
                         .permitAll()
-                ); //시큐리티의 경우 filter에서 요청받고 내부적으로 controller구성 , 로그인,로그아웃 Controller는 직접 생성 안해도됨
+                );
 
         http
                 // 카카오 로그인
