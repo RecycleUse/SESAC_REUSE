@@ -1,8 +1,8 @@
 package com.sesac.reuse.repository.board;
 
 import com.sesac.reuse.entity.board.Board;
+import com.sesac.reuse.entity.board.BoardSearchOption;
 import com.sesac.reuse.entity.board.Type;
-import com.sesac.reuse.repository.search.SearchOption;
 import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -131,7 +131,7 @@ class BoardRepositoryTest {
     @Test
     void testSearchAllTest() {
         //given
-        SearchOption searchOption = SearchOption.TITLE_AND_CONTENT;
+        BoardSearchOption searchOption = BoardSearchOption.TITLE_AND_CONTENT;
         String keyword = "1";
         Pageable pageable = PageRequest.of(1 - 1, 10, Sort.by("boardId").descending());
 

@@ -2,12 +2,14 @@ package com.sesac.reuse.entity.member;
 
 import com.sesac.reuse.base.BaseEntity;
 
+import com.sesac.reuse.entity.board.Board;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,6 +36,9 @@ public class Member extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private SocialSignUpInfo social;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    private List<Board> boardList;
 
     public Member(String email, String nickname) {
         this.email = email;

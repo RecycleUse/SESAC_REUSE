@@ -3,21 +3,16 @@ package com.sesac.reuse.service.board;
 import com.sesac.reuse.dto.board.BoardDTO;
 import com.sesac.reuse.dto.board.PageRequestDTO;
 import com.sesac.reuse.dto.board.PageResponseDTO;
-import com.sesac.reuse.entity.board.Board;
 import com.sesac.reuse.entity.board.Type;
 import com.sesac.reuse.repository.board.BoardRepository;
-import com.sesac.reuse.repository.search.SearchOption;
+
+import com.sesac.reuse.service.Board.BoardService;
 import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
@@ -37,7 +32,7 @@ class BoardServiceImplTest {
                 .title("서비스 계층 게시판 저장 테스트 타이틀")
                 .content("서비스 계층 게시판 저장 테스트 내용")
                 .type(Type.INQUIRY_ETC)
-                .writer("예진쓰")
+                .nickname("예진쓰")
                 .build();
 
         Long registedId = boardService.register(boardDTO);
