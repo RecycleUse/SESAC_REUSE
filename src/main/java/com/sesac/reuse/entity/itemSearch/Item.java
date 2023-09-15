@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,18 +23,20 @@ import java.util.Set;
 public class Item {
 
     @Id
-    private String item_id;
+    @Column(name= "item_id")
+    private String id;
 
     @Column(name = "item_name")
-    private String itemName;  // 변수 이름 수정
+    private String name;  // 변수 이름 수정
 
-    private String recycle_info;
+    @Column(name = "recycle_info")
+    private String recycleInfo;
 
     private Boolean recyclable;
 
-//    private String created_at;
+    private LocalDateTime createdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne // Item N : 1 Category
     @JoinColumn(name = "category_id")
     @Enumerated(EnumType.STRING)
     private Category category;
@@ -43,9 +46,10 @@ public class Item {
     private Image image;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "email")
     private Member member;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "item")
     private Set<Like> likes = new HashSet<>();
+
 }

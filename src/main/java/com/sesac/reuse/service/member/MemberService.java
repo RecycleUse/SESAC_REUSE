@@ -1,6 +1,7 @@
 package com.sesac.reuse.service.member;
 
 import com.sesac.reuse.dto.member.MemberDTO;
+import com.sesac.reuse.entity.member.Member;
 import com.sesac.reuse.exception.EmailExistException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -15,4 +16,5 @@ public interface MemberService {
     public boolean isExistAccount(String email);
 
     public void resetPwd(String email,String tempPw);
+    Member findMemberByEmail(String email);
 }

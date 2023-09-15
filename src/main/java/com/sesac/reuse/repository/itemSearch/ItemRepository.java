@@ -11,5 +11,5 @@ public interface ItemRepository extends JpaRepository<Item, String> {
     // item_name을 기준으로 해당 키워드가 포함된 것을 찾겠다.
     // Item findByitem_nameContaining(String item_name);
 
-    List<Item> findByItemNameContaining(String itemName);
+    List<Item> findByNameContaining(String name);
 }

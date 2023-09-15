@@ -1,15 +1,11 @@
 package com.sesac.reuse.security.dto;
 
-
 import com.sesac.reuse.entity.member.MEMBER_STATUS;
 import com.sesac.reuse.entity.member.Member;
 import com.sesac.reuse.entity.member.SocialSignUpInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-
-
 import java.util.Collection;
-
 
 
 public class MemberSecurityDTO extends User {

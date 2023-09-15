@@ -5,7 +5,6 @@ import com.sesac.reuse.entity.member.Member;
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,21 +14,24 @@ public class Like {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "bmId")
-    private Long bmId;
+    @Column(name = "likeId")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY) // JPA 즉시 로딩
-    @JoinColumn(name = "id")
-    private Member member;
+    @JoinColumn(name = "email")
+    private Member memberid;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "id")
     private Item item;
 
-    public Like(Member member, Item item) {
-        this.member = member;
-        this.item = item;
+    public Like() {
 
+    }
+
+    public Like(Member memberid, Item item) {
+        this.memberid = memberid;
+        this.item = item;
     }
 
 }

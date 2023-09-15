@@ -35,9 +35,6 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private SocialSignUpInfo social;
 
-    @OneToMany(mappedBy = "member")
-    private List<Like> likes = new ArrayList<>();
-
     public Member(String email, String nickname) {
         this.email = email;
         this.nickname = nickname;
@@ -48,14 +45,17 @@ public class Member extends BaseEntity {
     }
 
     public void encrptyPassword(String encryptedPw) {
+
         this.pw = encryptedPw;
     }
 
     public void addRole(MemberRole memberRole) {
+
         this.roleSet.add(memberRole);
     }
 
     public void setSocial(SocialSignUpInfo social) {
+
         this.social = social;
     }
 
@@ -66,6 +66,7 @@ public class Member extends BaseEntity {
     }
 
     public void changePw(String encoedPw) {
+
         this.pw = encoedPw;
     }
 }

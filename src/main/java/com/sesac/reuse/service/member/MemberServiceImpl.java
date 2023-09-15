@@ -10,6 +10,7 @@ import com.sesac.reuse.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +25,6 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper mapper;
-    
 
 
     @Override
@@ -40,8 +40,6 @@ public class MemberServiceImpl implements MemberService {
             log.error("e");
             throw new EmailExistException();
         }
-
-
     }
 
     @Override
