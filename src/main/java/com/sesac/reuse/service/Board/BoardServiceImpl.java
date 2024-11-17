@@ -101,7 +101,7 @@ public class BoardServiceImpl implements BoardService {
     public PageResponseDTO<BoardListReplyCountDTO> listWithReplyCount(PageRequestDTO pageRequestDTO) {
 
         Page<BoardListReplyCountDTO> result =
-                boardRepository.searchWithReplyCount(pageRequestDTO.getBoardSearchOption(), pageRequestDTO.getKeyword(), pageRequestDTO.getPageable());
+                boardRepository.searchWithReplyCount(pageRequestDTO.getBoardSearchOption(), pageRequestDTO.getKeyword(), pageRequestDTO.getPageable("regDate"));
 
         return PageResponseDTO.<BoardListReplyCountDTO>withAll()
                 .pageRequestDTO(pageRequestDTO)

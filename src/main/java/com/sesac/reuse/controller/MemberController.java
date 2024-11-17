@@ -83,7 +83,16 @@ public class MemberController {
 
 
     @PostMapping("/auth2/withdraw")
-    public String withdrawMember(Principal principal,RedirectAttributes redirectAttributes) {
+    public String withdrawMember(HttpServletRequest request, HttpServletResponse response
+            ,Principal principal,RedirectAttributes redirectAttributes) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if( authentication != null) {
+            new SecurityContextLogoutHandler().logout(request,response,authentication);
+        } //로그아웃
+
+        request.getSession().invalidate(); //세션 만료 처리
 
         String email = principal.getName();
 
